@@ -1,0 +1,287 @@
+{
+  "meta": {
+    "siteName": "Kachizaka",
+    "titleTemplate": "{title} — Kachizaka",
+    "description": "Les pronostics entre amis, en points seulement : des règles scellées au coup d'envoi, chaque point expliqué ligne par ligne, un classement qui bouge en direct et une ligue qui se souvient de chaque saison."
+  },
+  "chrome": {
+    "brandHome": "Kachizaka, accueil",
+    "navLabel": "Kachizaka",
+    "nav": {
+      "how": "Comment ça marche",
+      "live": "En direct"
+    },
+    "signIn": "Se connecter",
+    "talk": "Nous écrire",
+    "themeToggle": "Thème",
+    "languageLabel": "Langue",
+    "otherLanguage": "English",
+    "dev": "DEV · v{version}",
+    "footer": "Kachizaka est <b>un produit Krizaka</b> — fait à Montréal, open source (Apache-2.0).",
+    "sourceCode": "Code source",
+    "contact": "Contact",
+    "legal": "Confidentialité"
+  },
+  "landing": {
+    "mark": "Kachizaka · en développement",
+    "title": "Pronostiquez entre amis. Des règles que personne ne plie.",
+    "lead": "Une ligue d'amis, en points seulement. Les règles sont scellées au coup d'envoi, chaque point dit quelle règle l'a rapporté, et le classement bouge pendant le match.",
+    "facts": {
+      "points": "Des points — jamais d'argent",
+      "license": "Apache-2.0",
+      "closed": "Dev · inscriptions fermées"
+    },
+    "talk": "Nous écrire",
+    "signIn": "Se connecter",
+    "visualLabel": "Un exemple, calculé par le moteur de points de Kachizaka",
+    "visual": {
+      "match": "Montréal 2 – 1 Toronto",
+      "final": "Terminé",
+      "predicted": "Votre pronostic : {home} – {away}",
+      "breakdown": "D'où viennent vos points",
+      "total": "Total",
+      "sealed": "Règles scellées au coup d'envoi",
+      "note": "Exemple avec les règles par défaut — le même code compte chaque vraie ligue."
+    },
+    "reasonsEyebrow": "Pourquoi",
+    "reasonsTitle": "Ce qui gâche une ligue entre amis",
+    "trap": "Le piège",
+    "more": "Voir comment",
+    "reasons": {
+      "sealed": {
+        "title": "Des règles qui bougent",
+        "trap": "L'organisateur change le barème en pleine saison, et personne ne peut prouver ce qui était convenu."
+      },
+      "live": {
+        "title": "Un classement en retard",
+        "trap": "Quelqu'un saisit les scores le lundi ; les taquineries, c'était samedi."
+      },
+      "memory": {
+        "title": "Des saisons oubliées",
+        "trap": "Le champion de l'an dernier n'a rien pour le montrer, et la rivalité repart de zéro."
+      }
+    },
+    "decisionsEyebrow": "Décisions",
+    "decisionsTitle": "Ce que nous avons choisi, et ce que ça coûte",
+    "decisionLabels": {
+      "chose": "Nous avons choisi",
+      "refused": "Nous avons refusé",
+      "because": "Parce que",
+      "cost": "Ce que ça coûte"
+    },
+    "decisions": {
+      "points": {
+        "chose": "Des points seulement, entre amis.",
+        "refused": "L'argent, les mises, les cotes ou un portefeuille — nulle part.",
+        "because": "Une ligue est un jeu d'honneur ; les paris d'argent sont encadrés au Québec et au Canada.",
+        "cost": "Pas de cagnotte. Le trophée est sur votre avatar."
+      },
+      "seal": {
+        "chose": "Des règles hachées et figées au coup d'envoi, par la base de données elle-même.",
+        "refused": "Un organisateur qui peut modifier le barème après coup.",
+        "because": "Une règle qu'on change après le résultat n'est pas une règle.",
+        "cost": "Un changement ne vaut que pour les matchs pas encore commencés — une nouvelle version, jamais rétroactive."
+      },
+      "feed": {
+        "chose": "Les faits de match par les connecteurs MCP d'Orazaka, appliqués une fois et dans l'ordre.",
+        "refused": "Des scores saisis à la main, ou un flux cru sur parole.",
+        "because": "Le même but reçu deux fois doit compter une fois ; un fait en retard ne doit pas doubler la file.",
+        "cost": "Nous commençons par une compétition et un flux sous licence ; les autres viennent un connecteur à la fois."
+      }
+    },
+    "promiseLabel": "La promesse de la pie",
+    "promise": "Je compte chaque point, et je vous montre d'où il vient.",
+    "closingTitle": "Vous animez une ligue entre amis ?",
+    "closingBody": "Kachizaka est en développement et les inscriptions sont fermées. Parlez-nous de votre ligue — nous choisissons les premières compétitions.",
+    "sections": {
+      "how": {
+        "eyebrow": "Comment ça marche",
+        "title": "Scellé, en direct, mémorisé",
+        "lead": "Trois idées, chacune tenue par du code que vous pouvez lire.",
+        "steps": {
+          "sealed": {
+            "title": "Scellé au coup d'envoi",
+            "text": "Les règles sont hachées au premier coup d'envoi ; ensuite, la base refuse tout changement."
+          },
+          "live": {
+            "title": "En direct",
+            "text": "Les faits arrivent par le connecteur MCP d'Orazaka ; le classement est recalculé et poussé à chaque membre."
+          },
+          "memory": {
+            "title": "Une ligue qui se souvient",
+            "text": "Étoiles de champion, trophées, séries et votre bête noire, saison après saison."
+          }
+        }
+      },
+      "sealed": {
+        "eyebrow": "Règles scellées",
+        "title": "Personne ne plie les règles — pas même l'organisateur",
+        "lead": "Des points pour le score exact, le bon résultat, le bon écart, un multiplicateur pour les finales : écrits une fois, scellés au coup d'envoi.",
+        "points": [
+          "Le barème est gardé avec son sceau SHA-256 ; chaque match garde le sceau avec lequel il a commencé.",
+          "Un changement après le coup d'envoi est une nouvelle version, pour les matchs à venir — jamais une réécriture.",
+          "Chaque pronostic montre les lignes qui lui ont rapporté ses points."
+        ]
+      },
+      "live": {
+        "eyebrow": "Des données en direct",
+        "title": "Le classement bouge pendant le match",
+        "lead": "Kachizaka lit les faits de match par les connecteurs MCP d'Orazaka et diffuse le nouveau classement en Server-Sent Events.",
+        "points": [
+          "Un fait est gardé une fois et appliqué dans l'ordre — un doublon ou un retard ne change rien.",
+          "Les points sont provisoires pendant le match, définitifs au coup de sifflet.",
+          "Les pronostics se ferment au coup d'envoi, par l'horloge et par les faits."
+        ]
+      },
+      "memory": {
+        "eyebrow": "La mémoire de la ligue",
+        "title": "Votre avatar porte votre histoire",
+        "lead": "Chaque saison laisse sa marque : des étoiles pour les titres, des trophées pour le podium, votre plus longue série, et l'ami qui finit toujours devant vous.",
+        "points": [
+          "Champion, deuxième et troisième, gardés saison après saison.",
+          "Votre plus longue série de pronostics qui rapportent.",
+          "Votre bête noire : le membre qui vous a battu le plus de journées."
+        ]
+      }
+    }
+  },
+  "privacy": {
+    "title": "Confidentialité",
+    "updated": "Mis à jour le {date}",
+    "body": "Kachizaka est en développement : seuls les comptes créés par notre équipe peuvent se connecter. Votre compte, vos ligues et vos pronostics sont gardés dans la base de données de Kachizaka au Canada, visibles des membres de vos ligues. Les faits de match viennent d'un flux de données sportives par Orazaka, le moteur de Krizaka ; rien sur vous n'y est envoyé. Il n'y a ni argent, ni paiement, ni publicité. Rien n'est vendu ni partagé. Pour poser une question ou faire supprimer vos données, utilisez le formulaire de contact."
+  },
+  "console": {
+    "meta": {
+      "signIn": "Se connecter",
+      "leagues": "Ligues",
+      "admin": "Administration"
+    },
+    "signIn": {
+      "promise": "Les pronostics entre amis, en points seulement.",
+      "asideFooter": "Chaque point dit quelle règle l'a rapporté.",
+      "title": "Se connecter",
+      "description": "Avec le compte que notre équipe vous a donné.",
+      "email": "Courriel",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "closedTitle": "Les inscriptions sont fermées.",
+      "closed": "Kachizaka est en développement ; les comptes sont créés par notre équipe.",
+      "contact": "Nous écrire",
+      "legalPrefix": "En vous connectant, vous acceptez l'",
+      "privacy": "avis de confidentialité"
+    },
+    "adminSignIn": {
+      "promise": "L'administration de Kachizaka.",
+      "asideFooter": "Une session, le rôle d'administrateur et une adresse autorisée.",
+      "title": "Administration",
+      "description": "Réservé aux administrateurs.",
+      "dev": "DEV"
+    },
+    "shell": {
+      "skip": "Aller au contenu",
+      "title": "Vos ligues",
+      "admin": "Administration",
+      "leagues": "Ligues",
+      "overview": "Vue d'ensemble",
+      "dev": "DEV",
+      "closeMenu": "Fermer le menu",
+      "openMenu": "Ouvrir le menu",
+      "collapse": "Replier le menu",
+      "expand": "Déplier le menu",
+      "signedInAs": "Connecté en tant que {email}",
+      "devBuild": "DEV · v{version}",
+      "language": "Langue",
+      "otherLanguage": "English",
+      "theme": "Thème",
+      "signOut": "Se déconnecter"
+    },
+    "leagues": {
+      "emptyTitle": "Aucune ligue pour l'instant",
+      "empty": "Les ligues sont créées par notre équipe pendant le développement de Kachizaka.",
+      "members": "{count} membres",
+      "open": "Ouvrir la ligue"
+    },
+    "league": {
+      "season": "Saison {label} · {competition}",
+      "noSeason": "Aucune saison ouverte.",
+      "live": "En direct",
+      "offline": "Reconnexion…",
+      "version": "classement v{version}",
+      "rules": {
+        "title": "Les règles",
+        "sealed": "Scellées",
+        "open": "Pas encore scellées",
+        "broken": "Sceau rompu",
+        "version": "version {version}",
+        "points": "{points} pts",
+        "sealedAt": "Scellées au premier coup d'envoi, le {date}. Elles ne peuvent plus changer ; un changement devient une nouvelle version pour les matchs suivants.",
+        "openNote": "Ces règles seront scellées au premier coup d'envoi.",
+        "sealLabel": "Le sceau SHA-256 des règles",
+        "none": "Pas encore de règles.",
+        "names": {
+          "exactScore": "Score exact",
+          "outcome": "Bon résultat",
+          "goalDifference": "Bon écart",
+          "teamGoals": "Buts d'une équipe",
+          "finalMultiplier": "Multiplicateur de finale"
+        }
+      },
+      "matches": {
+        "eyebrow": "Matchs",
+        "title": "La saison, match par match",
+        "final": "Finale",
+        "statuses": {
+          "scheduled": "À venir",
+          "live": "En direct",
+          "final": "Terminé"
+        },
+        "mine": "Votre pronostic : {home} – {away}",
+        "points": "{points} pts",
+        "provisional": "provisoire",
+        "nothing": "aucune règle ne s'applique",
+        "noneYet": "Pas encore de pronostic.",
+        "none": "Aucun pronostic."
+      },
+      "standings": "Classement",
+      "table": {
+        "caption": "Le classement de la saison",
+        "rank": "Rang",
+        "member": "Membre",
+        "you": "vous",
+        "points": "Points",
+        "exact": "Exacts",
+        "predictions": "Pronostics"
+      }
+    },
+    "admin": {
+      "health": "Santé",
+      "version": "Version",
+      "database": "Base de données",
+      "realtime": "Temps réel",
+      "up": "En marche",
+      "down": "En panne",
+      "counts": "Chiffres",
+      "accounts": "Comptes",
+      "admins": "administrateurs",
+      "suspended": "suspendus",
+      "leagues": "Ligues",
+      "live": "Matchs en direct",
+      "facts": "Faits de match",
+      "lastFact": "dernier"
+    },
+    "errors": {
+      "INVALID_CREDENTIALS": "Courriel ou mot de passe erroné.",
+      "SUSPENDED": "Ce compte est suspendu.",
+      "SIGNUP_CLOSED": "Les inscriptions sont fermées.",
+      "RATE_LIMITED": "Trop d'essais. Réessayez dans un moment.",
+      "UNAUTHENTICATED": "Votre session a pris fin. Reconnectez-vous.",
+      "FORBIDDEN": "Non autorisé.",
+      "IP_NOT_ALLOWED": "Pas depuis cette adresse.",
+      "NOT_FOUND": "Introuvable.",
+      "BAD_REQUEST": "La demande n'est pas valide.",
+      "INTERNAL": "Une erreur est survenue.",
+      "NETWORK": "Le réseau n'a pas répondu.",
+      "UNKNOWN": "Une erreur est survenue."
+    }
+  }
+}

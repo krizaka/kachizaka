@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "Kachizaka",
+    "slug": "kachizaka",
+    "scheme": "kachizaka",
+    "version": "0.1.0",
+    "userInterfaceStyle": "automatic",
+    "ios": { "bundleIdentifier": "com.krizaka.kachizaka" },
+    "android": { "package": "com.krizaka.kachizaka" },
+    "plugins": ["expo-router"]
+  }
+}

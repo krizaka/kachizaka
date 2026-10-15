@@ -1,0 +1,24 @@
+{
+  "name": "@kachizaka/mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The sports-feed connector contract Kachizaka reads match facts through — the tools of Orazaka's MCP connector, their zod schemas, the client over Orazaka's edge, and a fake connector for tests.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@kachizaka/core": "workspace:*",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11"
+  }
+}

@@ -1,0 +1,5 @@
+{inviter} invites you to {league}, a league of predictions among friends.
+
+Points only — no money, no stakes. The rules are sealed when the first match kicks off, and every point says which rule earned it.
+
+Join the league: {url}

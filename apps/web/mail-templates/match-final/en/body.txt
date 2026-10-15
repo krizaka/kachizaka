@@ -1,0 +1,7 @@
+Full time: {home} {homeScore}–{awayScore} {away}.
+
+Your points: {points} ({breakdown}).
+You are now {rank} in {league}.
+
+The rules of this match were sealed at kick-off; every point above says which rule earned it.
+See the standings: {leagueUrl}
