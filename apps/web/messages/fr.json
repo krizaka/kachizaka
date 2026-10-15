@@ -212,7 +212,12 @@
       "otherLanguage": "English",
       "theme": "Thème",
       "signOut": "Se déconnecter",
-      "profile": "Profil"
+      "profile": "Profil",
+      "users": "Personnes",
+      "matches": "Matchs",
+      "rules": "Règles",
+      "operations": "Exploitation",
+      "audit": "Journal d'audit"
     },
     "leagues": {
       "emptyTitle": "Aucune ligue pour l'instant",
@@ -286,7 +291,100 @@
       "leagues": "Ligues",
       "live": "Matchs en direct",
       "facts": "Faits de match",
-      "lastFact": "dernier"
+      "lastFact": "dernier",
+      "users": {
+        "caption": "Comptes"
+      },
+      "matches": {
+        "caption": "Matchs"
+      },
+      "rules": {
+        "caption": "Règles de pointage"
+      },
+      "audit": {
+        "caption": "Journal d'audit"
+      },
+      "never": "jamais",
+      "roles": {
+        "USER": "Membre",
+        "ADMIN": "Administrateur"
+      },
+      "states": {
+        "ACTIVE": "Actif",
+        "SUSPENDED": "Suspendu"
+      },
+      "matchStates": {
+        "scheduled": "À venir",
+        "live": "En cours",
+        "final": "Terminé"
+      },
+      "sealed": "Scellé le {date}",
+      "notSealed": "Ouvert",
+      "columns": {
+        "email": "Courriel",
+        "role": "Rôle",
+        "status": "État",
+        "memberships": "Ligues rejointes",
+        "lastSeen": "Dernière visite",
+        "league": "Ligue",
+        "owner": "Propriétaire",
+        "members": "Membres",
+        "seasons": "Saisons",
+        "matches": "Matchs",
+        "created": "Créée",
+        "match": "Match",
+        "kickoff": "Coup d'envoi",
+        "score": "Score",
+        "pendingFacts": "Faits en attente",
+        "predictions": "Pronostics",
+        "seal": "Sceau",
+        "version": "Version",
+        "sealed": "Sceau",
+        "matchesUsing": "Matchs sous cette règle",
+        "when": "Quand",
+        "actor": "Qui",
+        "action": "Action",
+        "target": "Cible",
+        "ip": "Adresse"
+      },
+      "user": {
+        "back": "Personnes",
+        "role": "Rôle",
+        "status": "État",
+        "memberships": "Ligues rejointes",
+        "sessions": "Sessions ouvertes",
+        "created": "Créé",
+        "lastSeen": "Dernière visite",
+        "suspend": "Suspendre",
+        "restore": "Rétablir",
+        "self": "C'est votre propre compte : il ne peut pas être modifié d'ici.",
+        "makeAdmin": "Nommer administrateur",
+        "makeUser": "Retirer le rôle d'administrateur",
+        "revokeSessions": "Terminer toutes les sessions",
+        "sessionsRevoked": "Sessions terminées : {count}.",
+        "exportData": "Exporter les données (Loi 25)",
+        "dangerTitle": "Supprimer ce compte",
+        "dangerLead": "Effacement Loi 25 : le compte et ses sessions sont supprimés définitivement. Ses ligues gardent leur historique sous le nom « ancien membre » ; le journal d'audit garde le fait, pas la personne.",
+        "confirmLabel": "Saisissez le courriel du compte pour confirmer",
+        "deleteAccount": "Supprimer le compte"
+      },
+      "operations": {
+        "database": "Budget de la base de données",
+        "pool": "Réserve de cette instance : {busy} occupées sur {max} ({open} ouvertes)",
+        "connections": "Connexions sur la base : {open} sur {limit}",
+        "waiting": "{count} en attente. Une requête en attente signifie que la réserve est le goulot.",
+        "pipeline": "Faits et sceaux",
+        "pendingFacts": "Faits de match en attente d'application",
+        "oldestPending": "Le plus ancien en attente",
+        "minutes": "{count} min",
+        "liveMatches": "Matchs en cours",
+        "silentMatches": "Matchs en cours muets depuis 15 min",
+        "sealMismatches": "Matchs dont le sceau diffère de leur règle",
+        "refusedSignIns": "Connexions refusées, 24 h"
+      },
+      "leaguesList": {
+        "caption": "Ligues"
+      }
     },
     "errors": {
       "INVALID_CREDENTIALS": "Courriel ou mot de passe erroné.",
@@ -304,7 +402,12 @@
       "PASSWORD_TOO_SHORT": "Au moins 12 caractères.",
       "PASSWORD_TOO_LONG": "Au plus 256 caractères.",
       "INVALID_TOKEN": "Ce lien n'est pas valide ou a expiré.",
-      "WRONG_PASSWORD": "Le mot de passe actuel n'est pas le bon."
+      "WRONG_PASSWORD": "Le mot de passe actuel n'est pas le bon.",
+      "SELF_SUSPEND": "Vous ne pouvez pas suspendre votre propre compte.",
+      "SELF_ROLE": "Vous ne pouvez pas changer votre propre rôle.",
+      "SELF_DELETE": "Vous ne pouvez pas supprimer votre propre compte.",
+      "LAST_ADMIN": "Le dernier administrateur garde son rôle.",
+      "CONFIRM_MISMATCH": "Le courriel saisi ne correspond pas au compte."
     },
     "account": {
       "forgot": {

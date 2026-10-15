@@ -212,7 +212,12 @@
       "otherLanguage": "Français",
       "theme": "Theme",
       "signOut": "Sign out",
-      "profile": "Profile"
+      "profile": "Profile",
+      "users": "People",
+      "matches": "Matches",
+      "rules": "Rule sets",
+      "operations": "Operations",
+      "audit": "Audit log"
     },
     "leagues": {
       "emptyTitle": "No league yet",
@@ -286,7 +291,100 @@
       "leagues": "Leagues",
       "live": "Matches live",
       "facts": "Match facts",
-      "lastFact": "last"
+      "lastFact": "last",
+      "users": {
+        "caption": "Accounts"
+      },
+      "matches": {
+        "caption": "Matches"
+      },
+      "rules": {
+        "caption": "Rule sets"
+      },
+      "audit": {
+        "caption": "Audit log"
+      },
+      "never": "never",
+      "roles": {
+        "USER": "Member",
+        "ADMIN": "Administrator"
+      },
+      "states": {
+        "ACTIVE": "Active",
+        "SUSPENDED": "Suspended"
+      },
+      "matchStates": {
+        "scheduled": "Scheduled",
+        "live": "Live",
+        "final": "Final"
+      },
+      "sealed": "Sealed {date}",
+      "notSealed": "Open",
+      "columns": {
+        "email": "E-mail",
+        "role": "Role",
+        "status": "State",
+        "memberships": "Leagues joined",
+        "lastSeen": "Last seen",
+        "league": "League",
+        "owner": "Owner",
+        "members": "Members",
+        "seasons": "Seasons",
+        "matches": "Matches",
+        "created": "Created",
+        "match": "Match",
+        "kickoff": "Kick-off",
+        "score": "Score",
+        "pendingFacts": "Facts waiting",
+        "predictions": "Predictions",
+        "seal": "Seal",
+        "version": "Version",
+        "sealed": "Seal",
+        "matchesUsing": "Matches under it",
+        "when": "When",
+        "actor": "Who",
+        "action": "Action",
+        "target": "Target",
+        "ip": "Address"
+      },
+      "user": {
+        "back": "People",
+        "role": "Role",
+        "status": "State",
+        "memberships": "Leagues joined",
+        "sessions": "Open sessions",
+        "created": "Created",
+        "lastSeen": "Last seen",
+        "suspend": "Suspend",
+        "restore": "Restore",
+        "self": "This is your own account: it cannot be changed from here.",
+        "makeAdmin": "Make administrator",
+        "makeUser": "Withdraw administrator role",
+        "revokeSessions": "End all sessions",
+        "sessionsRevoked": "Sessions ended: {count}.",
+        "exportData": "Export data (Law 25)",
+        "dangerTitle": "Delete this account",
+        "dangerLead": "Law 25 erasure: the account and its sessions are deleted for good. Its leagues keep their history under the name « former member »; the audit log keeps the fact, not the person.",
+        "confirmLabel": "Type the account's e-mail to confirm",
+        "deleteAccount": "Delete the account"
+      },
+      "operations": {
+        "database": "Database budget",
+        "pool": "This instance's pool: {busy} busy of {max} ({open} open)",
+        "connections": "Connections on the database: {open} of {limit}",
+        "waiting": "{count} waiting. A waiting request means the pool is the bottleneck.",
+        "pipeline": "Facts and seals",
+        "pendingFacts": "Match facts waiting to be applied",
+        "oldestPending": "Oldest waiting",
+        "minutes": "{count} min",
+        "liveMatches": "Matches live",
+        "silentMatches": "Live matches silent for 15 min",
+        "sealMismatches": "Matches whose seal differs from their rule set",
+        "refusedSignIns": "Refused sign-ins, last 24 h"
+      },
+      "leaguesList": {
+        "caption": "Leagues"
+      }
     },
     "errors": {
       "INVALID_CREDENTIALS": "Wrong e-mail or password.",
@@ -304,7 +402,12 @@
       "PASSWORD_TOO_SHORT": "At least 12 characters.",
       "PASSWORD_TOO_LONG": "At most 256 characters.",
       "INVALID_TOKEN": "This link is not valid or has expired.",
-      "WRONG_PASSWORD": "The current password is not right."
+      "WRONG_PASSWORD": "The current password is not right.",
+      "SELF_SUSPEND": "You cannot suspend your own account.",
+      "SELF_ROLE": "You cannot change your own role.",
+      "SELF_DELETE": "You cannot delete your own account.",
+      "LAST_ADMIN": "The last administrator keeps the role.",
+      "CONFIRM_MISMATCH": "The e-mail typed does not match the account."
     },
     "account": {
       "forgot": {
