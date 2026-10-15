@@ -35,4 +35,18 @@ describe("scoring, with its breakdown", () => {
     const runs = Array.from({ length: 5 }, () => JSON.stringify(scorePrediction(rules, { home: 3, away: 1 }, { home: 2, away: 0 }, { final: true })));
     expect(new Set(runs).size).toBe(1);
   });
+
+  it("rounds fractional final multipliers to integer points", () => {
+    const withFraction = { ...rules, finalMultiplier: 1.5 };
+    const s = scorePrediction(withFraction, { home: 1, away: 0 }, { home: 1, away: 0 }, { final: true });
+    // base = 5, bonus = Math.round(5 * 0.5) = 3 -> total points = 8
+    expect(s).toEqual({ points: 8, breakdown: [{ rule: "exactScore", points: 5 }, { rule: "finalMultiplier", points: 3 }] });
+  });
+
+  it("validates that scores are non-negative integers", () => {
+    expect(() => scorePrediction(rules, { home: -1, away: 0 }, { home: 1, away: 0 })).toThrow(RangeError);
+    expect(() => scorePrediction(rules, { home: 1.5, away: 0 }, { home: 1, away: 0 })).toThrow(RangeError);
+    expect(() => scorePrediction(rules, { home: 1, away: 0 }, { home: 1, away: -2 })).toThrow(RangeError);
+    expect(() => scorePrediction(rules, { home: 1, away: 0 }, { home: 1, away: 2.1 })).toThrow(RangeError);
+  });
 });
