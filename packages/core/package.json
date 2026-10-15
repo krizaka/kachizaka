@@ -1,0 +1,23 @@
+{
+  "name": "@kachizaka/core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Kachizaka's domain, pure and deterministic: rule sets and their seal, scoring with its breakdown, ordered match events, standings and the league's memory — shared by the database, the BFF, the MCP pipeline and the apps.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11"
+  }
+}

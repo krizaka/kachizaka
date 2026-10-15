@@ -1,0 +1,1 @@
+{league} — full time: {home} {homeScore}–{awayScore} {away}
