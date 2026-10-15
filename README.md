@@ -29,6 +29,8 @@ through Orazaka's MCP connectors, applied once and in order, standings broadcast
 - **Predictions lock at kick-off** — by the clock and by the facts, in the database itself.
 - **The league's memory** — podiums, streaks and nemeses across seasons (`packages/core`, table `honours`).
 
+- **Accounts** — sign-in, "forgot password" with one-use 30-minute links (the same answer for every address), a password change that ends the other sessions, a profile with Krizaka's default picture; registration is built and closed by configuration (`AUTH_SIGNUP_ENABLED`).
+
 ## Start
 
 ```bash
