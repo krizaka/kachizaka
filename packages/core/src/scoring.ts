@@ -18,6 +18,12 @@ export interface Scored {
 
 const outcomeOf = (s: Score) => Math.sign(s.home - s.away);
 
+function validateScore(s: Score, label: string) {
+  if (!s || !Number.isInteger(s.home) || s.home < 0 || !Number.isInteger(s.away) || s.away < 0) {
+    throw new RangeError(`${label} scores must be non-negative integers`);
+  }
+}
+
 /**
  * The points of one prediction against one result, with the breakdown that adds up to them. Deterministic and pure:
  * the same rules, prediction and result always give the same lines, in the same order. Rules, evaluated in order:
@@ -26,6 +32,8 @@ const outcomeOf = (s: Score) => Math.sign(s.home - s.away);
  * multiplies the total (its own line says by how much).
  */
 export function scorePrediction(rules: RuleSet, predicted: Score, actual: Score, opts: { final?: boolean } = {}): Scored {
+  validateScore(predicted, "predicted");
+  validateScore(actual, "actual");
   const lines: BreakdownLine[] = [];
   if (predicted.home === actual.home && predicted.away === actual.away) {
     lines.push({ rule: "exactScore", points: rules.exactScore });
@@ -38,7 +46,9 @@ export function scorePrediction(rules: RuleSet, predicted: Score, actual: Score,
     if (teams && rules.teamGoals) lines.push({ rule: "teamGoals", points: teams * rules.teamGoals });
   }
   const base = lines.reduce((sum, l) => sum + l.points, 0);
-  if (opts.final && rules.finalMultiplier > 1 && base > 0) lines.push({ rule: "finalMultiplier", points: base * (rules.finalMultiplier - 1) });
+  if (opts.final && rules.finalMultiplier > 1 && base > 0) {
+    lines.push({ rule: "finalMultiplier", points: Math.round(base * (rules.finalMultiplier - 1)) });
+  }
   const points = lines.reduce((sum, l) => sum + l.points, 0);
   return { points, breakdown: lines.filter((l) => l.points !== 0) };
 }
