@@ -302,8 +302,15 @@
           "outcome": "Right outcome",
           "goalDifference": "Goal difference",
           "teamGoals": "Team goals",
-          "finalMultiplier": "Final multiplier"
-        }
+          "finalMultiplier": "Final multiplier",
+          "winner": "Right winner",
+          "overtime": "Overtime called",
+          "marginBand": "Margin band",
+          "bands": "Margin bands",
+          "playoffMultiplier": "Playoff multiplier"
+        },
+        "bandsValue": "{from}–{to}",
+        "bandOpen": "{from}+"
       },
       "matches": {
         "eyebrow": "Matches",
@@ -319,7 +326,13 @@
         "provisional": "provisional",
         "nothing": "no rule matched",
         "noneYet": "No prediction yet.",
-        "none": "No prediction."
+        "none": "No prediction.",
+        "mineOvertime": "Your prediction: {home} – {away}, overtime or shootout",
+        "mineWinner": "Your prediction: {team} wins, by {from} to {to} points",
+        "mineWinnerOpen": "Your prediction: {team} wins, by {from} points or more",
+        "overtimeTag": "overtime or shootout",
+        "sportTitle": "{sport} rules",
+        "perfect": "perfect pick"
       },
       "standings": "Standings",
       "table": {

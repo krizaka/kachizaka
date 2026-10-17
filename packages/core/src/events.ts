@@ -8,18 +8,22 @@ import { z } from "zod";
 export const matchEventSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("kickoff"), providerEventId: z.string().min(1), seq: z.number().int().min(1), at: z.string() }),
   z.object({ kind: z.literal("goal"), providerEventId: z.string().min(1), seq: z.number().int().min(1), at: z.string(), side: z.enum(["home", "away"]), minute: z.number().int().min(0).max(200).optional() }),
-  z.object({ kind: z.literal("correction"), providerEventId: z.string().min(1), seq: z.number().int().min(1), at: z.string(), home: z.number().int().min(0), away: z.number().int().min(0) }),
+  z.object({ kind: z.literal("correction"), providerEventId: z.string().min(1), seq: z.number().int().min(1), at: z.string(), home: z.number().int().min(0), away: z.number().int().min(0), overtime: z.boolean().optional() }),
   z.object({ kind: z.literal("final"), providerEventId: z.string().min(1), seq: z.number().int().min(1), at: z.string() }),
 ]);
 export type MatchEvent = z.infer<typeof matchEventSchema>;
 
 export type MatchStatus = "scheduled" | "live" | "final";
+/** The statuses a match moves through, as constants (never a magic string at a comparison). */
+export const MATCH_STATUS = { scheduled: "scheduled", live: "live", final: "final" } as const satisfies Record<MatchStatus, MatchStatus>;
 export interface MatchState {
   status: MatchStatus;
   home: number;
   away: number;
   /** The last sequence number applied. */
   appliedSeq: number;
+  /** Went beyond regulation (a result fact says so; hockey scores it). */
+  overtime?: boolean;
 }
 
 export const INITIAL_STATE: MatchState = { status: "scheduled", home: 0, away: 0, appliedSeq: 0 };
@@ -34,7 +38,7 @@ export function applyEvent(state: MatchState, event: MatchEvent): MatchState {
       if (state.status === "final") return next;
       return { ...next, status: "live", home: state.home + (event.side === "home" ? 1 : 0), away: state.away + (event.side === "away" ? 1 : 0) };
     case "correction":
-      return { ...next, home: event.home, away: event.away };
+      return { ...next, home: event.home, away: event.away, overtime: event.overtime ?? state.overtime };
     case "final":
       return { ...next, status: "final" };
   }

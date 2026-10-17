@@ -1,4 +1,4 @@
-import { applyInOrder, type LeagueEvent, type MatchEvent, matchEventSchema, type MatchState, type RuleSet, ruleSetSchema, scorePrediction, sealHolds, standings as rank } from "@kachizaka/core";
+import { type AnyRuleSet, applyInOrder, type BreakdownLine, type LeagueEvent, type MatchEvent, matchEventSchema, type MatchState, parseRulesFor, scoreFor, sealHoldsFor, type SportId, standings as rank } from "@kachizaka/core";
 import { and, asc, eq, gt, inArray, isNull, sql } from "drizzle-orm";
 
 import type { Db, Tx } from "./client";
@@ -24,14 +24,14 @@ export async function ingest(db: Db, matchId: string, received: readonly MatchEv
     const [m] = await tx.select().from(matches).where(eq(matches.id, matchId)).for("update");
     if (!m) throw new Error(`KZ_MATCH_UNKNOWN: ${matchId}`);
     const pending = await tx.select().from(matchEvents).where(and(eq(matchEvents.matchId, matchId), gt(matchEvents.seq, m.appliedSeq), isNull(matchEvents.appliedAt))).orderBy(asc(matchEvents.seq));
-    const before: MatchState = { status: m.status, home: m.homeScore, away: m.awayScore, appliedSeq: m.appliedSeq };
+    const before: MatchState = { status: m.status, home: m.homeScore, away: m.awayScore, appliedSeq: m.appliedSeq, overtime: m.overtime };
     const { state, applied } = applyInOrder(before, pending.map((p) => matchEventSchema.parse(p.payload)));
     if (!applied.length) return { applied: 0, events: [] };
 
     const seal = before.status === "scheduled" && state.status !== "scheduled" ? await sealForKickoff(tx, matchId) : { ruleSetId: m.ruleSetId, seal: m.ruleSetSeal };
     await tx
       .update(matches)
-      .set({ status: state.status, homeScore: state.home, awayScore: state.away, appliedSeq: state.appliedSeq, ruleSetId: seal.ruleSetId, ruleSetSeal: seal.seal })
+      .set({ status: state.status, homeScore: state.home, awayScore: state.away, overtime: state.overtime ?? m.overtime, appliedSeq: state.appliedSeq, ruleSetId: seal.ruleSetId, ruleSetSeal: seal.seal })
       .where(eq(matches.id, matchId));
     await tx.update(matchEvents).set({ appliedAt: new Date() }).where(and(eq(matchEvents.matchId, matchId), inArray(matchEvents.seq, applied.map((e) => e.seq))));
 
@@ -47,22 +47,31 @@ export async function ingest(db: Db, matchId: string, received: readonly MatchEv
 }
 
 /** The rules a match is scored with — read with their seal, and refused if they no longer match it (never used tampered). */
-async function sealedRules(tx: Tx, ruleSetId: string, seal: string): Promise<RuleSet> {
+async function sealedRules(tx: Tx, ruleSetId: string, seal: string, sport: SportId): Promise<AnyRuleSet> {
   const [rs] = await tx.select().from(ruleSets).where(eq(ruleSets.id, ruleSetId));
-  const rules = ruleSetSchema.parse(rs?.rules);
-  if (!rs || rs.seal !== seal || !sealHolds(rules, seal)) throw new Error(`KZ_SEAL_BROKEN: rule set ${ruleSetId} no longer matches its seal`);
+  const rules = parseRulesFor(sport, rs?.rules);
+  if (!rs || rs.sport !== sport || rs.seal !== seal || !sealHoldsFor(sport, rules, seal)) throw new Error(`KZ_SEAL_BROKEN: rule set ${ruleSetId} no longer matches its seal`);
   return rules;
+}
+
+/** A stored pick, in the shape its sport's scorer reads. */
+function pickOf(sport: SportId, p: typeof predictions.$inferSelect) {
+  if (sport === "basketball") return { winner: p.winner!, band: p.band! };
+  if (sport === "hockey") return { home: p.home!, away: p.away!, overtime: p.overtime };
+  return { home: p.home!, away: p.away! };
 }
 
 /** Scores every prediction of a match against its current score (provisional until the final whistle). */
 export async function rescoreMatch(tx: Tx, matchId: string): Promise<void> {
   const [m] = await tx.select().from(matches).where(eq(matches.id, matchId));
   if (!m?.ruleSetId || !m.ruleSetSeal) return;
-  const rules = await sealedRules(tx, m.ruleSetId, m.ruleSetSeal);
+  const rules = await sealedRules(tx, m.ruleSetId, m.ruleSetSeal, m.sport);
   const rows = await tx.select().from(predictions).where(eq(predictions.matchId, matchId));
   for (const p of rows) {
-    const scored = scorePrediction(rules, { home: p.home, away: p.away }, { home: m.homeScore, away: m.awayScore }, { final: m.isFinal });
-    const values = { matchId, memberId: p.memberId, points: scored.points, breakdown: scored.breakdown, ruleSetSeal: m.ruleSetSeal, provisional: m.status !== "final", scoredAt: new Date() };
+    // A tie is impossible in hockey and basketball: a live tie has no winner to score yet, so it scores nothing until it is broken.
+    const tied = m.sport !== "soccer" && m.homeScore === m.awayScore;
+    const scored = tied ? { points: 0, breakdown: [] as BreakdownLine[], perfect: false } : scoreFor(m.sport, rules, pickOf(m.sport, p), { home: m.homeScore, away: m.awayScore, overtime: m.overtime }, { final: m.isFinal });
+    const values = { matchId, memberId: p.memberId, points: scored.points, breakdown: scored.breakdown, perfect: scored.perfect, ruleSetSeal: m.ruleSetSeal, provisional: m.status !== "final", scoredAt: new Date() };
     await tx.insert(predictionScores).values({ predictionId: p.id, ...values }).onConflictDoUpdate({ target: predictionScores.predictionId, set: values });
   }
 }
@@ -72,7 +81,7 @@ export async function recomputeStandings(tx: Tx, seasonId: string): Promise<numb
   const [season] = await tx.select().from(seasons).where(eq(seasons.id, seasonId));
   const roster = await tx.select().from(members).where(eq(members.leagueId, season!.leagueId));
   const scores = await tx
-    .select({ memberId: predictionScores.memberId, points: predictionScores.points, breakdown: predictionScores.breakdown })
+    .select({ memberId: predictionScores.memberId, points: predictionScores.points, breakdown: predictionScores.breakdown, perfect: predictionScores.perfect })
     .from(predictionScores)
     .innerJoin(matches, eq(matches.id, predictionScores.matchId))
     .where(eq(matches.seasonId, seasonId));
@@ -80,7 +89,7 @@ export async function recomputeStandings(tx: Tx, seasonId: string): Promise<numb
     roster.map((r) => ({
       memberId: r.id,
       displayName: r.displayName,
-      scored: scores.filter((s) => s.memberId === r.id).map((s) => ({ points: s.points, breakdown: s.breakdown as ReturnType<typeof scorePrediction>["breakdown"] })),
+      scored: scores.filter((s) => s.memberId === r.id).map((s) => ({ points: s.points, breakdown: s.breakdown as BreakdownLine[], perfect: s.perfect })),
     })),
   );
   const [{ v } = { v: 0 }] = await tx.select({ v: sql<number>`coalesce(max(${standings.version}), 0)::int` }).from(standings).where(eq(standings.seasonId, seasonId));

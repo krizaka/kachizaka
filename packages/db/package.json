@@ -2,7 +2,7 @@
   "name": "@kachizaka/db",
   "version": "0.1.0",
   "private": true,
-  "description": "Kachizaka's PostgreSQL 16 schema (Drizzle, versioned SQL migrations), the rules the database itself enforces (sealed rule sets, predictions locked at kick-off, ordered facts), and the ingestion pipeline \u2014 tested on a real PostgreSQL.",
+  "description": "Kachizaka's PostgreSQL 16 schema (Drizzle, versioned SQL migrations), the rules the database itself enforces (sealed rule sets, predictions locked at kick-off, ordered facts), and the ingestion pipeline — tested on a real PostgreSQL.",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
@@ -14,10 +14,12 @@
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run",
     "db:generate": "drizzle-kit generate",
-    "seed": "tsx src/seed-cli.ts"
+    "seed": "tsx src/seed-cli.ts",
+    "sync": "tsx scripts/sync.ts"
   },
   "dependencies": {
     "@kachizaka/core": "workspace:*",
+    "@kachizaka/mcp": "workspace:*",
     "drizzle-orm": "^0.45.4",
     "pg": "^8.16.3"
   },

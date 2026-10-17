@@ -302,8 +302,15 @@
           "outcome": "Bon résultat",
           "goalDifference": "Bon écart",
           "teamGoals": "Buts d'une équipe",
-          "finalMultiplier": "Multiplicateur de finale"
-        }
+          "finalMultiplier": "Multiplicateur de finale",
+          "winner": "Bon gagnant",
+          "overtime": "Prolongation devinée",
+          "marginBand": "Tranche d'écart",
+          "bands": "Tranches d'écart",
+          "playoffMultiplier": "Multiplicateur des séries"
+        },
+        "bandsValue": "{from}–{to}",
+        "bandOpen": "{from}+"
       },
       "matches": {
         "eyebrow": "Matchs",
@@ -319,7 +326,13 @@
         "provisional": "provisoire",
         "nothing": "aucune règle ne s'applique",
         "noneYet": "Pas encore de pronostic.",
-        "none": "Aucun pronostic."
+        "none": "Aucun pronostic.",
+        "mineOvertime": "Ton pronostic : {home} – {away}, prolongation ou fusillade",
+        "mineWinner": "Ton pronostic : {team} gagne, par {from} à {to} points",
+        "mineWinnerOpen": "Ton pronostic : {team} gagne, par {from} points ou plus",
+        "overtimeTag": "prolongation ou fusillade",
+        "sportTitle": "Règles : {sport}",
+        "perfect": "pronostic parfait"
       },
       "standings": "Classement",
       "table": {

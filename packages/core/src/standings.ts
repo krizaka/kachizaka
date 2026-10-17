@@ -24,7 +24,7 @@ export function standings(members: readonly MemberScore[]): StandingRow[] {
     memberId: m.memberId,
     displayName: m.displayName,
     points: m.scored.reduce((s, x) => s + x.points, 0),
-    exact: m.scored.filter((x) => x.breakdown.some((l) => l.rule === "exactScore")).length,
+    exact: m.scored.filter((x) => x.perfect ?? x.breakdown.some((l) => l.rule === "exactScore")).length,
     predictions: m.scored.length,
   }));
   rows.sort((a, b) => b.points - a.points || b.exact - a.exact || a.predictions - b.predictions || a.displayName.localeCompare(b.displayName, "en") || a.memberId.localeCompare(b.memberId));
