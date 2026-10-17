@@ -15,7 +15,6 @@
     "talk": "Nous écrire",
     "themeToggle": "Thème",
     "languageLabel": "Langue",
-    "otherLanguage": "English",
     "devNotice": "Environnement de développement — accès sur invitation",
     "sourceCode": "Code source",
     "contact": "Contact",
@@ -31,7 +30,8 @@
         "text": "Une ligue, un pronostic, un classement qui bouge."
       }
     },
-    "footerLabel": "Pied de page"
+    "footerLabel": "Pied de page",
+    "preferences": "Préférences"
   },
   "landing": {
     "eyebrow": "Kachizaka · des ligues entre amis",
@@ -264,7 +264,6 @@
       "signedInAs": "Connecté en tant que {email}",
       "devBuild": "DEV · v{version}",
       "language": "Langue",
-      "otherLanguage": "English",
       "theme": "Thème",
       "signOut": "Se déconnecter",
       "profile": "Profil",
