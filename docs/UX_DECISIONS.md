@@ -30,3 +30,15 @@ Feedback: the pinned Discussion of the repository.
 - **Refused**: a spinner on the whole table.
 - **Cost**: one badge.
 - **Wrong if**: reconnects are frequent enough that the badge flickers — then debounce it.
+
+## 4. The landing tells one story in five sections; its proof is computed by the product's own code
+
+- **Decision**: five sections: the promise with one prediction scored by `@kachizaka/core` (the real scorer, the default
+  rules, their seal), three outcomes (each card a way in), how it works in three steps with the magpie's promise as the
+  film says it, trust (points only, sealed by the database, open source, Orazaka named once as « planned », the status from
+  dev-preview.json), the closing call. One « Product » menu, no version chip; the footer is @krizaka/ui's SiteFooter.
+- **Problem**: the old home had eight blocks; a visitor met sealed hashes and MCP before knowing what the game is.
+- **Principle**: one idea per screen, proof before detail (progressive disclosure).
+- **Refused**: a mock-up of the console with invented leagues; a recording, until a real league runs on dev.
+- **Cost**: the proof is a computation, not the app in use — said under it; the recording comes with the first league on dev.
+- **Signal we are wrong**: visitors ask whether they can win money.

@@ -8,33 +8,114 @@
     "brandHome": "Kachizaka, home",
     "navLabel": "Kachizaka",
     "nav": {
-      "how": "How it works",
-      "live": "Live"
+      "product": "Product",
+      "how": "How it works"
     },
     "signIn": "Sign in",
     "talk": "Talk to us",
     "themeToggle": "Theme",
     "languageLabel": "Language",
     "otherLanguage": "Français",
-    "dev": "DEV · v{version}",
     "devNotice": "Development environment — access by invitation",
-    "footer": "Kachizaka is <b>a Krizaka product</b> — made in Montréal, open source (Apache-2.0).",
     "sourceCode": "Source code",
     "contact": "Contact",
-    "legal": "Privacy"
+    "legal": "Privacy",
+    "menu": {
+      "label": "Menu",
+      "home": {
+        "title": "Overview",
+        "text": "Predictions among friends, points only."
+      },
+      "how": {
+        "title": "How it works",
+        "text": "A league, a prediction, a table that moves."
+      }
+    },
+    "footerLabel": "Site footer"
   },
   "landing": {
-    "mark": "Kachizaka · in development",
+    "eyebrow": "Kachizaka · predictions among friends",
     "title": "Predict with friends. Rules nobody can bend.",
-    "lead": "A league of friends, points only. The scoring rules are sealed when the match kicks off, every point says which rule earned it, and the table moves while the game is played.",
-    "facts": {
-      "points": "Points only — never money",
-      "license": "Apache-2.0",
-      "closed": "Dev · sign-up closed"
+    "lead": "A league of friends, points only. The rules are sealed at kick-off, every point says which rule earned it, and the table moves while the game is played.",
+    "talk": "Talk to us about Kachizaka",
+    "seeHow": "How it works",
+    "proof": {
+      "label": "One prediction, scored by Kachizaka's own code",
+      "caption": "Computed when this page was built, by the same scorer and default rules that score every league. Not a screenshot: the first league on dev is still to come."
     },
-    "talk": "Talk to us",
-    "signIn": "Sign in",
-    "visualLabel": "An example, computed by Kachizaka's own scorer",
+    "status": {
+      "development": "In development: sign-up is closed, and the first league on dev is still to come.",
+      "preview": "Dev preview: sign-up is closed, access by invitation."
+    },
+    "statusChip": {
+      "development": "In development",
+      "preview": "Dev preview"
+    },
+    "outcomes": {
+      "eyebrow": "What you can do",
+      "title": "Settle it, fairly, among friends",
+      "settle": {
+        "title": "Settle who reads the game best",
+        "text": "Everyone predicts each match before kick-off; the table says who was right, match after match.",
+        "cta": "Sign in (by invitation)"
+      },
+      "fair": {
+        "title": "Play by rules nobody can bend",
+        "text": "The scoring is sealed when the match starts. Nobody, not even the organiser, changes it after the result.",
+        "cta": "Sign in (by invitation)"
+      },
+      "memory": {
+        "title": "Keep the league's memory",
+        "text": "Every match, every prediction and every point stays: who called the upset, who won the season.",
+        "cta": "Sign in (by invitation)"
+      }
+    },
+    "how": {
+      "eyebrow": "How it works",
+      "title": "A league, a prediction, a table",
+      "lead": "Three steps, and every point traced to the rule that earned it.",
+      "steps": {
+        "league": {
+          "title": "Start a league with friends",
+          "text": "A private league, its members and its rules. For now, our team opens the leagues."
+        },
+        "predict": {
+          "title": "Predict before kick-off",
+          "text": "A score for each match. At kick-off, the predictions close and the rules are sealed."
+        },
+        "table": {
+          "title": "Watch the table move",
+          "text": "Each goal is applied once, in order; the table is recomputed whole, and every point shows its rule."
+        }
+      },
+      "magpieLabel": "The magpie's promise",
+      "magpie": "The magpie keeps the score."
+    },
+    "trust": {
+      "eyebrow": "Trust",
+      "title": "A game of pride, nothing else",
+      "lead": "Your account, your leagues and your predictions are kept in Canada, visible to your leagues' members. Nothing is sold or shared.",
+      "points": {
+        "title": "Points only",
+        "text": "No money, no payment, no wallet and no advertising, anywhere. The trophy is on your profile.",
+        "cta": "Privacy"
+      },
+      "sealed": {
+        "title": "Sealed by the database",
+        "text": "Each rule set is hashed at its first kick-off; the database refuses any edit of a sealed version.",
+        "cta": "Read the rules' code"
+      },
+      "open": {
+        "title": "Open source",
+        "text": "The app, its scorer and its database rules are on GitHub under Apache-2.0.",
+        "cta": "Read the code"
+      },
+      "powered": "Match facts will come through Orazaka's connectors (planned, not wired yet)."
+    },
+    "closing": {
+      "title": "Want a league for your group?",
+      "body": "Kachizaka is in development and sign-up is closed. Tell us about your group and the competition you follow."
+    },
     "visual": {
       "match": "Montréal 2 – 1 Toronto",
       "final": "Final",
@@ -43,119 +124,6 @@
       "total": "Total",
       "sealed": "Rules sealed at kick-off",
       "note": "Example with the default rules — the same code scores every real league."
-    },
-    "reasonsEyebrow": "Why it exists",
-    "reasonsTitle": "What spoils a league between friends",
-    "trap": "The trap",
-    "more": "See how",
-    "reasons": {
-      "sealed": {
-        "title": "Rules that move",
-        "trap": "The organiser changes the scoring in the middle of the season, and nobody can prove what was agreed."
-      },
-      "live": {
-        "title": "A table that lags",
-        "trap": "Somebody types the scores in on Monday; the banter happened on Saturday."
-      },
-      "memory": {
-        "title": "Seasons forgotten",
-        "trap": "Last year's champion has nothing to show for it, and the rivalry starts from zero."
-      }
-    },
-    "decisionsEyebrow": "Decisions",
-    "decisionsTitle": "What we chose, and what it costs",
-    "decisionLabels": {
-      "chose": "We chose",
-      "refused": "We refused",
-      "because": "Because",
-      "cost": "What it costs"
-    },
-    "decisions": {
-      "points": {
-        "chose": "Points only, between friends.",
-        "refused": "Money, stakes, odds or a wallet — anywhere.",
-        "because": "A league is a game of pride; real-money betting is regulated in Québec and Canada.",
-        "cost": "No prize pool. The trophy is on your avatar."
-      },
-      "seal": {
-        "chose": "Rules hashed and frozen at kick-off, by the database itself.",
-        "refused": "An organiser who can edit the scoring after the fact.",
-        "because": "A rule you can change after the result is not a rule.",
-        "cost": "A change applies only to matches not yet started — a new version, never a retroactive one."
-      },
-      "feed": {
-        "chose": "Match facts through Orazaka's MCP connectors, applied once and in order.",
-        "refused": "Scores typed in by hand, or a feed trusted blindly.",
-        "because": "The same goal delivered twice must count once; a late fact must not jump the queue.",
-        "cost": "We start with one competition and a licensed feed; more come one connector at a time."
-      }
-    },
-    "promiseLabel": "The magpie's promise",
-    "promise": "I count every point, and I show you where each one comes from.",
-    "closingTitle": "Running a league with your friends?",
-    "closingBody": "Kachizaka is in development and sign-up is closed. Tell us about your league — we are choosing the first competitions.",
-    "sections": {
-      "how": {
-        "eyebrow": "How it works",
-        "title": "Sealed, live, remembered",
-        "lead": "Three ideas, each held by code you can read.",
-        "steps": {
-          "sealed": {
-            "title": "Sealed at kick-off",
-            "text": "The rules are hashed when the first match starts; after that the database refuses any change."
-          },
-          "live": {
-            "title": "Live, in real time",
-            "text": "Facts arrive through Orazaka's MCP connector; the standings are recomputed and pushed to every member."
-          },
-          "memory": {
-            "title": "A league that remembers",
-            "text": "Championship stars, trophies, streaks and your nemesis, season after season."
-          }
-        }
-      },
-      "sealed": {
-        "eyebrow": "Sealed rules",
-        "title": "Nobody bends the rules — not even the organiser",
-        "lead": "Points for the exact score, the right outcome, the right goal difference, a multiplier for finals: written once, sealed at kick-off.",
-        "points": [
-          "The rule set is stored with its SHA-256 seal; every match keeps the seal it started with.",
-          "A change after kick-off is a new version, for matches not yet started — never a rewrite.",
-          "Each prediction shows the lines that earned its points."
-        ]
-      },
-      "live": {
-        "eyebrow": "Live data, in real time",
-        "title": "The table moves while the match is played",
-        "lead": "Kachizaka reads match facts through Orazaka's MCP connectors and broadcasts the new standings over Server-Sent Events.",
-        "points": [
-          "A fact is stored once and applied in order — a duplicate or a late delivery changes nothing.",
-          "Points are provisional while the match runs, final at the whistle.",
-          "Predictions lock at kick-off, by the clock and by the facts."
-        ]
-      },
-      "memory": {
-        "eyebrow": "The league's memory",
-        "title": "Your avatar carries your history",
-        "lead": "Every season leaves its mark: stars for titles, trophies for the podium, your longest streak, and the friend who always finishes above you.",
-        "points": [
-          "Champion, runner-up and third place, kept season after season.",
-          "Your longest run of scoring predictions.",
-          "Your nemesis: the member who beat you on the most matchdays."
-        ]
-      },
-      "account": {
-        "eyebrow": "Accounts",
-        "title": "Your account, your leagues",
-        "lead": "Kachizaka is in development: accounts are opened by our team for now. Once an account exists, a member can change its password, keep its profile, and recover access by e-mail.",
-        "points": [
-          "Sign in with your e-mail and password; forgot it? A one-use link arrives by e-mail and lasts 30 minutes.",
-          "Changing your password ends your other sessions, so a lost phone cannot keep a league open.",
-          "Sign-up is closed while Kachizaka is in development: nobody opens an account on their own yet.",
-          "Forgot your password? Ask for the link from the sign-in page."
-        ],
-        "forgot": "Forgot your password?"
-      }
     }
   },
   "privacy": {
