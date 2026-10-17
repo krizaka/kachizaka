@@ -39,8 +39,8 @@ importers:
         specifier: ^0.2.1
         version: 0.2.1(react@19.3.1)(typescript@5.9.3)
       '@krizaka/icons':
-        specifier: ^0.5.1
-        version: 0.5.1(react@19.3.1)
+        specifier: ^0.6.0
+        version: 0.6.0(react@19.3.1)
       '@krizaka/query':
         specifier: ^0.2.1
         version: 0.2.1(@types/react@19.3.0)(csstype@3.2.3)(pg@8.23.1)(react@19.3.1)
@@ -968,8 +968,8 @@ packages:
       typescript:
         optional: true
 
-  '@krizaka/icons@0.5.1':
-    resolution: {integrity: sha512-EBsezUs3oCVU/cCGpTpOQLa8tyIZqioQDATWBsCFQS6auTEliA3KIRDaqMrZZKdYLWQIaXgpbqmUaTzvRXeV9A==}
+  '@krizaka/icons@0.6.0':
+    resolution: {integrity: sha512-p6k8IJWvbSbehguKkMAye/9+ltBvzj2vSVZX1Ds3l9F5/gFSo6++7r3uDGRnrcjUt3kfRBXK8CLSc5hV8qfjag==}
     engines: {node: '>=22'}
     peerDependencies:
       react: '>=18'
@@ -5435,7 +5435,7 @@ snapshots:
       react: 19.3.1
       typescript: 5.9.3
 
-  '@krizaka/icons@0.5.1(react@19.3.1)':
+  '@krizaka/icons@0.6.0(react@19.3.1)':
     dependencies:
       react: 19.3.1
 
