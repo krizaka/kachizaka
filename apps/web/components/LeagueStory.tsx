@@ -34,7 +34,7 @@ const STEP_ICONS = { create: UsersIcon, pick: ClockIcon, table: CheckIcon, seaso
 function Screen({ step, text }: { step: StoryStep; text: LeagueStoryText }) {
   const row = "flex items-center justify-between gap-2 rounded-lg border border-border-default bg-surface-1 px-3 py-2";
   return (
-    <div className="flex h-full flex-col gap-3 bg-surface-0 p-4 text-sm text-fg">
+    <div className="flex h-full flex-col gap-3 bg-surface-0 p-4 pt-9 text-sm text-fg">
       {step === "create" && (
         <>
           <p className="text-base font-semibold">{text.leagueName}</p>
@@ -45,6 +45,13 @@ function Screen({ step, text }: { step: StoryStep; text: LeagueStoryText }) {
               <CopyIcon size={12} aria-hidden /> {text.copy}
             </Badge>
           </div>
+          <ul className="flex flex-col gap-2">
+            {text.members.map((m) => (
+              <li key={m.name} className={row}>
+                <span className="font-medium">{m.name}</span>
+              </li>
+            ))}
+          </ul>
         </>
       )}
       {step === "pick" && (
@@ -99,16 +106,16 @@ function Screen({ step, text }: { step: StoryStep; text: LeagueStoryText }) {
  */
 export function LeagueStory({ text }: { text: LeagueStoryText }) {
   return (
-    <Tabs.Root defaultValue="create" className="grid items-center gap-8 md:grid-cols-[1fr_auto]">
-      <div className="order-2 flex flex-col gap-4 md:order-1">
-        <Tabs.List aria-label={text.label} className="flex-col items-stretch">
+    <Tabs.Root defaultValue="create" className="grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_auto]">
+      <div className="order-2 flex min-w-0 flex-col gap-4 md:order-1">
+        <Tabs.List aria-label={text.label} className="w-full flex-col items-stretch">
           {STORY_STEPS.map((id, i) => {
             const Icon = STEP_ICONS[id];
             return (
-              <Tabs.Trigger key={id} value={id} className="h-auto justify-start gap-3 px-4 py-3 text-left">
+              <Tabs.Trigger key={id} value={id} className="h-auto w-full min-w-0 justify-start gap-3 whitespace-normal px-4 py-3 text-left">
                 <span className="font-mono text-xs text-fg-accent">{String(i + 1).padStart(2, "0")}</span>
                 <Icon size={18} aria-hidden />
-                <span className="flex flex-col">
+                <span className="flex min-w-0 flex-col">
                   <span className="text-sm font-semibold">{text.steps[id].title}</span>
                   <span className="text-xs font-normal text-fg-secondary">{text.steps[id].text}</span>
                 </span>

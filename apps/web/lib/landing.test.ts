@@ -77,6 +77,14 @@ describe("the landing tells one story", () => {
   });
 });
 
+describe("the journey on a phone", () => {
+  it("lets a step's words wrap and the column shrink, so a phone never scrolls sideways (dev.kachizaka.com was 690 px wide at 390)", () => {
+    const story = read("components/LeagueStory.tsx");
+    expect(story).toContain("whitespace-normal");
+    expect(story).toContain("minmax(0,1fr)");
+  });
+});
+
 describe("the bar and the footer", () => {
   it("carry no version chip in the bar, one Product menu, and @krizaka/ui's SiteFooter", () => {
     const bar = read("components/SiteChrome.tsx");
