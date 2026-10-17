@@ -1,4 +1,4 @@
-import { type BreakdownLine, ruleSetSchema, sealHolds } from "@kachizaka/core";
+import { type BreakdownLine, parseRulesFor, sealHoldsFor,SPORT_IDS, type SportId } from "@kachizaka/core";
 import { schema } from "@kachizaka/db";
 import { and, asc, desc, eq, inArray } from "drizzle-orm";
 
@@ -24,9 +24,9 @@ export interface LeagueView {
   league: { id: string; name: string };
   me: { memberId: string; displayName: string };
   season: { id: string; label: string; competition: string } | null;
-  rules: { version: number; seal: string; sealedAt: string | null; holds: boolean; values: Record<string, number> } | null;
-  versions: { version: number; sealedAt: string | null }[];
-  matches: { id: string; home: string; away: string; kickoffAt: string; status: "scheduled" | "live" | "final"; homeScore: number; awayScore: number; isFinal: boolean; seal: string | null; mine: { home: number; away: number; points: number | null; breakdown: BreakdownLine[]; provisional: boolean } | null }[];
+  /** The rules in force for each sport, with their seal (re-checked on every read). */
+  rules: { sport: SportId; version: number; seal: string; sealedAt: string | null; holds: boolean; values: Record<string, unknown> }[];
+  matches: { id: string; sport: SportId; competition: string | null; home: string; away: string; kickoffAt: string; status: "scheduled" | "live" | "final"; homeScore: number; awayScore: number; overtime: boolean; isFinal: boolean; seal: string | null; mine: { home: number | null; away: number | null; winner: "home" | "away" | null; band: number | null; overtime: boolean; points: number | null; breakdown: BreakdownLine[]; provisional: boolean; perfect: boolean } | null }[];
   table: { memberId: string; displayName: string; rank: number; points: number; exact: number; predictions: number }[];
   tableVersion: number;
 }
@@ -40,13 +40,20 @@ export async function leagueView(leagueId: string, accountId: string): Promise<L
   if (!me) return null;
   const [league] = await db().select({ id: leagues.id, name: leagues.name }).from(leagues).where(eq(leagues.id, leagueId));
   const [season] = await db().select().from(seasons).where(and(eq(seasons.leagueId, leagueId), eq(seasons.status, "open"))).orderBy(desc(seasons.startsOn)).limit(1);
-  const versions = await db().select().from(ruleSets).where(eq(ruleSets.leagueId, leagueId)).orderBy(desc(ruleSets.version));
-  const current = versions[0];
-  const parsed = current ? ruleSetSchema.safeParse(current.rules) : null;
-  const rules = current
-    ? { version: current.version, seal: current.seal, sealedAt: current.sealedAt?.toISOString() ?? null, holds: !!parsed?.success && sealHolds(parsed.data, current.seal), values: (current.rules ?? {}) as Record<string, number> }
-    : null;
-  if (!season) return { league: league!, me: { memberId: me.id, displayName: me.displayName }, season: null, rules, versions: versions.map((v) => ({ version: v.version, sealedAt: v.sealedAt?.toISOString() ?? null })), matches: [], table: [], tableVersion: 0 };
+  const all = await db().select().from(ruleSets).where(eq(ruleSets.leagueId, leagueId)).orderBy(desc(ruleSets.version));
+  const rules = SPORT_IDS.flatMap((sport) => {
+    const current = all.find((r) => r.sport === sport);
+    if (!current) return [];
+    const parsed = (() => {
+      try {
+        return parseRulesFor(sport, current.rules);
+      } catch {
+        return null;
+      }
+    })();
+    return [{ sport, version: current.version, seal: current.seal, sealedAt: current.sealedAt?.toISOString() ?? null, holds: !!parsed && sealHoldsFor(sport, parsed, current.seal), values: (current.rules ?? {}) as Record<string, unknown> }];
+  });
+  if (!season) return { league: league!, me: { memberId: me.id, displayName: me.displayName }, season: null, rules, matches: [], table: [], tableVersion: 0 };
 
   const games = await db().select().from(matches).where(eq(matches.seasonId, season.id)).orderBy(asc(matches.kickoffAt));
   const ids = games.map((g) => g.id);
@@ -58,21 +65,23 @@ export async function leagueView(leagueId: string, accountId: string): Promise<L
     me: { memberId: me.id, displayName: me.displayName },
     season: { id: season.id, label: season.label, competition: season.competition },
     rules,
-    versions: versions.map((v) => ({ version: v.version, sealedAt: v.sealedAt?.toISOString() ?? null })),
     matches: games.map((g) => {
       const p = myPredictions.find((x) => x.matchId === g.id);
       const s = myScores.find((x) => x.matchId === g.id);
       return {
         id: g.id,
+        sport: g.sport,
+        competition: g.competition,
         home: g.homeTeam,
         away: g.awayTeam,
         kickoffAt: g.kickoffAt.toISOString(),
         status: g.status,
         homeScore: g.homeScore,
         awayScore: g.awayScore,
+        overtime: g.overtime,
         isFinal: g.isFinal,
         seal: g.ruleSetSeal,
-        mine: p ? { home: p.home, away: p.away, points: s?.points ?? null, breakdown: (s?.breakdown as BreakdownLine[] | undefined) ?? [], provisional: s?.provisional ?? true } : null,
+        mine: p ? { home: p.home, away: p.away, winner: p.winner, band: p.band, overtime: p.overtime, points: s?.points ?? null, breakdown: (s?.breakdown as BreakdownLine[] | undefined) ?? [], provisional: s?.provisional ?? true, perfect: s?.perfect ?? false } : null,
       };
     }),
     table: rows.map(({ s, name }) => ({ memberId: s.memberId, displayName: name, rank: s.rank, points: s.points, exact: s.exact, predictions: s.predictions })),

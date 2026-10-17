@@ -69,7 +69,7 @@ describe("one pass of the live loop, with the fake connector", () => {
   });
 
   it("lists fixtures within the dates asked", async () => {
-    const feed = new FakeSportsFeed({ fixtures: [{ providerMatchId: "M1", homeTeam: "Montréal", awayTeam: "Toronto", kickoffAt: "2026-10-15T23:00:00Z", isFinal: false }], events: {} });
+    const feed = new FakeSportsFeed({ fixtures: [{ sport: "soccer", providerMatchId: "M1", homeTeam: "Montréal", awayTeam: "Toronto", kickoffAt: "2026-10-15T23:00:00Z", isFinal: false }], events: {} });
     expect((await feed.fixtures({ competition: "NHL", from: "2026-10-15", to: "2026-10-15" })).fixtures).toHaveLength(1);
     expect((await feed.fixtures({ competition: "NHL", from: "2026-10-16", to: "2026-10-20" })).fixtures).toHaveLength(0);
   });

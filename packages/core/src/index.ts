@@ -4,3 +4,4 @@ export * from "./realtime";
 export * from "./rules";
 export * from "./scoring";
 export * from "./standings";
+export * from "./sports";

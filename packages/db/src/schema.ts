@@ -98,6 +98,8 @@ export const seasons = pgTable(
     leagueId: uuid("league_id").notNull().references(() => leagues.id, { onDelete: "cascade" }),
     label: text("label").notNull(),
     competition: text("competition").notNull(),
+    /** The competitions it follows, fixtures and results read from the connector (« NHL », « Premier League »). */
+    competitions: text("competitions").array().notNull().default(sql`'{}'::text[]`),
     startsOn: date("starts_on").notNull(),
     endsOn: date("ends_on").notNull(),
     status: text("status", { enum: ["open", "closed"] }).notNull().default("open"),
@@ -114,13 +116,15 @@ export const ruleSets = pgTable(
   {
     id: id(),
     leagueId: uuid("league_id").notNull().references(() => leagues.id, { onDelete: "cascade" }),
+    /** The sport these rules score: a league keeps one rule set per sport, each versioned and sealed on its own. */
+    sport: text("sport", { enum: ["soccer", "hockey", "basketball"] }).notNull().default("soccer"),
     version: integer("version").notNull(),
     rules: jsonb("rules").notNull(),
     seal: text("seal").notNull(),
     sealedAt: timestamp("sealed_at", { withTimezone: true }),
     createdAt: created(),
   },
-  (t) => [uniqueIndex("rule_sets_version").on(t.leagueId, t.version), check("rule_sets_seal", sql`${t.seal} ~ '^sha256:[0-9a-f]{64}$'`), check("rule_sets_version_positive", sql`${t.version} >= 1`)],
+  (t) => [uniqueIndex("rule_sets_version").on(t.leagueId, t.sport, t.version), check("rule_sets_sport", sql`${t.sport} IN ('soccer','hockey','basketball')`), check("rule_sets_seal", sql`${t.seal} ~ '^sha256:[0-9a-f]{64}$'`), check("rule_sets_version_positive", sql`${t.version} >= 1`)],
 );
 
 export const matches = pgTable(
@@ -128,6 +132,9 @@ export const matches = pgTable(
   {
     id: id(),
     seasonId: uuid("season_id").notNull().references(() => seasons.id, { onDelete: "cascade" }),
+    sport: text("sport", { enum: ["soccer", "hockey", "basketball"] }).notNull().default("soccer"),
+    /** The competition it belongs to (« NHL », « MLS »…): a label of the fixture, never a rule. */
+    competition: text("competition"),
     provider: text("provider").notNull(),
     providerMatchId: text("provider_match_id").notNull(),
     homeTeam: text("home_team").notNull(),
@@ -137,15 +144,18 @@ export const matches = pgTable(
     status: text("status", { enum: ["scheduled", "live", "final"] }).notNull().default("scheduled"),
     homeScore: integer("home_score").notNull().default(0),
     awayScore: integer("away_score").notNull().default(0),
+    /** Went beyond regulation (hockey: overtime or shootout). */
+    overtime: boolean("overtime").notNull().default(false),
     appliedSeq: integer("applied_seq").notNull().default(0),
     /** The rule set and its seal, fixed at kick-off. */
     ruleSetId: uuid("rule_set_id").references(() => ruleSets.id),
     ruleSetSeal: text("rule_set_seal"),
   },
   (t) => [
-    uniqueIndex("matches_provider").on(t.provider, t.providerMatchId),
+    uniqueIndex("matches_provider").on(t.seasonId, t.provider, t.providerMatchId),
     index("matches_season").on(t.seasonId, t.kickoffAt),
     check("matches_status", sql`${t.status} IN ('scheduled','live','final')`),
+    check("matches_sport", sql`${t.sport} IN ('soccer','hockey','basketball')`),
     check("matches_scores", sql`${t.homeScore} >= 0 AND ${t.awayScore} >= 0 AND ${t.appliedSeq} >= 0`),
     check("matches_sealed_when_started", sql`${t.status} = 'scheduled' OR (${t.ruleSetId} IS NOT NULL AND ${t.ruleSetSeal} IS NOT NULL)`),
   ],
@@ -157,12 +167,18 @@ export const predictions = pgTable(
     id: id(),
     matchId: uuid("match_id").notNull().references(() => matches.id, { onDelete: "cascade" }),
     memberId: uuid("member_id").notNull().references(() => members.id, { onDelete: "cascade" }),
-    home: integer("home").notNull(),
-    away: integer("away").notNull(),
+    /** Soccer and hockey: the score picked. Basketball: null (a winner and a band instead). */
+    home: integer("home"),
+    away: integer("away"),
+    /** Basketball: the winner picked, and the margin band (an index into the league's bands). */
+    winner: text("winner", { enum: ["home", "away"] }),
+    band: integer("band"),
+    /** Hockey: the game goes beyond regulation (overtime or shootout). */
+    overtime: boolean("overtime").notNull().default(false),
     createdAt: created(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (t) => [uniqueIndex("predictions_once").on(t.matchId, t.memberId), check("predictions_scores", sql`${t.home} BETWEEN 0 AND 30 AND ${t.away} BETWEEN 0 AND 30`)],
+  (t) => [uniqueIndex("predictions_once").on(t.matchId, t.memberId), check("predictions_scores", sql`(${t.home} IS NULL AND ${t.away} IS NULL) OR (${t.home} BETWEEN 0 AND 300 AND ${t.away} BETWEEN 0 AND 300)`), check("predictions_winner", sql`${t.winner} IS NULL OR ${t.winner} IN ('home','away')`), check("predictions_band", sql`${t.band} IS NULL OR ${t.band} BETWEEN 0 AND 10`)],
 );
 
 /** A match fact as received: stored once (provider id), applied in `seq` order (`applied_at` set when applied). */
@@ -190,6 +206,8 @@ export const predictionScores = pgTable("prediction_scores", {
   breakdown: jsonb("breakdown").notNull(),
   ruleSetSeal: text("rule_set_seal").notNull(),
   provisional: boolean("provisional").notNull(),
+  /** Every available rule earned — what the table counts as a perfect pick. */
+  perfect: boolean("perfect").notNull().default(false),
   scoredAt: timestamp("scored_at", { withTimezone: true }).notNull().defaultNow(),
 });
 

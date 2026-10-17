@@ -7,13 +7,15 @@ export interface Score {
 
 /** One line of a breakdown: which rule earned what — the transparency promise (every point says where it comes from). */
 export interface BreakdownLine {
-  rule: "exactScore" | "outcome" | "goalDifference" | "teamGoals" | "finalMultiplier";
+  rule: "exactScore" | "outcome" | "goalDifference" | "teamGoals" | "finalMultiplier" | "winner" | "overtime" | "marginBand" | "playoffMultiplier";
   points: number;
 }
 
 export interface Scored {
   points: number;
   breakdown: BreakdownLine[];
+  /** Every available rule earned (set by `scoreFor`; soccer's scorer leaves it out: an exact score is the proof). */
+  perfect?: boolean;
 }
 
 const outcomeOf = (s: Score) => Math.sign(s.home - s.away);
