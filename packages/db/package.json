@@ -15,7 +15,8 @@
     "test": "vitest run",
     "db:generate": "drizzle-kit generate",
     "seed": "tsx src/seed-cli.ts",
-    "sync": "tsx scripts/sync.ts"
+    "sync": "tsx scripts/sync.ts",
+    "seed:league": "tsx scripts/seed-league.ts"
   },
   "dependencies": {
     "@kachizaka/core": "workspace:*",
