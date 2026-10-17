@@ -39,17 +39,17 @@
     "ux.ia-review": {
       "evidence": null,
       "gap": "No UX/IA review.",
-      "issue": "https://github.com/krizaka/kachizaka/issues/25"
+      "issue": "https://github.com/krizaka/kachizaka/issues/24"
     },
     "mobile.build": {
       "evidence": null,
       "gap": "apps/mobile exists; no build recorded against dev.",
-      "issue": "https://github.com/krizaka/kachizaka/issues/27"
+      "issue": "https://github.com/krizaka/kachizaka/issues/26"
     },
     "mobile.ux-review": {
       "evidence": null,
       "gap": "No UX/IA review of the mobile app.",
-      "issue": "https://github.com/krizaka/kachizaka/issues/29"
+      "issue": "https://github.com/krizaka/kachizaka/issues/28"
     },
     "quality.ci-green": {
       "evidence": "https://github.com/krizaka/kachizaka/actions?query=branch%3Amain",
@@ -66,22 +66,22 @@
     "docs.current": {
       "evidence": null,
       "gap": "README/AGENTS/docs not checked against the dev deployment.",
-      "issue": "https://github.com/krizaka/kachizaka/issues/31"
+      "issue": "https://github.com/krizaka/kachizaka/issues/30"
     },
     "seo.family": {
       "evidence": null,
       "gap": "node scripts/check-seo-family.mjs --base https://dev.kachizaka.com --host https://dev.kachizaka.com --index off fails (empty sitemap / no Sitemap: lin…",
-      "issue": "https://github.com/krizaka/kachizaka/issues/33"
+      "issue": "https://github.com/krizaka/kachizaka/issues/32"
     },
     "ops.cost": {
       "evidence": null,
       "gap": "The organisation's cloud total is ≈ 106 USD/month (> 100 USD target, INFRA-COST 2026-10-16); ops.cost cannot be evidenced for any product until it is …",
-      "issue": "https://github.com/krizaka/.github/issues/79"
+      "issue": "https://github.com/krizaka/.github/issues/78"
     },
     "admin.gated": {
       "evidence": null,
       "gap": "admin-rules.test.ts covers roles; no test proves the host/IP gate nor the 404 on the public host.",
-      "issue": "https://github.com/krizaka/kachizaka/issues/35"
+      "issue": "https://github.com/krizaka/kachizaka/issues/34"
     },
     "admin.noindex": {
       "evidence": "https://admin.kachizaka.com/robots.txt",
@@ -90,22 +90,22 @@
     "admin.operator-tasks": {
       "evidence": null,
       "gap": "Console pages exist (audit, leagues); tasks not proven end to end.",
-      "issue": "https://github.com/krizaka/kachizaka/issues/37"
+      "issue": "https://github.com/krizaka/kachizaka/issues/36"
     },
     "admin.audit-log": {
       "evidence": null,
       "gap": "Audit page exists; not proven for every action.",
-      "issue": "https://github.com/krizaka/kachizaka/issues/39"
+      "issue": "https://github.com/krizaka/kachizaka/issues/38"
     },
     "admin.shell": {
       "evidence": null,
       "gap": "Admin shell/themes unverified.",
-      "issue": "https://github.com/krizaka/kachizaka/issues/41"
+      "issue": "https://github.com/krizaka/kachizaka/issues/40"
     },
     "admin.ux-review": {
       "evidence": null,
       "gap": "No UX/IA review of the console.",
-      "issue": "https://github.com/krizaka/kachizaka/issues/43"
+      "issue": "https://github.com/krizaka/kachizaka/issues/42"
     },
     "admin.ci": {
       "evidence": "https://github.com/krizaka/kachizaka/actions?query=branch%3Amain",
