@@ -361,7 +361,8 @@
         "band": "By how much",
         "bandOption": "{from} to {to} points",
         "bandOpenOption": "{from} points or more",
-        "update": "Update pick"
+        "update": "Update pick",
+        "count": "{mine} of {count} picked"
       },
       "stats": {
         "title": "Your season",

@@ -361,7 +361,8 @@
         "band": "Par combien",
         "bandOption": "{from} à {to} points",
         "bandOpenOption": "{from} points ou plus",
-        "update": "Modifier"
+        "update": "Modifier",
+        "count": "{mine} sur {count} pronostiqués"
       },
       "stats": {
         "title": "Ta saison",

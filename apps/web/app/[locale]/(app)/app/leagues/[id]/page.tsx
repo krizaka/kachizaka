@@ -66,7 +66,8 @@ export default async function League({ params }: { params: Promise<{ locale: str
     initial: m.mine ? { home: m.mine.home, away: m.mine.away, overtime: m.mine.overtime, winner: m.mine.winner, band: m.mine.band } : undefined,
     bands: bandWords,
   });
-  const played = view.matches.filter((m) => !upcoming.includes(m));
+  const played = view.matches.filter((m) => !upcoming.includes(m)).reverse();
+  const recent = played.slice(0, 10);
   const when = (iso: string) => new Date(iso).toLocaleString(INTL[locale], { dateStyle: "medium", timeStyle: "short", timeZone: "America/Toronto" });
   return (
     <div className="flex flex-col gap-6">
@@ -95,10 +96,13 @@ export default async function League({ params }: { params: Promise<{ locale: str
       <Section eyebrow={t.picks.eyebrow} title={t.picks.title}>
         {rounds.length ? (
           <div className="flex flex-col gap-8">
-            {rounds.map((r) => (
-              <div key={r.round} className="flex flex-col gap-3">
-                <h3 className="font-display text-sm font-bold uppercase tracking-wide text-fg-secondary">{format(t.picks.round, { n: roundNumber(r.round) })}</h3>
-                <ul className="grid gap-3 md:grid-cols-2">
+            {rounds.map((r, i) => (
+              <details key={r.round} open={i === 0} className="group flex flex-col gap-3">
+                <summary className="flex cursor-pointer items-baseline justify-between gap-3 font-display text-sm font-bold uppercase tracking-wide text-fg-secondary">
+                  {format(t.picks.round, { n: roundNumber(r.round) })}
+                  <span className="font-mono text-xs font-normal normal-case tracking-normal text-fg-muted">{format(t.picks.count, { count: r.matches.length, mine: r.matches.filter((m) => m.mine).length })}</span>
+                </summary>
+                <ul className="mt-3 grid gap-3 md:grid-cols-2">
                   {r.matches.map((m) => (
                     <li key={m.id} className="flex flex-col gap-3 rounded-xl border border-border-default bg-surface-1 p-4 text-sm">
                       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -112,7 +116,7 @@ export default async function League({ params }: { params: Promise<{ locale: str
                     </li>
                   ))}
                 </ul>
-              </div>
+              </details>
             ))}
           </div>
         ) : (
@@ -122,7 +126,7 @@ export default async function League({ params }: { params: Promise<{ locale: str
 
       <Section eyebrow={t.matches.eyebrow} title={t.matches.title}>
         <ul className="flex flex-col gap-3">
-          {played.map((m) => {
+          {recent.map((m) => {
             const rows = (view.reveals[m.id] ?? []).map((r) => ({ id: r.memberId, name: r.name, me: r.memberId === view.me.memberId, pick: pickText(m, r), points: r.points, why: r.points === null ? "" : why(r.breakdown), perfect: r.perfect }));
             return (
               <li key={m.id} className="rounded-lg border border-border-default bg-surface-1 p-3 text-sm">
