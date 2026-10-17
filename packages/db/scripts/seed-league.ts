@@ -13,10 +13,11 @@ import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 
-import { resultsFeed, syncFixtures } from "@kachizaka/mcp";
+import { syncFixtures } from "@kachizaka/mcp";
 import { and, asc, eq, gt, sql } from "drizzle-orm";
 
 import { createDb, pg, poolConfig } from "../src/client";
+import { devFeed } from "./feed";
 import { upsertFixtures } from "../src/fixtures";
 import { createInvite, createLeagueWithSeason, joinWithInvite, savePick } from "../src/play";
 import { migrate } from "../src/migrate";
@@ -100,7 +101,7 @@ const memberOf = new Map((await db.select().from(members).where(eq(members.leagu
 const [season] = await db.select().from(seasons).where(eq(seasons.leagueId, league.id));
 const day = (offset: number) => new Date(now.getTime() + offset * 86_400_000).toISOString().slice(0, 10);
 const sync = await syncFixtures({
-  feed: resultsFeed(),
+  feed: devFeed(),
   competitions: season!.competitions,
   from: day(Number(arg("back", "0"))),
   to: day(Number(arg("ahead", "7"))),

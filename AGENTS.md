@@ -31,6 +31,11 @@
   tools on Orazaka's edge (`AI_API_URL`, `AI_API_KEY` = an `oz_` service key). AI, if any, likewise. Never a provider
   called directly.
 
+- **Temporary exception (2026-10-17, krizaka/kachizaka#59)**: until an Orazaka connector runs the adapters of
+  `packages/mcp/src/providers/`, the **dev** runners (`pnpm --filter @kachizaka/db sync`, `seed:league`) call the NHL web API
+  and openfootball directly, server-side and cached, through the single module `packages/db/scripts/feed.ts` — swapping to
+  `orazakaSportsFeed` is that file alone. Never from a browser, never in production. Licences: `docs/data-sources.md`.
+
 ## 3. The product is independent
 
 - No link to another Krizaka product, no family switcher. Krizaka is the publisher, named **only in the footer** and the
