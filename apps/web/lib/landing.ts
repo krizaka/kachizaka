@@ -1,18 +1,16 @@
 /**
  * The landing's structure — ids and destinations, never words (the words are in messages/, keyed by the same ids).
- * One story in five sections: the promise and its proof, what you can do, how it works, trust, the closing call.
+ * One story in five sections: the promise and the league as it will look (a sport switch), how it works on a phone, how it
+ * compares, trust, the closing call.
  */
-export const HOME_SECTIONS = ["hero", "outcomes", "how", "trust", "closing"] as const;
+export const HOME_SECTIONS = ["hero", "how", "compare", "trust", "closing"] as const;
 
-/** What a group of friends gets — outcomes, not features — each card a way in (no dead-end card). */
-export const OUTCOMES = [
-  { id: "settle", to: "sign-in" },
-  { id: "fair", to: "sign-in" },
-  { id: "memory", to: "sign-in" },
-] as const;
+/** The journey on the phone, in order: start a league, pick, watch the table move, win the season. */
+export const STORY_STEPS = ["create", "pick", "table", "season"] as const;
+export type StoryStep = (typeof STORY_STEPS)[number];
 
-/** How it works: three steps. */
-export const HOW_STEPS = ["league", "predict", "table"] as const;
+/** The rows of the comparison with the typical prediction apps (three to six). */
+export const COMPARE_ROWS = ["pays", "points", "sports", "peek", "home"] as const;
 
 /** Why friends can trust it: points only, sealed rules, the code. */
 export const TRUST = ["points", "sealed", "open"] as const;

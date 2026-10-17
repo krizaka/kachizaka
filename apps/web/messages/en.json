@@ -34,15 +34,11 @@
     "footerLabel": "Site footer"
   },
   "landing": {
-    "eyebrow": "Kachizaka · predictions among friends",
-    "title": "Predict with friends. Rules nobody can bend.",
-    "lead": "A league of friends, points only. The rules are sealed at kick-off, every point says which rule earned it, and the table moves while the game is played.",
+    "eyebrow": "Kachizaka · leagues among friends",
+    "title": "One league for every game you follow.",
+    "lead": "Soccer, hockey and basketball in a single table with your friends. Points only, no ads, and rules sealed before the first kick-off.",
     "talk": "Talk to us about Kachizaka",
     "seeHow": "How it works",
-    "proof": {
-      "label": "One prediction, scored by Kachizaka's own code",
-      "caption": "Computed when this page was built, by the same scorer and default rules that score every league. Not a screenshot: the first league on dev is still to come."
-    },
     "status": {
       "development": "In development: sign-up is closed, and the first league on dev is still to come.",
       "preview": "Dev preview: sign-up is closed, access by invitation."
@@ -51,45 +47,45 @@
       "development": "In development",
       "preview": "Dev preview"
     },
-    "outcomes": {
-      "eyebrow": "What you can do",
-      "title": "Settle it, fairly, among friends",
-      "settle": {
-        "title": "Settle who reads the game best",
-        "text": "Everyone predicts each match before kick-off; the table says who was right, match after match.",
-        "cta": "Sign in (by invitation)"
-      },
-      "fair": {
-        "title": "Play by rules nobody can bend",
-        "text": "The scoring is sealed when the match starts. Nobody, not even the organiser, changes it after the result.",
-        "cta": "Sign in (by invitation)"
-      },
-      "memory": {
-        "title": "Keep the league's memory",
-        "text": "Every match, every prediction and every point stays: who called the upset, who won the season.",
-        "cta": "Sign in (by invitation)"
-      }
-    },
     "how": {
       "eyebrow": "How it works",
-      "title": "A league, a prediction, a table",
-      "lead": "Three steps, and every point traced to the rule that earned it.",
+      "title": "From the first pick to the season's cup",
+      "lead": "Four steps, and every point traced to the rule that earned it.",
       "steps": {
-        "league": {
-          "title": "Start a league with friends",
-          "text": "A private league, its members and its rules. For now, our team opens the leagues."
+        "create": {
+          "title": "Start a league",
+          "text": "Name it, choose the sports, share the invite link. For now, our team opens the leagues."
         },
-        "predict": {
-          "title": "Predict before kick-off",
-          "text": "A score for each match. At kick-off, the predictions close and the rules are sealed."
+        "pick": {
+          "title": "Pick before kick-off",
+          "text": "One tap per match. Picks close, and the rules are sealed, at kick-off."
         },
         "table": {
           "title": "Watch the table move",
-          "text": "Each goal is applied once, in order; the table is recomputed whole, and every point shows its rule."
+          "text": "Each result is applied once, in order. The table is recomputed whole and says when it was last updated."
+        },
+        "season": {
+          "title": "Win the season",
+          "text": "Weekly rounds add up to a season. Your league keeps its memory, year after year."
         }
       },
       "magpieLabel": "The magpie's promise",
-      "magpie": "The magpie keeps the score."
+      "magpie": "The magpie keeps the score.",
+      "phone": {
+        "label": "The journey, step by step, on a phone",
+        "leagueName": "Friday gang",
+        "invite": "Invite link",
+        "copy": "Copy",
+        "sportsOn": "Soccer · Hockey · Basketball",
+        "yourPick": "Your pick",
+        "locked": "Closes at kick-off",
+        "tableTitle": "Table",
+        "updated": "Updated 2 min ago",
+        "season": "Season 2026–27",
+        "round": "Round {n}",
+        "cup": "The cup goes to the leader on the last day",
+        "example": "Example screens"
+      }
     },
     "trust": {
       "eyebrow": "Trust",
@@ -116,14 +112,105 @@
       "title": "Want a league for your group?",
       "body": "Kachizaka is in development and sign-up is closed. Tell us about your group and the competition you follow."
     },
-    "visual": {
-      "match": "Montréal 2 – 1 Toronto",
+    "league": {
+      "label": "A league of friends, as it will look",
+      "switch": "Sport",
+      "sports": {
+        "soccer": "Soccer",
+        "hockey": "Hockey",
+        "basketball": "Basketball"
+      },
+      "competitions": "Competitions we are preparing",
+      "match": "Example match",
       "final": "Final",
-      "predicted": "Your prediction: {home} – {away}",
-      "breakdown": "Where your points come from",
-      "total": "Total",
-      "sealed": "Rules sealed at kick-off",
-      "note": "Example with the default rules — the same code scores every real league."
+      "table": "The league's table",
+      "pick": "Pick {home} – {away}",
+      "pts": "{points} pts",
+      "unscored": "Rules in preparation",
+      "ready": "Scored by the real scorer",
+      "soon": "Rules in preparation",
+      "rulesSummary": "Rules sealed at kick-off",
+      "rulesLead": "These points are fixed before the match starts, for everyone in the league. Nobody can change them afterwards.",
+      "sealLabel": "Seal (SHA-256)",
+      "rulesPlannedLead": "The rules we are writing for this sport, sealed the same way:",
+      "rules": {
+        "hockey": {
+          "winner": "The right winner",
+          "overtime": "Overtime or shootout called right",
+          "goalDifference": "The right goal difference"
+        },
+        "basketball": {
+          "winner": "The right winner",
+          "marginBand": "The right margin band"
+        }
+      },
+      "note": "Example data. Soccer points are computed by the real scorer when this page is built; hockey and basketball rules are being written in the open."
+    },
+    "compare": {
+      "eyebrow": "Compared",
+      "title": "What a league of friends should not have to put up with",
+      "label": "Kachizaka compared with typical prediction apps",
+      "topic": "What matters",
+      "typical": "Typical prediction apps",
+      "kachizaka": "Kachizaka",
+      "rows": {
+        "pays": {
+          "topic": "What pays for it",
+          "typical": {
+            "key": "Ads,",
+            "detail": "and a premium tier to remove them."
+          },
+          "kachizaka": {
+            "key": "Nothing is sold.",
+            "detail": "No ads, no trackers, no premium tier."
+          }
+        },
+        "points": {
+          "topic": "Who sets the points",
+          "typical": {
+            "key": "Formulas you cannot see,",
+            "detail": "tied to market numbers or to what other players picked."
+          },
+          "kachizaka": {
+            "key": "Rules sealed at kick-off.",
+            "detail": "Every point says which rule earned it."
+          }
+        },
+        "sports": {
+          "topic": "Several sports",
+          "typical": {
+            "key": "One sport per game,",
+            "detail": "or a separate contest for each."
+          },
+          "kachizaka": {
+            "key": "One league, one table.",
+            "detail": "Soccer, hockey and basketball together."
+          }
+        },
+        "peek": {
+          "topic": "Fair play",
+          "typical": {
+            "key": "Some sell edits and peeks",
+            "detail": "at a friend's pick with in-game coins."
+          },
+          "kachizaka": {
+            "key": "Nobody sees a pick before kick-off,",
+            "detail": "and nothing is for sale."
+          }
+        },
+        "home": {
+          "topic": "Whose game it is",
+          "typical": {
+            "key": "Football-first,",
+            "detail": "built around the European calendar."
+          },
+          "kachizaka": {
+            "key": "Montréal first:",
+            "detail": "the Canadiens, CF Montréal, the Raptors. In French and English."
+          }
+        }
+      },
+      "source": "From the apps' public store listings and sites, October 2026."
     }
   },
   "privacy": {
