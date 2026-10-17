@@ -211,6 +211,87 @@
         }
       },
       "source": "Tiré des fiches publiques et des sites des applis, octobre 2026."
+    },
+    "visualLabel": "kachizaka — La gang du vendredi",
+    "figures": {
+      "friends": "amis dans la ligue d'exemple",
+      "sports": "sports, un seul classement",
+      "points": "points pour un score exact"
+    },
+    "features": {
+      "eyebrow": "Ce que Kachizaka fait",
+      "title": "Une ligue, un classement, aucune surprise",
+      "lead": "Ce que Kachizaka refuse compte autant que ce qu'elle fait.",
+      "items": {
+        "table": {
+          "title": "Un seul classement pour tous tes sports",
+          "text": "Soccer, hockey et basketball comptent dans la même ligue, avec les amis de ton groupe."
+        },
+        "sealed": {
+          "title": "Des règles scellées au coup d'envoi",
+          "text": "Personne ne change les points une fois le match lancé : le jeu de règles est haché, et la base refuse de le modifier."
+        },
+        "points": {
+          "title": "Des points, seulement",
+          "text": "Pas d'argent, pas de portefeuille, pas de pub. Le trophée est sur ton profil."
+        },
+        "icons": {
+          "title": "Chaque point dit sa règle",
+          "text": "Un résultat appliqué une fois, dans l'ordre, et chaque point relié à la règle qui l'a donné."
+        }
+      }
+    },
+    "points": {
+      "eyebrow": "Les points",
+      "title": "Comment un pronostic rapporte des points",
+      "lead": "Ce sont les règles du vrai compteur, celles qu'une nouvelle ligue reçoit au départ. Tu peux les lire dans le code.",
+      "pts": "pts",
+      "items": {
+        "exactScore": {
+          "title": "Score exact",
+          "text": "Tu avais prédit 2–1 et le match finit 2–1."
+        },
+        "outcome": {
+          "title": "Bon résultat",
+          "text": "Victoire, nul ou défaite : le bon résultat sans le score exact."
+        },
+        "goalDifference": {
+          "title": "Bon écart",
+          "text": "Avec le bon résultat, le bon écart de buts (2–0 pour un 3–1). S'ajoute au bon résultat, jamais à un score exact."
+        }
+      },
+      "final": "Une finale ou un derby peut multiplier les points par {factor}. Sur l'exemple : une prédiction de 3–2 pour un 2–1 vaut 3 points (bon résultat et bon écart).",
+      "example": "Exemple"
+    },
+    "faq": {
+      "eyebrow": "Questions",
+      "title": "Ce qu'on nous demande",
+      "items": {
+        "money": {
+          "q": "On peut jouer de l'argent ?",
+          "a": "Non. Kachizaka ne fait que des points : pas de paiement, pas de portefeuille, pas de pub, nulle part. Le trophée est sur ton profil."
+        },
+        "sealed": {
+          "q": "Quelqu'un peut changer les règles après coup ?",
+          "a": "Non. Chaque jeu de règles est haché au premier coup d'envoi qu'il compte, et la base refuse toute modification d'une version scellée. Un changement est une nouvelle version, qui ne compte que pour les matchs pas encore commencés."
+        },
+        "sports": {
+          "q": "Quels sports ?",
+          "a": "Le soccer compte déjà avec le vrai compteur. Le hockey et le basketball sont les prochains : leurs règles s'écrivent au grand jour."
+        },
+        "signup": {
+          "q": "Je peux créer une ligue ?",
+          "a": "Pas encore : les inscriptions sont fermées et la première ligue sur dev reste à venir. Parle-nous de ton groupe et de la compétition que tu suis."
+        },
+        "data": {
+          "q": "Où sont mes données ?",
+          "a": "Ton compte, tes ligues et tes pronostics sont gardés au Canada, visibles des membres de tes ligues. Rien n'est vendu ni partagé."
+        },
+        "engine": {
+          "q": "Il y a de l'IA là-dedans ?",
+          "a": "Les faits de match arriveront par les connecteurs d'Orazaka, le moteur de Krizaka : c'est prévu, pas encore branché. Les points, eux, viennent d'un compteur déterministe, pas d'un modèle."
+        }
+      }
     }
   },
   "privacy": {

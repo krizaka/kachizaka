@@ -36,10 +36,10 @@ export interface LeagueViewText {
  * friend's pick with the points the real scorer gave it, and the sealed rules behind a plain « Rules sealed » — the
  * hash is in the details, never on the hero. Everything is read from props: the server computed it.
  */
-export function LeagueView({ views, text }: { views: readonly SportView[]; text: LeagueViewText }) {
+export function LeagueView({ views, text, bare = false }: { views: readonly SportView[]; text: LeagueViewText; bare?: boolean }) {
   return (
-    <figure className="m-0 flex w-full max-w-2xl flex-col gap-2" aria-label={text.label}>
-      <Tabs.Root defaultValue="soccer" variant="segmented" className="overflow-hidden rounded-2xl border border-border-default bg-surface-0 shadow-2xl">
+    <figure className="m-0 flex w-full flex-col gap-2" aria-label={text.label}>
+      <Tabs.Root defaultValue="soccer" variant="segmented" className={bare ? "overflow-hidden bg-surface-0" : "overflow-hidden rounded-2xl border border-border-default bg-surface-0 shadow-2xl"}>
         <div className="border-b border-border-default bg-surface-1 p-3">
           <Tabs.List aria-label={text.switch}>
             {views.map((v) => (
@@ -98,7 +98,7 @@ export function LeagueView({ views, text }: { views: readonly SportView[]; text:
           </Tabs.Content>
         ))}
       </Tabs.Root>
-      <figcaption className="text-xs text-fg-muted">{text.note}</figcaption>
+      <figcaption className={bare ? "px-4 pb-3 text-xs text-fg-muted" : "text-xs text-fg-muted"}>{text.note}</figcaption>
     </figure>
   );
 }

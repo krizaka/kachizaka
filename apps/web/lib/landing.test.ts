@@ -6,20 +6,72 @@ import { describe, expect, it } from "vitest";
 import en from "@/messages/en.json";
 import fr from "@/messages/fr.json";
 
-import { COMPARE_ROWS, HOME_SECTIONS, productStatus, STORY_STEPS } from "./landing";
+import { COMPARE_ROWS, FAQ_IDS, HOME_SECTIONS, POINT_RULES, productStatus, STORY_STEPS } from "./landing";
 
 const ROOT = join(__dirname, "..");
 const read = (path: string) => readFileSync(join(ROOT, path), "utf8");
 
-describe("the landing tells one story", () => {
-  it("in five sections at most: the promise and the league, how it works, the comparison, trust, the closing call", () => {
-    expect(HOME_SECTIONS).toEqual(["hero", "how", "compare", "trust", "closing"]);
-    const home = read("app/[locale]/page.tsx");
-    const at = HOME_SECTIONS.map((id) => home.indexOf(`id="${id}"`));
-    expect(at.every((i) => i >= 0)).toBe(true);
-    expect([...at].sort((a, b) => a - b)).toEqual(at);
+describe("the landing is the product landing template of @krizaka/ui, at the Yomizaka level", () => {
+  const home = read("app/[locale]/page.tsx");
+
+  it("is a LandingPage: split hero with the league table as the visual, a band of figures, a bento, our sections, the closing call", () => {
+    expect(home).toContain('from "@krizaka/ui/landing-page"');
+    for (const prop of ["eyebrow=", "visual={", "visualLabel=", "proofs={[", "features={[", "closing={{"]) expect(home).toContain(prop);
+    expect(home).toContain("<LeagueView");
   });
 
+  it("tells its story in this order", () => {
+    expect(HOME_SECTIONS).toEqual(["hero", "features", "how", "points", "compare", "trust", "faq", "closing"]);
+    const marks = ["<LandingPage", "features={[", 'id="how"', "<PointsBreakdown", 'id="compare"', 'id="trust"', "<FaqSection", "closing={{"];
+    const at = marks.map((m) => home.indexOf(m));
+    expect(at.every((i) => i >= 0)).toBe(true);
+    const body = at.slice(0, -1);
+    expect([...body].sort((a, b) => a - b)).toEqual(body);
+  });
+
+  it("uses the family's blocks: NumberTicker (real figures), DeviceFrame, ComparisonTable, the magpie, LinkCard", () => {
+    expect(home).toContain("<NumberTicker");
+    expect(read("components/LeagueStory.tsx")).toContain("DeviceFrame");
+    expect(home).toContain("@krizaka/ui/comparison-table");
+    expect(home).toContain('bird="magpie"');
+    expect(read("components/home/PointsBreakdown.tsx")).toContain("NumberTicker");
+  });
+
+  it("has one primary action in the hero and one in the closing call", () => {
+    expect((home.match(/variant="primary"/g) ?? []).length).toBe(2);
+  });
+
+  it("the band's figures are read from the example league and the real scorer, never typed", () => {
+    expect(home).toContain("FRIENDS.length");
+    expect(home).toContain("SPORTS.length");
+    expect(home).toContain("DEFAULT_RULES.exactScore");
+  });
+});
+
+describe("the points are the real scorer's", () => {
+  it("lists the rules of @kachizaka/core that are worth points, with the default values", () => {
+    expect(POINT_RULES.map((r) => [r.id, r.points])).toEqual([["exactScore", 5], ["outcome", 2], ["goalDifference", 1]]);
+  });
+  it("explains each rule and the final's multiplier, in both languages", () => {
+    for (const m of [en, fr]) {
+      for (const r of POINT_RULES) expect(m.landing.points.items[r.id].title && m.landing.points.items[r.id].text, r.id).toBeTruthy();
+      expect(m.landing.points.final).toBeTruthy();
+    }
+  });
+});
+
+describe("the FAQ", () => {
+  it("answers each question in both languages, never about money, and names Orazaka only where it is planned", () => {
+    for (const m of [en, fr]) {
+      for (const id of FAQ_IDS) expect(m.landing.faq.items[id].q && m.landing.faq.items[id].a, id).toBeTruthy();
+      const withEngine = Object.entries(m.landing.faq.items).filter(([, v]) => /orazaka/i.test(v.a)).map(([k]) => k);
+      expect(withEngine).toEqual(["engine"]);
+      expect(m.landing.faq.items.engine.a).toMatch(/planned|prévu/i);
+    }
+  });
+});
+
+describe("the landing keeps its other guarantees", () => {
   it("shows the league as it will look: the three sports, switchable, with icons from @krizaka/icons (no emoji)", () => {
     const view = read("components/LeagueView.tsx") + read("components/SportIcon.tsx");
     expect(view).toContain('from "@krizaka/ui/tabs"');
@@ -50,11 +102,6 @@ describe("the landing tells one story", () => {
 
   it("speaks Québec French with « tu » on the landing", () => {
     expect(JSON.stringify(fr.landing)).not.toMatch(/\b(vous|votre|vos|pronostiquez|créez|regardez)\b/i);
-  });
-
-  it("has one primary action per section", () => {
-    const sections = read("app/[locale]/page.tsx").split(/\bid="(?:hero|how|compare|trust|closing)"/).slice(1);
-    for (const s of sections) expect((s.match(/variant="primary"/g) ?? []).length).toBeLessThanOrEqual(1);
   });
 
   it("says its honest status, read from dev-preview.json", () => {
@@ -104,5 +151,15 @@ describe("the bar's language switch", () => {
     expect(bar).toContain("languagesFor(");
     expect(bar).not.toContain("hrefLang");
     expect(bar).not.toContain("otherLocale");
+  });
+});
+
+describe("the responsive guard", () => {
+  it("is a script that checks 360, 390, 430, 768, 1024 and 1440 px in both themes, and CI runs it", () => {
+    const script = readFileSync(join(ROOT, "../../scripts/check-overflow.mjs"), "utf8");
+    expect(script).toContain("export const WIDTHS = [360, 390, 430, 768, 1024, 1440]");
+    expect(script).toContain('["dark", "light"]');
+    expect(JSON.parse(readFileSync(join(ROOT, "../../package.json"), "utf8")).scripts["check:overflow"]).toBe("node scripts/check-overflow.mjs");
+    expect(readFileSync(join(ROOT, "../../.github/workflows/ci.yml"), "utf8")).toContain("check:overflow");
   });
 });
