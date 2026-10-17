@@ -7,10 +7,11 @@
 // calls the providers itself, server-side, cached, at a low rate — never from a browser, never in production.
 import { fileURLToPath } from "node:url";
 
-import { resultsFeed, syncFixtures } from "@kachizaka/mcp";
+import { syncFixtures } from "@kachizaka/mcp";
 import { eq } from "drizzle-orm";
 
 import { createDb, pg, poolConfig } from "../src/client";
+import { devFeed } from "./feed";
 import { upsertFixtures } from "../src/fixtures";
 import { migrate } from "../src/migrate";
 import { ingest } from "../src/pipeline";
@@ -31,7 +32,7 @@ const chosen = arg("competitions")
   .map((c) => c.trim())
   .filter(Boolean);
 if (chosen?.length) await db.update(seasons).set({ competitions: chosen }).where(eq(seasons.status, "open"));
-const feed = resultsFeed();
+const feed = devFeed();
 for (const season of await db.select().from(seasons).where(eq(seasons.status, "open"))) {
   if (!season.competitions.length) continue;
   const out = await syncFixtures({
