@@ -1,4 +1,4 @@
-import { DEFAULT_RULES, scorePrediction, sealOf, type Score } from "@kachizaka/core";
+import { DEFAULT_RULES, type Score,scorePrediction, sealOf } from "@kachizaka/core";
 
 /**
  * The games a league follows — structure and example data, never words (the words are in messages/, keyed by the

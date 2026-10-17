@@ -4,7 +4,6 @@ import { ShieldIcon } from "@krizaka/icons";
 import { Badge } from "@krizaka/ui/badge";
 import { Tabs } from "@krizaka/ui/tabs";
 
-import { SportIcon } from "@/components/SportIcon";
 import type { SportView } from "@/lib/sports";
 import { SPORTS } from "@/lib/sports";
 
@@ -32,7 +31,7 @@ export interface LeagueViewText {
 }
 
 /**
- * The league as a visitor will see it: a sport switch (the family's Tabs, icons from @krizaka/icons), the match, each
+ * The league as a visitor will see it: a sport switch (the family's Tabs, text labels until the sport icons ship), the match, each
  * friend's pick with the points the real scorer gave it, and the sealed rules behind a plain « Rules sealed » — the
  * hash is in the details, never on the hero. Everything is read from props: the server computed it.
  */
@@ -43,8 +42,7 @@ export function LeagueView({ views, text }: { views: readonly SportView[]; text:
         <div className="border-b border-border-default bg-surface-1 p-3">
           <Tabs.List aria-label={text.switch}>
             {views.map((v) => (
-              <Tabs.Trigger key={v.sport} value={v.sport} className="gap-2">
-                <SportIcon sport={v.sport} />
+              <Tabs.Trigger key={v.sport} value={v.sport}>
                 {text.sports[v.sport]}
               </Tabs.Trigger>
             ))}

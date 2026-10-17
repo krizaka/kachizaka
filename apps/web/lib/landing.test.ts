@@ -20,11 +20,11 @@ describe("the landing tells one story", () => {
     expect([...at].sort((a, b) => a - b)).toEqual(at);
   });
 
-  it("shows the league as it will look: the three sports, switchable, with icons from @krizaka/icons (no emoji)", () => {
-    const view = read("components/LeagueView.tsx") + read("components/SportIcon.tsx");
+  it("shows the league as it will look: the three sports, switchable, in text labels (no emoji)", () => {
+    const view = read("components/LeagueView.tsx");
     expect(view).toContain('from "@krizaka/ui/tabs"');
-    expect(view).toContain('from "@krizaka/icons"');
     expect(view).not.toMatch(/\p{Extended_Pictographic}/u);
+    for (const m of [en, fr]) expect(Object.values(m.landing.league.sports)).toHaveLength(3);
   });
 
   it("never shows a raw hash on the hero: the seal is behind the « Rules sealed » details", () => {

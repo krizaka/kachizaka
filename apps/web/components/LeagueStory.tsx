@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckIcon, ClockIcon, CopyIcon, TrophyIcon, UsersIcon } from "@krizaka/icons";
+import { CheckIcon, ClockIcon, CopyIcon, GoalIcon, UsersIcon } from "@krizaka/icons";
 import { Badge } from "@krizaka/ui/badge";
 import { DeviceFrame } from "@krizaka/ui/step-showcase";
 import { Tabs } from "@krizaka/ui/tabs";
@@ -28,7 +28,7 @@ export interface LeagueStoryText {
   pick: string;
 }
 
-const STEP_ICONS = { create: UsersIcon, pick: ClockIcon, table: CheckIcon, season: TrophyIcon } as const;
+const STEP_ICONS = { create: UsersIcon, pick: ClockIcon, table: CheckIcon, season: GoalIcon } as const;
 
 /** One screen of the phone: what the member sees at that step. Example screens drawn from the family's tokens. */
 function Screen({ step, text }: { step: StoryStep; text: LeagueStoryText }) {
@@ -81,7 +81,7 @@ function Screen({ step, text }: { step: StoryStep; text: LeagueStoryText }) {
           <p className="text-xs text-fg-muted">{text.season}</p>
           <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
             <span className="text-fg-accent [&_svg]:h-14 [&_svg]:w-14">
-              <TrophyIcon aria-hidden />
+              <GoalIcon aria-hidden />
             </span>
             <p className="text-base font-semibold">{text.members[0]?.name}</p>
             <p className="text-xs text-fg-muted">{text.cup}</p>

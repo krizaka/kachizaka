@@ -45,15 +45,15 @@ Feedback: the pinned Discussion of the repository.
 
 ## 5. The landing sells the league, not the scorer: multi-sport, a phone, a comparison
 
-- **Decision**: the hero shows a league of four friends with a sport switch (soccer · hockey · basketball, icons from
-  `@krizaka/icons`) — the match, each pick, the points. Soccer's points come from the real scorer; hockey and basketball
+- **Decision**: the hero shows a league of four friends with a sport switch (soccer · hockey · basketball, text labels until
+  the sport icons of `@krizaka/icons` ship — then a tiny PR swaps them in) — the match, each pick, the points. Soccer's points come from the real scorer; hockey and basketball
   are shown unscored and labelled « Rules in preparation » until slice (b) writes their sealed rule sets. The seal is a plain
   « Rules sealed at kick-off » with a details expander: the rules in words first, the SHA-256 inside. Then the journey in four
   steps on one phone (start a league · pick · watch the table · win the season), a `ComparisonTable` against typical
   prediction apps (sourced in `docs/research/market-2026-10.md`), trust, the closing call.
 - **Problem**: a single toy card and a raw hash read as thin, single-sport and technical next to Scorecast and Mon Petit Prono.
 - **Principle**: show the product's shape in five seconds; progressive disclosure for the proof.
-- **Refused**: emoji for sports; a fixed World Cup hook (the 2026 edition is over — the copy says « every game you follow »);
+- **Refused**: emoji for sports (never — text now, icons later); a fixed World Cup hook (the 2026 edition is over — the copy says « every game you follow »);
   a recorded clip until a real league runs on dev (the phone screens are drawn from tokens and labelled « example »;
   `StepShowcase` takes over with the clips of slice d).
 - **Cost**: example names and scores are fiction, said under the view; a visitor may take « Rules in preparation » for

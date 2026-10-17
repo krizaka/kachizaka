@@ -21,7 +21,7 @@ import { asLocale, format, getDictionary, type Locale } from "@/lib/i18n";
 import { COMPARE_ROWS, productStatus, TRUST } from "@/lib/landing";
 import { pageMetadata, siteJsonLd } from "@/lib/seo";
 import { contactHref, pagePath, REPO_URL } from "@/lib/site";
-import { PLANNED_RULES, SPORTS, sportView, type SportId } from "@/lib/sports";
+import { PLANNED_RULES, type SportId,SPORTS, sportView } from "@/lib/sports";
 
 import preview from "../../../../dev-preview.json";
 
