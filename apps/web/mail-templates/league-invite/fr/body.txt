@@ -1,4 +1,4 @@
-{inviter} vous invite dans {league}, une ligue de pronostics entre amis.
+{inviter} t'invite dans {league}, une ligue de pronostics entre amis.
 
 Des points seulement — pas d'argent, pas de mise. Les règles sont scellées au premier coup d'envoi, et chaque point dit quelle règle l'a rapporté.
 

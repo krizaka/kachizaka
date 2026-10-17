@@ -1,7 +1,7 @@
 Terminé : {home} {homeScore}–{awayScore} {away}.
 
-Vos points : {points} ({breakdown}).
-Vous êtes maintenant {rank} dans {league}.
+Tes points : {points} ({breakdown}).
+Tu es maintenant {rank} dans {league}.
 
 Les règles de ce match ont été scellées au coup d'envoi ; chaque point ci-dessus dit quelle règle l'a rapporté.
 Voir le classement : {leagueUrl}

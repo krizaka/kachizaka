@@ -34,15 +34,11 @@
     "footerLabel": "Pied de page"
   },
   "landing": {
-    "eyebrow": "Kachizaka · des pronostics entre amis",
-    "title": "Pronostiquez entre amis. Des règles que personne ne plie.",
-    "lead": "Une ligue d'amis, en points seulement. Les règles sont scellées au coup d'envoi, chaque point dit quelle règle l'a donné, et le classement bouge pendant le match.",
-    "talk": "Parler de Kachizaka avec nous",
+    "eyebrow": "Kachizaka · des ligues entre amis",
+    "title": "Une seule ligue pour tous les matchs que tu suis.",
+    "lead": "Soccer, hockey et basketball dans un seul classement avec tes amis. En points seulement, sans pub, avec des règles scellées avant le premier coup d'envoi.",
+    "talk": "Parle-nous de Kachizaka",
     "seeHow": "Comment ça marche",
-    "proof": {
-      "label": "Un pronostic, compté par le code de Kachizaka",
-      "caption": "Calculé à la construction de cette page, par le même compteur et les mêmes règles par défaut que toutes les ligues. Pas une capture : la première ligue sur dev reste à venir."
-    },
     "status": {
       "development": "En développement : les inscriptions sont fermées, et la première ligue sur dev reste à venir.",
       "preview": "Aperçu de développement : inscriptions fermées, accès sur invitation."
@@ -51,53 +47,53 @@
       "development": "En développement",
       "preview": "Aperçu de développement"
     },
-    "outcomes": {
-      "eyebrow": "Ce que vous pouvez faire",
-      "title": "Trancher, équitablement, entre amis",
-      "settle": {
-        "title": "Savoir qui lit le mieux le match",
-        "text": "Chacun pronostique chaque match avant le coup d'envoi ; le classement dit qui avait raison, match après match.",
-        "cta": "Se connecter (sur invitation)"
-      },
-      "fair": {
-        "title": "Jouer avec des règles que personne ne plie",
-        "text": "Le barème est scellé au début du match. Personne, pas même l'organisateur, ne le change après le résultat.",
-        "cta": "Se connecter (sur invitation)"
-      },
-      "memory": {
-        "title": "Garder la mémoire de la ligue",
-        "text": "Chaque match, chaque pronostic et chaque point restent : qui avait vu la surprise, qui a gagné la saison.",
-        "cta": "Se connecter (sur invitation)"
-      }
-    },
     "how": {
       "eyebrow": "Comment ça marche",
-      "title": "Une ligue, un pronostic, un classement",
-      "lead": "Trois étapes, et chaque point relié à la règle qui l'a donné.",
+      "title": "Du premier pronostic à la coupe de la saison",
+      "lead": "Quatre étapes, et chaque point relié à la règle qui l'a donné.",
       "steps": {
-        "league": {
-          "title": "Créez une ligue entre amis",
-          "text": "Une ligue privée, ses membres et ses règles. Pour l'instant, notre équipe ouvre les ligues."
+        "create": {
+          "title": "Crée une ligue",
+          "text": "Donne-lui un nom, choisis les sports, partage le lien d'invitation. Pour l'instant, notre équipe ouvre les ligues."
         },
-        "predict": {
-          "title": "Pronostiquez avant le coup d'envoi",
-          "text": "Un score pour chaque match. Au coup d'envoi, les pronostics ferment et les règles sont scellées."
+        "pick": {
+          "title": "Pronostique avant le coup d'envoi",
+          "text": "Un tap par match. Les pronostics ferment, et les règles sont scellées, au coup d'envoi."
         },
         "table": {
-          "title": "Regardez le classement bouger",
-          "text": "Chaque but est appliqué une fois, dans l'ordre ; le classement est recalculé en entier, et chaque point montre sa règle."
+          "title": "Regarde le classement bouger",
+          "text": "Chaque résultat est appliqué une fois, dans l'ordre. Le classement est recalculé en entier et dit quand il a été mis à jour."
+        },
+        "season": {
+          "title": "Gagne la saison",
+          "text": "Les rondes de la semaine forment une saison. Ta ligue garde sa mémoire, année après année."
         }
       },
       "magpieLabel": "La promesse de la pie",
-      "magpie": "La pie tient le score."
+      "magpie": "La pie tient le score.",
+      "phone": {
+        "label": "Le parcours, étape par étape, sur un téléphone",
+        "leagueName": "La gang du vendredi",
+        "invite": "Lien d'invitation",
+        "copy": "Copier",
+        "sportsOn": "Soccer · Hockey · Basketball",
+        "yourPick": "Ton pronostic",
+        "locked": "Ferme au coup d'envoi",
+        "tableTitle": "Classement",
+        "updated": "Mis à jour il y a 2 min",
+        "season": "Saison 2026-27",
+        "round": "Ronde {n}",
+        "cup": "La coupe va au premier le dernier jour",
+        "example": "Écrans d'exemple"
+      }
     },
     "trust": {
       "eyebrow": "Confiance",
       "title": "Un jeu de fierté, rien d'autre",
-      "lead": "Votre compte, vos ligues et vos pronostics sont gardés au Canada, visibles des membres de vos ligues. Rien n'est vendu ni partagé.",
+      "lead": "Ton compte, tes ligues et tes pronostics sont gardés au Canada, visibles des membres de tes ligues. Rien n'est vendu ni partagé.",
       "points": {
         "title": "Des points, seulement",
-        "text": "Ni argent, ni paiement, ni portefeuille, ni publicité, nulle part. Le trophée est sur votre profil.",
+        "text": "Pas d'argent, pas de paiement, pas de portefeuille et pas de publicité, nulle part. Le trophée est sur ton profil.",
         "cta": "Confidentialité"
       },
       "sealed": {
@@ -113,23 +109,114 @@
       "powered": "Les faits de match arriveront par les connecteurs d'Orazaka (prévu, pas encore branché)."
     },
     "closing": {
-      "title": "Une ligue pour votre groupe ?",
-      "body": "Kachizaka est en développement et les inscriptions sont fermées. Parlez-nous de votre groupe et de la compétition que vous suivez."
+      "title": "Une ligue pour ton groupe ?",
+      "body": "Kachizaka est en développement et les inscriptions sont fermées. Parle-nous de ton groupe et de la compétition que tu suis."
     },
-    "visual": {
-      "match": "Montréal 2 – 1 Toronto",
-      "final": "Terminé",
-      "predicted": "Votre pronostic : {home} – {away}",
-      "breakdown": "D'où viennent vos points",
-      "total": "Total",
-      "sealed": "Règles scellées au coup d'envoi",
-      "note": "Exemple avec les règles par défaut — le même code compte chaque vraie ligue."
+    "league": {
+      "label": "Une ligue d'amis, telle qu'elle sera",
+      "switch": "Sport",
+      "sports": {
+        "soccer": "Soccer",
+        "hockey": "Hockey",
+        "basketball": "Basketball"
+      },
+      "competitions": "Les compétitions qu'on prépare",
+      "match": "Match d'exemple",
+      "final": "Final",
+      "table": "Le classement de la ligue",
+      "pick": "Pronostic {home} – {away}",
+      "pts": "{points} pts",
+      "unscored": "Règles en préparation",
+      "ready": "Compté par le vrai compteur",
+      "soon": "Règles en préparation",
+      "rulesSummary": "Règles scellées au coup d'envoi",
+      "rulesLead": "Ces points sont fixés avant le début du match, pour tout le monde dans la ligue. Personne ne peut les changer après.",
+      "sealLabel": "Sceau (SHA-256)",
+      "rulesPlannedLead": "Les règles qu'on écrit pour ce sport, scellées de la même façon :",
+      "rules": {
+        "hockey": {
+          "winner": "Le bon gagnant",
+          "overtime": "La prolongation ou la fusillade bien devinée",
+          "goalDifference": "Le bon écart de buts"
+        },
+        "basketball": {
+          "winner": "Le bon gagnant",
+          "marginBand": "La bonne tranche d'écart"
+        }
+      },
+      "note": "Données d'exemple. Les points du soccer sont calculés par le vrai compteur à la construction de la page ; les règles du hockey et du basketball s'écrivent au grand jour."
+    },
+    "compare": {
+      "eyebrow": "En comparaison",
+      "title": "Ce qu'une ligue d'amis ne devrait pas avoir à endurer",
+      "label": "Kachizaka comparé aux applis de pronostics habituelles",
+      "topic": "Ce qui compte",
+      "typical": "Applis de pronostics habituelles",
+      "kachizaka": "Kachizaka",
+      "rows": {
+        "pays": {
+          "topic": "Qui paie la facture",
+          "typical": {
+            "key": "De la pub,",
+            "detail": "et un forfait premium pour l'enlever."
+          },
+          "kachizaka": {
+            "key": "Rien n'est vendu.",
+            "detail": "Pas de pub, pas de traceurs, pas de forfait premium."
+          }
+        },
+        "points": {
+          "topic": "Qui fixe les points",
+          "typical": {
+            "key": "Des formules invisibles,",
+            "detail": "liées à des chiffres de marché ou à ce que les autres ont choisi."
+          },
+          "kachizaka": {
+            "key": "Des règles scellées au coup d'envoi.",
+            "detail": "Chaque point dit quelle règle l'a donné."
+          }
+        },
+        "sports": {
+          "topic": "Plusieurs sports",
+          "typical": {
+            "key": "Un sport par jeu,",
+            "detail": "ou un concours distinct pour chacun."
+          },
+          "kachizaka": {
+            "key": "Une ligue, un classement.",
+            "detail": "Soccer, hockey et basketball ensemble."
+          }
+        },
+        "peek": {
+          "topic": "Franc-jeu",
+          "typical": {
+            "key": "Certaines vendent des modifications et des coups d'œil",
+            "detail": "sur le pronostic d'un ami, contre des pièces de jeu."
+          },
+          "kachizaka": {
+            "key": "Personne ne voit un pronostic avant le coup d'envoi,",
+            "detail": "et rien n'est à vendre."
+          }
+        },
+        "home": {
+          "topic": "À qui est le jeu",
+          "typical": {
+            "key": "Le foot d'abord,",
+            "detail": "bâti autour du calendrier européen."
+          },
+          "kachizaka": {
+            "key": "Montréal d'abord :",
+            "detail": "les Canadiens, le CF Montréal, les Raptors. En français et en anglais."
+          }
+        }
+      },
+      "source": "Tiré des fiches publiques et des sites des applis, octobre 2026."
     }
   },
   "privacy": {
     "title": "Confidentialité",
     "updated": "Mis à jour le {date}",
-    "body": "Kachizaka est en développement : seuls les comptes créés par notre équipe peuvent se connecter. Votre compte, vos ligues et vos pronostics sont gardés dans la base de données de Kachizaka au Canada, visibles des membres de vos ligues. Les faits de match viennent d'un flux de données sportives par Orazaka, le moteur de Krizaka ; rien sur vous n'y est envoyé. Il n'y a ni argent, ni paiement, ni publicité. Rien n'est vendu ni partagé. Pour poser une question ou faire supprimer vos données, utilisez le formulaire de contact."
+    "body": "Kachizaka est en développement : seuls les comptes créés par notre équipe peuvent se connecter. Ton compte, tes ligues et tes pronostics sont gardés dans la base de données de Kachizaka au Canada, visibles des membres de tes ligues. Les faits de match viennent d'un flux de données sportives par Orazaka, le moteur de Krizaka ; rien sur toi n'y est envoyé. Il n'y a ni argent, ni paiement, ni publicité. Rien n'est vendu ni partagé. Pour poser une question ou faire supprimer tes données, utilise le formulaire de contact."
   },
   "console": {
     "meta": {
@@ -145,14 +232,14 @@
       "promise": "Les pronostics entre amis, en points seulement.",
       "asideFooter": "Chaque point dit quelle règle l'a rapporté.",
       "title": "Se connecter",
-      "description": "Avec le compte que notre équipe vous a donné.",
+      "description": "Avec le compte que notre équipe t'a donné.",
       "email": "Courriel",
       "password": "Mot de passe",
       "submit": "Se connecter",
       "closedTitle": "Les inscriptions sont fermées.",
       "closed": "Kachizaka est en développement ; les comptes sont créés par notre équipe.",
       "contact": "Nous écrire",
-      "legalPrefix": "En vous connectant, vous acceptez l'",
+      "legalPrefix": "En te connectant, tu acceptes l'",
       "privacy": "avis de confidentialité",
       "forgot": "Mot de passe oublié ?"
     },
@@ -165,7 +252,7 @@
     },
     "shell": {
       "skip": "Aller au contenu",
-      "title": "Vos ligues",
+      "title": "Tes ligues",
       "admin": "Administration",
       "leagues": "Ligues",
       "overview": "Vue d'ensemble",
@@ -227,7 +314,7 @@
           "live": "En direct",
           "final": "Terminé"
         },
-        "mine": "Votre pronostic : {home} – {away}",
+        "mine": "Ton pronostic : {home} – {away}",
         "points": "{points} pts",
         "provisional": "provisoire",
         "nothing": "aucune règle ne s'applique",
@@ -239,7 +326,7 @@
         "caption": "Le classement de la saison",
         "rank": "Rang",
         "member": "Membre",
-        "you": "vous",
+        "you": "toi",
         "points": "Points",
         "exact": "Exacts",
         "predictions": "Pronostics"
@@ -325,7 +412,7 @@
         "lastSeen": "Dernière visite",
         "suspend": "Suspendre",
         "restore": "Rétablir",
-        "self": "C'est votre propre compte : il ne peut pas être modifié d'ici.",
+        "self": "C'est ton propre compte : il ne peut pas être modifié d'ici.",
         "makeAdmin": "Nommer administrateur",
         "makeUser": "Retirer le rôle d'administrateur",
         "revokeSessions": "Terminer toutes les sessions",
@@ -333,7 +420,7 @@
         "exportData": "Exporter les données (Loi 25)",
         "dangerTitle": "Supprimer ce compte",
         "dangerLead": "Effacement Loi 25 : le compte et ses sessions sont supprimés définitivement. Ses ligues gardent leur historique sous le nom « ancien membre » ; le journal d'audit garde le fait, pas la personne.",
-        "confirmLabel": "Saisissez le courriel du compte pour confirmer",
+        "confirmLabel": "Saisis le courriel du compte pour confirmer",
         "deleteAccount": "Supprimer le compte"
       },
       "operations": {
@@ -358,8 +445,8 @@
       "INVALID_CREDENTIALS": "Courriel ou mot de passe erroné.",
       "SUSPENDED": "Ce compte est suspendu.",
       "SIGNUP_CLOSED": "Les inscriptions sont fermées.",
-      "RATE_LIMITED": "Trop d'essais. Réessayez dans un moment.",
-      "UNAUTHENTICATED": "Votre session a pris fin. Reconnectez-vous.",
+      "RATE_LIMITED": "Trop d'essais. Réessaie dans un moment.",
+      "UNAUTHENTICATED": "Ta session a pris fin. Reconnecte-toi.",
       "FORBIDDEN": "Non autorisé.",
       "IP_NOT_ALLOWED": "Pas depuis cette adresse.",
       "NOT_FOUND": "Introuvable.",
@@ -371,28 +458,28 @@
       "PASSWORD_TOO_LONG": "Au plus 256 caractères.",
       "INVALID_TOKEN": "Ce lien n'est pas valide ou a expiré.",
       "WRONG_PASSWORD": "Le mot de passe actuel n'est pas le bon.",
-      "SELF_SUSPEND": "Vous ne pouvez pas suspendre votre propre compte.",
-      "SELF_ROLE": "Vous ne pouvez pas changer votre propre rôle.",
-      "SELF_DELETE": "Vous ne pouvez pas supprimer votre propre compte.",
+      "SELF_SUSPEND": "Tu ne peux pas suspendre ton propre compte.",
+      "SELF_ROLE": "Tu ne peux pas changer ton propre rôle.",
+      "SELF_DELETE": "Tu ne peux pas supprimer ton propre compte.",
       "LAST_ADMIN": "Le dernier administrateur garde son rôle.",
       "CONFIRM_MISMATCH": "Le courriel saisi ne correspond pas au compte."
     },
     "account": {
       "forgot": {
         "title": "Mot de passe oublié ?",
-        "description": "Entrez le courriel de votre compte. S'il existe, nous envoyons un lien pour choisir un nouveau mot de passe.",
+        "description": "Entre le courriel de ton compte. S'il existe, nous envoyons un lien pour choisir un nouveau mot de passe.",
         "email": "Courriel",
         "submit": "Envoyer le lien",
         "sent": "Si un compte existe pour cette adresse, un lien est en route. Il est valide 30 minutes.",
         "back": "Retour à la connexion"
       },
       "reset": {
-        "title": "Choisissez un nouveau mot de passe",
+        "title": "Choisis un nouveau mot de passe",
         "description": "Au moins 12 caractères. Toutes les autres sessions de ce compte prennent fin à l'enregistrement.",
         "password": "Nouveau mot de passe",
         "submit": "Enregistrer le nouveau mot de passe",
-        "done": "Votre mot de passe est changé. Vous pouvez vous connecter.",
-        "invalid": "Ce lien n'est pas valide ou a expiré. Demandez-en un nouveau.",
+        "done": "Ton mot de passe est changé. Tu peux te connecter.",
+        "invalid": "Ce lien n'est pas valide ou a expiré. Demande-en un nouveau.",
         "missing": "Cette page a besoin du lien reçu par courriel.",
         "askAgain": "Demander un nouveau lien",
         "back": "Retour à la connexion"
@@ -409,8 +496,8 @@
         "back": "Retour à la connexion"
       },
       "profile": {
-        "title": "Votre profil",
-        "description": "Votre compte, sa langue et son mot de passe.",
+        "title": "Ton profil",
+        "description": "Ton compte, sa langue et son mot de passe.",
         "avatar": "Photo de profil",
         "email": "Courriel",
         "language": "Langue",
@@ -418,11 +505,11 @@
         "roleUser": "Membre",
         "roleAdmin": "Administrateur",
         "lastSeen": "Dernière visite",
-        "passwordTitle": "Changer votre mot de passe",
+        "passwordTitle": "Changer ton mot de passe",
         "current": "Mot de passe actuel",
         "next": "Nouveau mot de passe",
         "submit": "Changer mon mot de passe",
-        "saved": "Votre mot de passe est changé. Vos autres sessions ont pris fin."
+        "saved": "Ton mot de passe est changé. Tes autres sessions ont pris fin."
       },
       "nav": {
         "profile": "Profil",

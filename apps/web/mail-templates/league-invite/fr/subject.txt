@@ -1,1 +1,1 @@
-{inviter} vous invite dans {league} sur Kachizaka
+{inviter} t'invite dans {league} sur Kachizaka
