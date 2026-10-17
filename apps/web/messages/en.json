@@ -54,7 +54,7 @@
       "steps": {
         "create": {
           "title": "Start a league",
-          "text": "Name it, choose the sports, share the invite link. For now, our team opens the leagues."
+          "text": "Name it, choose the sports, share the invite link."
         },
         "pick": {
           "title": "Pick before kick-off",
@@ -276,9 +276,10 @@
     },
     "leagues": {
       "emptyTitle": "No league yet",
-      "empty": "Leagues are created by our team while Kachizaka is in development.",
+      "empty": "Start a league, or join one with an invite link from a friend.",
       "members": "{count} members",
-      "open": "Open the league"
+      "open": "Open the league",
+      "create": "Start a league"
     },
     "league": {
       "season": "Season {label} · {competition}",
@@ -343,6 +344,45 @@
         "points": "Points",
         "exact": "Exact",
         "predictions": "Predictions"
+      },
+      "picks": {
+        "eyebrow": "Picks",
+        "title": "Your picks, round by round",
+        "round": "Week {n}",
+        "closes": "Closes at kick-off, {date}",
+        "closed": "Closed",
+        "save": "Save pick",
+        "saved": "Saved",
+        "empty": "No game to pick yet. The fixtures of the competitions you follow arrive with the next update.",
+        "home": "{team} goals",
+        "away": "{team} goals",
+        "overtime": "Goes to overtime or a shootout",
+        "winner": "Winner",
+        "band": "By how much",
+        "bandOption": "{from} to {to} points",
+        "bandOpenOption": "{from} points or more",
+        "update": "Update pick"
+      },
+      "stats": {
+        "title": "Your season",
+        "rank": "Rank",
+        "points": "Points",
+        "perfect": "Perfect picks",
+        "picks": "Picks",
+        "streak": "Streak",
+        "streakHint": "games in a row with points",
+        "none": "—",
+        "picksHint": "of {count} picks"
+      },
+      "reveal": {
+        "title": "Everyone's picks",
+        "hint": "Shown once the game starts: a pick stays private until kick-off.",
+        "member": "Member",
+        "pick": "Pick",
+        "points": "Points",
+        "why": "Why",
+        "perfect": "Perfect",
+        "none": "Nobody picked this game."
       }
     },
     "admin": {
@@ -475,7 +515,12 @@
       "SELF_ROLE": "You cannot change your own role.",
       "SELF_DELETE": "You cannot delete your own account.",
       "LAST_ADMIN": "The last administrator keeps the role.",
-      "CONFIRM_MISMATCH": "The e-mail typed does not match the account."
+      "CONFIRM_MISMATCH": "The e-mail typed does not match the account.",
+      "INVITE_INVALID": "This invite is not valid any more.",
+      "NOT_A_MEMBER": "You are not in this league.",
+      "MATCH_UNKNOWN": "This game is not in this league.",
+      "PICK_INVALID": "This pick does not fit the game.",
+      "PICK_LOCKED": "The game has started: picks are closed."
     },
     "account": {
       "forgot": {
@@ -527,6 +572,64 @@
       "nav": {
         "profile": "Profile",
         "change": "Change"
+      }
+    },
+    "form": {
+      "errors": {
+        "required": "This field is required.",
+        "tooShort": "Use at least {minimum} characters.",
+        "tooLong": "Use at most {maximum} characters.",
+        "tooSmall": "Enter {minimum} or more.",
+        "tooBig": "Enter {maximum} or less.",
+        "tooFew": "Choose at least {minimum}.",
+        "tooMany": "Choose at most {maximum}.",
+        "invalidEmail": "Enter an e-mail address, like name@example.com.",
+        "invalidNumber": "Enter a number.",
+        "invalidFormat": "Check the format of this field.",
+        "invalidChoice": "Choose one of the options.",
+        "invalid": "Check this field.",
+        "network": "No connection. Check your network and try again.",
+        "rate-limited": "Too many tries. Wait a moment and try again.",
+        "unauthorized": "Your session has ended. Sign in again.",
+        "forbidden": "You are not allowed to do this.",
+        "conflict": "This was changed meanwhile. Reload and try again.",
+        "validation-failed": "Some fields need your attention.",
+        "unavailable": "The service is unavailable for a moment. Try again shortly.",
+        "server": "Something went wrong on our side. Try again."
+      }
+    },
+    "play": {
+      "newLeague": "Start a league",
+      "new": {
+        "title": "Start a league",
+        "description": "Name it, choose what it follows. You get an invite link next, and the rules of each sport are sealed at its first kick-off.",
+        "name": "League name",
+        "namePlaceholder": "Friday gang",
+        "competitions": "What does it follow?",
+        "submit": "Create the league",
+        "competitionNames": {
+          "NHL": "NHL · hockey",
+          "Premier League": "Premier League · soccer",
+          "Ligue 1": "Ligue 1 · soccer"
+        },
+        "none": "Choose at least one competition."
+      },
+      "invite": {
+        "title": "Invite your friends",
+        "description": "Share the link: it works for 7 days and opens the league for anyone who already has an account. Sign-up is closed on dev.",
+        "create": "Create an invite link",
+        "link": "Invite link",
+        "copy": "Copy",
+        "copied": "Copied",
+        "expires": "Valid until {date}"
+      },
+      "join": {
+        "title": "Join {league}?",
+        "description": "You will be a member: your picks and your points are visible to the league.",
+        "action": "Join the league",
+        "already": "You are already in this league.",
+        "invalid": "This invite is not valid any more. Ask your friend for a new link.",
+        "signInFirst": "Sign in with your account to join."
       }
     }
   }

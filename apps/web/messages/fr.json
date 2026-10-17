@@ -54,7 +54,7 @@
       "steps": {
         "create": {
           "title": "Crée une ligue",
-          "text": "Donne-lui un nom, choisis les sports, partage le lien d'invitation. Pour l'instant, notre équipe ouvre les ligues."
+          "text": "Donne-lui un nom, choisis les sports, partage le lien d'invitation."
         },
         "pick": {
           "title": "Pronostique avant le coup d'envoi",
@@ -276,9 +276,10 @@
     },
     "leagues": {
       "emptyTitle": "Aucune ligue pour l'instant",
-      "empty": "Les ligues sont créées par notre équipe pendant le développement de Kachizaka.",
+      "empty": "Crée une ligue, ou rejoins-en une avec le lien d'invitation d'un ami.",
       "members": "{count} membres",
-      "open": "Ouvrir la ligue"
+      "open": "Ouvrir la ligue",
+      "create": "Créer une ligue"
     },
     "league": {
       "season": "Saison {label} · {competition}",
@@ -343,6 +344,45 @@
         "points": "Points",
         "exact": "Exacts",
         "predictions": "Pronostics"
+      },
+      "picks": {
+        "eyebrow": "Pronostics",
+        "title": "Tes pronostics, ronde par ronde",
+        "round": "Semaine {n}",
+        "closes": "Ferme au coup d'envoi, {date}",
+        "closed": "Fermé",
+        "save": "Enregistrer",
+        "saved": "Enregistré",
+        "empty": "Aucun match à pronostiquer pour l'instant. Les calendriers des compétitions que tu suis arrivent à la prochaine mise à jour.",
+        "home": "Buts de {team}",
+        "away": "Buts de {team}",
+        "overtime": "Va en prolongation ou en fusillade",
+        "winner": "Gagnant",
+        "band": "Par combien",
+        "bandOption": "{from} à {to} points",
+        "bandOpenOption": "{from} points ou plus",
+        "update": "Modifier"
+      },
+      "stats": {
+        "title": "Ta saison",
+        "rank": "Rang",
+        "points": "Points",
+        "perfect": "Pronostics parfaits",
+        "picks": "Pronostics",
+        "streak": "Séquence",
+        "streakHint": "matchs de suite avec des points",
+        "none": "—",
+        "picksHint": "sur {count} pronostics"
+      },
+      "reveal": {
+        "title": "Les pronostics de tout le monde",
+        "hint": "Visibles dès que le match commence : un pronostic reste privé jusqu'au coup d'envoi.",
+        "member": "Membre",
+        "pick": "Pronostic",
+        "points": "Points",
+        "why": "Pourquoi",
+        "perfect": "Parfait",
+        "none": "Personne n'a pronostiqué ce match."
       }
     },
     "admin": {
@@ -475,7 +515,12 @@
       "SELF_ROLE": "Tu ne peux pas changer ton propre rôle.",
       "SELF_DELETE": "Tu ne peux pas supprimer ton propre compte.",
       "LAST_ADMIN": "Le dernier administrateur garde son rôle.",
-      "CONFIRM_MISMATCH": "Le courriel saisi ne correspond pas au compte."
+      "CONFIRM_MISMATCH": "Le courriel saisi ne correspond pas au compte.",
+      "INVITE_INVALID": "Cette invitation n'est plus valide.",
+      "NOT_A_MEMBER": "Tu n'es pas dans cette ligue.",
+      "MATCH_UNKNOWN": "Ce match n'est pas dans cette ligue.",
+      "PICK_INVALID": "Ce pronostic ne convient pas à ce match.",
+      "PICK_LOCKED": "Le match a commencé : les pronostics sont fermés."
     },
     "account": {
       "forgot": {
@@ -527,6 +572,64 @@
       "nav": {
         "profile": "Profil",
         "change": "Modifier"
+      }
+    },
+    "form": {
+      "errors": {
+        "required": "Ce champ est obligatoire.",
+        "tooShort": "Utilise au moins {minimum} caractères.",
+        "tooLong": "Utilise au plus {maximum} caractères.",
+        "tooSmall": "Entre {minimum} ou plus.",
+        "tooBig": "Entre {maximum} ou moins.",
+        "tooFew": "Choisis au moins {minimum}.",
+        "tooMany": "Choisis au plus {maximum}.",
+        "invalidEmail": "Entre une adresse courriel, comme nom@exemple.com.",
+        "invalidNumber": "Entre un nombre.",
+        "invalidFormat": "Vérifie le format de ce champ.",
+        "invalidChoice": "Choisis l'une des options.",
+        "invalid": "Vérifie ce champ.",
+        "network": "Pas de connexion. Vérifie ton réseau et réessaie.",
+        "rate-limited": "Trop d'essais. Attends un moment et réessaie.",
+        "unauthorized": "Ta session a pris fin. Reconnecte-toi.",
+        "forbidden": "Tu n'as pas le droit de faire ça.",
+        "conflict": "Ça a changé entre-temps. Recharge et réessaie.",
+        "validation-failed": "Certains champs demandent ton attention.",
+        "unavailable": "Le service est indisponible un instant. Réessaie bientôt.",
+        "server": "Quelque chose a mal tourné de notre côté. Réessaie."
+      }
+    },
+    "play": {
+      "newLeague": "Créer une ligue",
+      "new": {
+        "title": "Créer une ligue",
+        "description": "Donne-lui un nom, choisis ce qu'elle suit. Tu reçois ensuite un lien d'invitation, et les règles de chaque sport sont scellées à son premier coup d'envoi.",
+        "name": "Nom de la ligue",
+        "namePlaceholder": "La gang du vendredi",
+        "competitions": "Qu'est-ce qu'elle suit ?",
+        "submit": "Créer la ligue",
+        "competitionNames": {
+          "NHL": "LNH · hockey",
+          "Premier League": "Premier League · soccer",
+          "Ligue 1": "Ligue 1 · soccer"
+        },
+        "none": "Choisis au moins une compétition."
+      },
+      "invite": {
+        "title": "Invite tes amis",
+        "description": "Partage le lien : il vaut 7 jours et ouvre la ligue à quiconque a déjà un compte. Les inscriptions sont fermées sur dev.",
+        "create": "Créer un lien d'invitation",
+        "link": "Lien d'invitation",
+        "copy": "Copier",
+        "copied": "Copié",
+        "expires": "Valide jusqu'au {date}"
+      },
+      "join": {
+        "title": "Rejoindre {league} ?",
+        "description": "Tu deviens membre : tes pronostics et tes points sont visibles de la ligue.",
+        "action": "Rejoindre la ligue",
+        "already": "Tu es déjà dans cette ligue.",
+        "invalid": "Cette invitation n'est plus valide. Demande un nouveau lien à ton ami.",
+        "signInFirst": "Connecte-toi avec ton compte pour rejoindre."
       }
     }
   }

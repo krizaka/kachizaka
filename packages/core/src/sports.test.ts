@@ -83,3 +83,17 @@ describe("a band says which margins it covers", () => {
     expect([0, 1, 2, 3].map((i) => bandRange([5, 10, 15], i))).toEqual([{ from: 1, to: 5 }, { from: 6, to: 10 }, { from: 11, to: 15 }, { from: 16, to: null }]);
   });
 });
+
+describe("a pick as a member sends it", () => {
+  it("is checked against the shape of its sport", async () => {
+    const { parsePick } = await import("./sports");
+    expect(parsePick("soccer", { home: 2, away: 1 })).toEqual({ home: 2, away: 1 });
+    expect(parsePick("hockey", { home: 3, away: 2 })).toEqual({ home: 3, away: 2, overtime: false });
+    expect(parsePick("basketball", { winner: "home", band: 2 }, { bandsCount: 3 })).toEqual({ winner: "home", band: 2 });
+    expect(() => parsePick("hockey", { home: 2, away: 2 })).toThrow();
+    expect(() => parsePick("soccer", { home: -1, away: 0 })).toThrow();
+    expect(() => parsePick("soccer", { home: 1, away: 0, overtime: true })).toThrow();
+    expect(() => parsePick("basketball", { winner: "home", band: 4 }, { bandsCount: 3 })).toThrow(RangeError);
+    expect(() => parsePick("basketball", { home: 1, away: 0 })).toThrow();
+  });
+});

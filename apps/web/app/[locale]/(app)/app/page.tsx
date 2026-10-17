@@ -1,8 +1,10 @@
 import { UsersIcon } from "@krizaka/icons";
+import { Button } from "@krizaka/ui/button";
 import { CardGrid } from "@krizaka/ui/card-grid";
 import { EmptyState } from "@krizaka/ui/empty-state";
 import { LinkCard } from "@krizaka/ui/link-card";
 import { Mascot } from "@krizaka/ui/mascots";
+import Link from "next/link";
 
 import { pageSession } from "@/lib/access";
 import { asLocale, format, getDictionary } from "@/lib/i18n";
@@ -14,12 +16,20 @@ export default async function Leagues({ params }: { params: Promise<{ locale: st
   const t = getDictionary(locale).console.leagues;
   const session = (await pageSession())!;
   const leagues = await leaguesOf(session.account.id);
-  if (!leagues.length) return <EmptyState icon={<Mascot bird="magpie" mood="empty" size={72} />} title={t.emptyTitle} description={t.empty} />;
+  const start = (
+    <Button asChild variant="primary" size="md" shape="cut">
+      <Link href={`/${locale}/app/leagues/new`}>{t.create}</Link>
+    </Button>
+  );
+  if (!leagues.length) return <EmptyState icon={<Mascot bird="magpie" mood="empty" size={72} />} title={t.emptyTitle} description={t.empty} action={start} />;
   return (
-    <CardGrid min={260}>
+    <div className="flex flex-col gap-6">
+      <div>{start}</div>
+      <CardGrid min={260}>
       {leagues.map((l) => (
         <LinkCard key={l.id} layout="stack" href={`/${locale}/app/leagues/${l.id}`} icon={<UsersIcon />} title={l.name} description={format(t.members, { count: l.members })} cta={t.open} />
       ))}
-    </CardGrid>
+      </CardGrid>
+    </div>
   );
 }

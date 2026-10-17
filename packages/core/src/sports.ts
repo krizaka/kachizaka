@@ -133,3 +133,29 @@ export function scoreFor(sport: SportId, rules: unknown, pick: unknown, actual: 
 export function bandRange(edges: readonly number[], band: number): { from: number; to: number | null } {
   return { from: band === 0 ? 1 : edges[band - 1]! + 1, to: band >= edges.length ? null : edges[band]! };
 }
+
+const goals = z.number().int().min(0).max(30);
+const pickSchemas = {
+  soccer: z.object({ home: goals, away: goals }).strict(),
+  hockey: z
+    .object({ home: goals, away: goals, overtime: z.boolean().default(false) })
+    .strict()
+    .refine((p) => p.home !== p.away, { message: "a hockey pick has a winner", path: ["away"] }),
+  basketball: z.object({ winner: z.enum(["home", "away"]), band: z.number().int().min(0).max(10) }).strict(),
+} as const;
+
+/**
+ * A pick as a member sends it, checked against its sport's shape: soccer a score, hockey a score without a tie and
+ * « overtime or shootout », basketball a winner and a margin band (an index into the league's bands: `bandsCount`
+ * is how many bands the sealed rules have, so a band outside them is refused).
+ */
+export function parsePick(sport: SportId, input: unknown, opts: { bandsCount?: number } = {}): Pick {
+  const pick = pickSchemas[sport].parse(input) as Pick;
+  if (sport === "basketball" && opts.bandsCount !== undefined && (pick as BasketballPick).band > opts.bandsCount) throw new RangeError("the band is outside the league's rules");
+  return pick;
+}
+
+/** The competitions a league may follow, and the sport of each (the words are in the app's messages; the sources: docs/data-sources.md). */
+export const COMPETITION_SPORT = { NHL: "hockey", "Premier League": "soccer", "Ligue 1": "soccer" } as const satisfies Record<string, SportId>;
+export type CompetitionId = keyof typeof COMPETITION_SPORT;
+export const COMPETITION_IDS = Object.keys(COMPETITION_SPORT) as CompetitionId[];

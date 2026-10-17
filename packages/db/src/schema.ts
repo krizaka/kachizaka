@@ -91,6 +91,21 @@ export const members = pgTable(
   (t) => [uniqueIndex("league_members_account").on(t.leagueId, t.accountId), uniqueIndex("league_members_name").on(t.leagueId, t.displayName), check("league_members_role", sql`${t.role} IN ('owner','member')`)],
 );
 
+/** An invite link to a league: only the hash of its token is kept. */
+export const leagueInvites = pgTable(
+  "league_invites",
+  {
+    id: id(),
+    leagueId: uuid("league_id").notNull().references(() => leagues.id, { onDelete: "cascade" }),
+    tokenHash: text("token_hash").notNull().unique(),
+    createdBy: uuid("created_by").references(() => members.id, { onDelete: "set null" }),
+    createdAt: created(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    revokedAt: timestamp("revoked_at", { withTimezone: true }),
+  },
+  (t) => [index("league_invites_league").on(t.leagueId)],
+);
+
 export const seasons = pgTable(
   "seasons",
   {
