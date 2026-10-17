@@ -216,7 +216,7 @@
   "privacy": {
     "title": "Confidentialité",
     "updated": "Mis à jour le {date}",
-    "body": "Kachizaka est en développement : seuls les comptes créés par notre équipe peuvent se connecter. Votre compte, vos ligues et vos pronostics sont gardés dans la base de données de Kachizaka au Canada, visibles des membres de vos ligues. Les faits de match viennent d'un flux de données sportives par Orazaka, le moteur de Krizaka ; rien sur vous n'y est envoyé. Il n'y a ni argent, ni paiement, ni publicité. Rien n'est vendu ni partagé. Pour poser une question ou faire supprimer vos données, utilisez le formulaire de contact."
+    "body": "Kachizaka est en développement : seuls les comptes créés par notre équipe peuvent se connecter. Ton compte, tes ligues et tes pronostics sont gardés dans la base de données de Kachizaka au Canada, visibles des membres de tes ligues. Les faits de match viennent d'un flux de données sportives par Orazaka, le moteur de Krizaka ; rien sur toi n'y est envoyé. Il n'y a ni argent, ni paiement, ni publicité. Rien n'est vendu ni partagé. Pour poser une question ou faire supprimer tes données, utilise le formulaire de contact."
   },
   "console": {
     "meta": {
@@ -232,14 +232,14 @@
       "promise": "Les pronostics entre amis, en points seulement.",
       "asideFooter": "Chaque point dit quelle règle l'a rapporté.",
       "title": "Se connecter",
-      "description": "Avec le compte que notre équipe vous a donné.",
+      "description": "Avec le compte que notre équipe t'a donné.",
       "email": "Courriel",
       "password": "Mot de passe",
       "submit": "Se connecter",
       "closedTitle": "Les inscriptions sont fermées.",
       "closed": "Kachizaka est en développement ; les comptes sont créés par notre équipe.",
       "contact": "Nous écrire",
-      "legalPrefix": "En vous connectant, vous acceptez l'",
+      "legalPrefix": "En te connectant, tu acceptes l'",
       "privacy": "avis de confidentialité",
       "forgot": "Mot de passe oublié ?"
     },
@@ -252,7 +252,7 @@
     },
     "shell": {
       "skip": "Aller au contenu",
-      "title": "Vos ligues",
+      "title": "Tes ligues",
       "admin": "Administration",
       "leagues": "Ligues",
       "overview": "Vue d'ensemble",
@@ -314,7 +314,7 @@
           "live": "En direct",
           "final": "Terminé"
         },
-        "mine": "Votre pronostic : {home} – {away}",
+        "mine": "Ton pronostic : {home} – {away}",
         "points": "{points} pts",
         "provisional": "provisoire",
         "nothing": "aucune règle ne s'applique",
@@ -326,7 +326,7 @@
         "caption": "Le classement de la saison",
         "rank": "Rang",
         "member": "Membre",
-        "you": "vous",
+        "you": "toi",
         "points": "Points",
         "exact": "Exacts",
         "predictions": "Pronostics"
@@ -412,7 +412,7 @@
         "lastSeen": "Dernière visite",
         "suspend": "Suspendre",
         "restore": "Rétablir",
-        "self": "C'est votre propre compte : il ne peut pas être modifié d'ici.",
+        "self": "C'est ton propre compte : il ne peut pas être modifié d'ici.",
         "makeAdmin": "Nommer administrateur",
         "makeUser": "Retirer le rôle d'administrateur",
         "revokeSessions": "Terminer toutes les sessions",
@@ -420,7 +420,7 @@
         "exportData": "Exporter les données (Loi 25)",
         "dangerTitle": "Supprimer ce compte",
         "dangerLead": "Effacement Loi 25 : le compte et ses sessions sont supprimés définitivement. Ses ligues gardent leur historique sous le nom « ancien membre » ; le journal d'audit garde le fait, pas la personne.",
-        "confirmLabel": "Saisissez le courriel du compte pour confirmer",
+        "confirmLabel": "Saisis le courriel du compte pour confirmer",
         "deleteAccount": "Supprimer le compte"
       },
       "operations": {
@@ -445,8 +445,8 @@
       "INVALID_CREDENTIALS": "Courriel ou mot de passe erroné.",
       "SUSPENDED": "Ce compte est suspendu.",
       "SIGNUP_CLOSED": "Les inscriptions sont fermées.",
-      "RATE_LIMITED": "Trop d'essais. Réessayez dans un moment.",
-      "UNAUTHENTICATED": "Votre session a pris fin. Reconnectez-vous.",
+      "RATE_LIMITED": "Trop d'essais. Réessaie dans un moment.",
+      "UNAUTHENTICATED": "Ta session a pris fin. Reconnecte-toi.",
       "FORBIDDEN": "Non autorisé.",
       "IP_NOT_ALLOWED": "Pas depuis cette adresse.",
       "NOT_FOUND": "Introuvable.",
@@ -458,28 +458,28 @@
       "PASSWORD_TOO_LONG": "Au plus 256 caractères.",
       "INVALID_TOKEN": "Ce lien n'est pas valide ou a expiré.",
       "WRONG_PASSWORD": "Le mot de passe actuel n'est pas le bon.",
-      "SELF_SUSPEND": "Vous ne pouvez pas suspendre votre propre compte.",
-      "SELF_ROLE": "Vous ne pouvez pas changer votre propre rôle.",
-      "SELF_DELETE": "Vous ne pouvez pas supprimer votre propre compte.",
+      "SELF_SUSPEND": "Tu ne peux pas suspendre ton propre compte.",
+      "SELF_ROLE": "Tu ne peux pas changer ton propre rôle.",
+      "SELF_DELETE": "Tu ne peux pas supprimer ton propre compte.",
       "LAST_ADMIN": "Le dernier administrateur garde son rôle.",
       "CONFIRM_MISMATCH": "Le courriel saisi ne correspond pas au compte."
     },
     "account": {
       "forgot": {
         "title": "Mot de passe oublié ?",
-        "description": "Entrez le courriel de votre compte. S'il existe, nous envoyons un lien pour choisir un nouveau mot de passe.",
+        "description": "Entre le courriel de ton compte. S'il existe, nous envoyons un lien pour choisir un nouveau mot de passe.",
         "email": "Courriel",
         "submit": "Envoyer le lien",
         "sent": "Si un compte existe pour cette adresse, un lien est en route. Il est valide 30 minutes.",
         "back": "Retour à la connexion"
       },
       "reset": {
-        "title": "Choisissez un nouveau mot de passe",
+        "title": "Choisis un nouveau mot de passe",
         "description": "Au moins 12 caractères. Toutes les autres sessions de ce compte prennent fin à l'enregistrement.",
         "password": "Nouveau mot de passe",
         "submit": "Enregistrer le nouveau mot de passe",
-        "done": "Votre mot de passe est changé. Vous pouvez vous connecter.",
-        "invalid": "Ce lien n'est pas valide ou a expiré. Demandez-en un nouveau.",
+        "done": "Ton mot de passe est changé. Tu peux te connecter.",
+        "invalid": "Ce lien n'est pas valide ou a expiré. Demande-en un nouveau.",
         "missing": "Cette page a besoin du lien reçu par courriel.",
         "askAgain": "Demander un nouveau lien",
         "back": "Retour à la connexion"
@@ -496,8 +496,8 @@
         "back": "Retour à la connexion"
       },
       "profile": {
-        "title": "Votre profil",
-        "description": "Votre compte, sa langue et son mot de passe.",
+        "title": "Ton profil",
+        "description": "Ton compte, sa langue et son mot de passe.",
         "avatar": "Photo de profil",
         "email": "Courriel",
         "language": "Langue",
@@ -505,11 +505,11 @@
         "roleUser": "Membre",
         "roleAdmin": "Administrateur",
         "lastSeen": "Dernière visite",
-        "passwordTitle": "Changer votre mot de passe",
+        "passwordTitle": "Changer ton mot de passe",
         "current": "Mot de passe actuel",
         "next": "Nouveau mot de passe",
         "submit": "Changer mon mot de passe",
-        "saved": "Votre mot de passe est changé. Vos autres sessions ont pris fin."
+        "saved": "Ton mot de passe est changé. Tes autres sessions ont pris fin."
       },
       "nav": {
         "profile": "Profil",

@@ -37,7 +37,7 @@ describe("the bilingual e-mail templates (krizaka-notifications format)", () => 
   it("tells the score and the points in the member's language; escapes HTML", () => {
     const fr = renderMailTemplate("match-final", preview("match-final"), { locale: "fr", appUrl: "https://x", dir: DIR });
     expect(fr.subject).toBe("Les Habitués — terminé : Montréal 2–1 Toronto");
-    expect(fr.text).toContain("Vos points : 3");
+    expect(fr.text).toContain("Tes points : 3");
     expect(fill("<p>{league}</p>", { league: "<b>" }, { html: true, allowed: ["league"], name: "t" })).toBe("<p>&lt;b&gt;</p>");
   });
 });

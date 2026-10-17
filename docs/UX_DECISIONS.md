@@ -59,5 +59,7 @@ Feedback: the pinned Discussion of the repository.
 - **Cost**: example names and scores are fiction, said under the view; a visitor may take « Rules in preparation » for
   missing sports — it is the honest state.
 - **Signal we are wrong**: visitors ask where the hockey scoring is after slice (b) has shipped, or read the comparison as an attack.
-- **French register**: the landing speaks « tu » (a friends' game, the family's consumer apps); the app's other screens still
-  say « vous » and move in a follow-up — the repo had decided « vous » before.
+- **French register**: « tu » across the whole app — landing, sign-in, console, privacy, e-mails — never a mix (Kachizaka is a
+  game between friends, the family's consumer apps say « tu »). `lib/register.test.ts` fails on « vous », « votre », « vos »
+  or a « -ez » imperative in `messages/fr.json` and the French e-mails; a legal quotation that must stay in « vous » is listed
+  there by key, with its reason (none today).
