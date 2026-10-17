@@ -211,6 +211,87 @@
         }
       },
       "source": "From the apps' public store listings and sites, October 2026."
+    },
+    "visualLabel": "kachizaka — The Friday gang",
+    "figures": {
+      "friends": "friends in the example league",
+      "sports": "sports, one table",
+      "points": "points for an exact score"
+    },
+    "features": {
+      "eyebrow": "What Kachizaka does",
+      "title": "One league, one table, no surprises",
+      "lead": "What Kachizaka refuses matters as much as what it does.",
+      "items": {
+        "table": {
+          "title": "One table for every sport you follow",
+          "text": "Soccer, hockey and basketball count in the same league, with the friends of your group."
+        },
+        "sealed": {
+          "title": "Rules sealed at kick-off",
+          "text": "Nobody changes the points once the match starts: the rule set is hashed, and the database refuses to alter it."
+        },
+        "points": {
+          "title": "Points, only",
+          "text": "No money, no wallet, no ads. The trophy is on your profile."
+        },
+        "icons": {
+          "title": "Every point names its rule",
+          "text": "A result applied once, in order, and every point tied to the rule that gave it."
+        }
+      }
+    },
+    "points": {
+      "eyebrow": "The points",
+      "title": "How a pick earns points",
+      "lead": "These are the real scorer's rules, the ones a new league starts from. You can read them in the code.",
+      "pts": "pts",
+      "items": {
+        "exactScore": {
+          "title": "Exact score",
+          "text": "You picked 2–1 and the match ends 2–1."
+        },
+        "outcome": {
+          "title": "Right outcome",
+          "text": "Win, draw or loss: the right result without the exact score."
+        },
+        "goalDifference": {
+          "title": "Right goal difference",
+          "text": "With the right outcome, the right goal difference (2–0 for a 3–1). Added to the outcome, never to an exact score."
+        }
+      },
+      "final": "A final or a derby can multiply the points by {factor}. In the example: a 3–2 pick for a 2–1 match is worth 3 points (right outcome and right difference).",
+      "example": "Example"
+    },
+    "faq": {
+      "eyebrow": "Questions",
+      "title": "What people ask us",
+      "items": {
+        "money": {
+          "q": "Can we play for money?",
+          "a": "No. Kachizaka is points only: no payment, no wallet, no ads, anywhere. The trophy is on your profile."
+        },
+        "sealed": {
+          "q": "Can someone change the rules afterwards?",
+          "a": "No. Each rule set is hashed at the first kick-off it scores, and the database refuses any change to a sealed version. A change is a new version, which only counts for matches not yet started."
+        },
+        "sports": {
+          "q": "Which sports?",
+          "a": "Soccer already counts with the real scorer. Hockey and basketball are next: their rules are being written in the open."
+        },
+        "signup": {
+          "q": "Can I start a league?",
+          "a": "Not yet: sign-ups are closed and the first league on dev is still to come. Tell us about your group and the competition you follow."
+        },
+        "data": {
+          "q": "Where is my data?",
+          "a": "Your account, leagues and picks are kept in Canada, visible to the members of your leagues. Nothing is sold or shared."
+        },
+        "engine": {
+          "q": "Is there AI in this?",
+          "a": "Match facts will arrive through Orazaka's connectors, Krizaka's engine: that is planned, not wired yet. The points come from a deterministic scorer, not from a model."
+        }
+      }
     }
   },
   "privacy": {
