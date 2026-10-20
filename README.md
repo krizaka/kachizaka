@@ -12,6 +12,7 @@ the match kicks off, every point says which rule earned it, the standings move w
 remembers every season — championship stars, trophies, streaks and your nemesis.
 
 [![CI](https://github.com/krizaka/kachizaka/actions/workflows/ci.yml/badge.svg)](https://github.com/krizaka/kachizaka/actions/workflows/ci.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/krizaka/kachizaka/badge)](https://scorecard.dev/viewer/?uri=github.com/krizaka/kachizaka)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
 Kachizaka (勝ち *kachi*, a win) is a Krizaka product **in development**: nothing is deployed, sign-up is closed.
