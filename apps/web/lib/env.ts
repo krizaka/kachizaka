@@ -37,6 +37,8 @@ export const envSchema = z.object({
   AI_API_URL: z.string().url().default("https://dev.orazaka.com/edge"),
   /** Kachizaka's `oz_` service key (Orazaka `dev-deploy.mjs service-account kachizaka`), a DO SECRET. */
   AI_API_KEY: z.string().optional(),
+  /** Bearer token of the scheduled results sync (`POST /api/internal/sync`, ≥ 32 characters), a DO SECRET set on dev only; unset = the door does not exist. */
+  OPERATOR_SYNC_TOKEN: z.string().optional(),
   /** `off` on every dev / preview deployment: noindex everywhere, robots.txt closed, the development notice in the footer. */
   APP_SEARCH_INDEXING: z.enum(["on", "off"]).default("on"),
   /** Connections this process's pool may hold (the cluster's budget is shared: dev uses 2 behind a PgBouncer pool). */
