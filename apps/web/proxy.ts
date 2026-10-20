@@ -1,7 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server";
 
 import { isAdminHost, routeFor } from "./lib/host";
-import { CLOSED_ROBOTS, indexable, NOINDEX } from "./lib/indexing";
+import { closedRobots, indexable, NOINDEX } from "./lib/indexing";
+import { SITE_URL } from "./lib/site";
 
 /**
  * Every page exists in English and French (`/en/…`, `/fr/…`); an address without a language goes to the visitor's choice
@@ -15,8 +16,7 @@ export function proxy(request: NextRequest) {
   const admin = isAdminHost(host);
   const closed = !indexable();
   // A deployment closed to search engines (APP_SEARCH_INDEXING=off): robots.txt disallows everything, no sitemap.
-  if (closed && request.nextUrl.pathname === "/robots.txt") return new NextResponse(CLOSED_ROBOTS, { headers: { "content-type": "text/plain", "x-robots-tag": NOINDEX } });
-  if (closed && request.nextUrl.pathname === "/sitemap.xml") return new NextResponse("Not found", { status: 404, headers: { "x-robots-tag": NOINDEX } });
+  if (closed && request.nextUrl.pathname === "/robots.txt") return new NextResponse(closedRobots(SITE_URL), { headers: { "content-type": "text/plain", "x-robots-tag": NOINDEX } });
   let response: NextResponse;
   switch (route.kind) {
     case "robotsClosed":
