@@ -11,6 +11,7 @@ import { eq } from "drizzle-orm";
 import { createDb, pg, poolConfig } from "../src/client";
 import { migrate } from "../src/migrate";
 import { seasons } from "../src/schema";
+import { devFeed } from "../src/feed";
 import { runSync } from "../src/sync";
 
 const arg = (name: string, fallback?: string) => {
@@ -26,7 +27,7 @@ const chosen = arg("competitions")
   .map((c) => c.trim())
   .filter(Boolean);
 if (chosen?.length) await db.update(seasons).set({ competitions: chosen }).where(eq(seasons.status, "open"));
-const out = await runSync(db, { now: new Date(), back: Number(arg("back", "3")), ahead: Number(arg("ahead", "14")) });
+const out = await runSync(db, { feed: devFeed({ unlicensed: true }), now: new Date(), back: Number(arg("back", "3")), ahead: Number(arg("ahead", "14")) });
 const failed = out.failed.length ? `, failed: ${out.failed.map((f) => `${f.competition} (${f.reason})`).join("; ")}` : "";
 console.log(`kachizaka: ${out.seasons} open season(s): ${out.fixtures} fixtures, ${out.closed} closed${failed}`);
 await pool.end();

@@ -70,22 +70,7 @@
         }
       },
       "magpieLabel": "La promesse de la pie",
-      "magpie": "La pie tient le score.",
-      "phone": {
-        "label": "Le parcours, étape par étape, sur un téléphone",
-        "leagueName": "La gang du vendredi",
-        "invite": "Lien d'invitation",
-        "copy": "Copier",
-        "sportsOn": "Soccer · Hockey · Basketball",
-        "yourPick": "Ton pronostic",
-        "locked": "Ferme au coup d'envoi",
-        "tableTitle": "Classement",
-        "updated": "Mis à jour il y a 2 min",
-        "season": "Saison 2026-27",
-        "round": "Ronde {n}",
-        "cup": "La coupe va au premier le dernier jour",
-        "example": "Écrans d'exemple"
-      }
+      "magpie": "La pie tient le score."
     },
     "trust": {
       "eyebrow": "Confiance",
@@ -295,6 +280,27 @@
         "engine": {
           "q": "Il y a de l'IA là-dedans ?",
           "a": "Les faits de match arriveront par les connecteurs d'Orazaka, le moteur de Krizaka : c'est prévu, pas encore branché. Les points, eux, viennent d'un compteur déterministe, pas d'un modèle."
+        }
+      }
+    },
+    "tour": {
+      "label": "Le parcours d'un ami dans Kachizaka, capté sur la vraie application",
+      "play": "Lire les étapes",
+      "pause": "Mettre les étapes en pause",
+      "step": "Étape {n} sur {total}",
+      "captured": "Capté sur dev.kachizaka.com (interface en français) le 19 octobre 2026 · Éric, un personnage de la ligue de démonstration, aucune personne réelle",
+      "steps": {
+        "create": {
+          "alt": "La ligue La gang du vendredi : le rang et les points d'Éric, et le classement."
+        },
+        "pick": {
+          "alt": "Un pronostic avant le coup d'envoi : le score tapé pour un match de hockey, prolongation cochée, enregistré."
+        },
+        "table": {
+          "alt": "Le classement de la saison : quatre amis, leurs points et leurs pronostics exacts, en direct."
+        },
+        "season": {
+          "alt": "La saison, match par match : le pronostic de chacun, les points et la règle qui les a rapportés."
         }
       }
     }

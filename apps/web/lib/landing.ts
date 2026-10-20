@@ -17,11 +17,11 @@ export const COMPARE_ROWS = ["pays", "points", "sports", "peek", "home"] as cons
 /** Why friends can trust it: points only, sealed rules, the code. */
 export const TRUST = ["points", "sealed", "open"] as const;
 
-type DevPreview = { criteria: Record<string, { evidence: string | null; na?: boolean }> };
+type DevPreview = { criteria: Record<string, { evidence?: string | null; na?: string | boolean }> };
 
 /** The honest status chip, from dev-preview.json: « Dev preview » only once every criterion has its evidence. */
 export function productStatus(preview: DevPreview): "development" | "preview" {
-  return Object.values(preview.criteria).every((c) => c.evidence !== null || c.na === true) ? "preview" : "development";
+  return Object.values(preview.criteria).every((c) => (c.evidence !== undefined && c.evidence !== null) || Boolean(c.na)) ? "preview" : "development";
 }
 
 /**

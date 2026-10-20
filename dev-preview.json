@@ -17,14 +17,11 @@
       "checked": "2026-10-16"
     },
     "journey.core": {
-      "evidence": null,
-      "gap": "No recorded run of the core journey on dev: points-only league journey (create a league, predict, score).",
-      "issue": "https://github.com/krizaka/kachizaka/issues/19"
+      "evidence": "https://krizaka-assets.b-cdn.net/site/products/kachizaka/tour/journey.a9bda06b7f.mp4",
+      "checked": "2026-10-19"
     },
     "journey.ai-via-orazaka": {
-      "evidence": null,
-      "gap": "The AI is « planned » (krizaka.com engine table): no Orazaka-backed feature runs yet.",
-      "issue": "https://github.com/krizaka/kachizaka/issues/20"
+      "na": "Kachizaka has no AI feature: AGENTS.md §2 states it (its only Orazaka dependency is the sports-feed connector, krizaka/kachizaka#59, which is data, not AI)."
     },
     "ui.krizaka-ui": {
       "evidence": null,

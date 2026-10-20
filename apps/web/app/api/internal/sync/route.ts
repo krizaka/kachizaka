@@ -1,9 +1,9 @@
-import { runSync } from "@kachizaka/db";
+import { devFeed, runSync } from "@kachizaka/db";
 
 import { db } from "@/lib/db";
 import { env } from "@/lib/env";
 import { handle, refuse } from "@/lib/http";
-import { syncAuthorised } from "@/lib/sync-auth";
+import { syncAuthorised, unlicensedSourcesAllowed } from "@/lib/sync-auth";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 120;
@@ -18,7 +18,7 @@ export function POST(req: Request) {
     const door = syncAuthorised(req.headers.get("authorization"), env().OPERATOR_SYNC_TOKEN);
     if (door === "absent") return new Response("Not found", { status: 404 });
     if (door === "refused") throw refuse(401, "UNAUTHORISED", "A bearer token is required");
-    const out = await runSync(db(), { now: new Date(), back: 5, ahead: 14 });
+    const out = await runSync(db(), { feed: devFeed({ unlicensed: unlicensedSourcesAllowed() }), now: new Date(), back: 5, ahead: 14 });
     return Response.json({ ...out, at: new Date().toISOString() });
   });
 }

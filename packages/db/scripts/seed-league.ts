@@ -101,7 +101,7 @@ const memberOf = new Map((await db.select().from(members).where(eq(members.leagu
 const [season] = await db.select().from(seasons).where(eq(seasons.leagueId, league.id));
 const day = (offset: number) => new Date(now.getTime() + offset * 86_400_000).toISOString().slice(0, 10);
 const sync = await syncFixtures({
-  feed: devFeed(),
+  feed: devFeed({ unlicensed: true }),
   competitions: season!.competitions,
   from: day(Number(arg("back", "0"))),
   to: day(Number(arg("ahead", "7"))),

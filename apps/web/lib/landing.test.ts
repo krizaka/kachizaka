@@ -29,9 +29,9 @@ describe("the landing is the product landing template of @krizaka/ui, at the Yom
     expect([...body].sort((a, b) => a - b)).toEqual(body);
   });
 
-  it("uses the family's blocks: NumberTicker (real figures), DeviceFrame, ComparisonTable, the magpie, LinkCard", () => {
+  it("uses the family's blocks: NumberTicker (real figures), StepShowcase, ComparisonTable, the magpie, LinkCard", () => {
     expect(home).toContain("<NumberTicker");
-    expect(read("components/LeagueStory.tsx")).toContain("DeviceFrame");
+    expect(read("components/JourneyTour.tsx")).toContain("StepShowcase");
     expect(home).toContain("@krizaka/ui/comparison-table");
     expect(home).toContain('bird="magpie"');
     expect(read("components/home/PointsBreakdown.tsx")).toContain("NumberTicker");
@@ -128,10 +128,12 @@ describe("the landing keeps its other guarantees", () => {
 });
 
 describe("the journey on a phone", () => {
-  it("lets a step's words wrap and the column shrink, so a phone never scrolls sideways (dev.kachizaka.com was 690 px wide at 390)", () => {
-    const story = read("components/LeagueStory.tsx");
-    expect(story).toContain("whitespace-normal");
-    expect(story).toContain("minmax(0,1fr)");
+  it("is the recorded take played by StepShowcase in a phone frame, one still and one clip per step", () => {
+    const home = read("app/[locale]/page.tsx");
+    expect(home).toContain("<JourneyTour");
+    expect(home).toMatch(/poster: tourStill\(id\), video: tourClip\(id\)/);
+    expect(read("components/JourneyTour.tsx")).toContain('device="phone"');
+    expect(read("next.config.mjs")).toContain("media-src 'self' https://krizaka-assets.b-cdn.net");
   });
 });
 

@@ -15,7 +15,7 @@ remembers every season — championship stars, trophies, streaks and your nemesi
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/krizaka/kachizaka/badge)](https://scorecard.dev/viewer/?uri=github.com/krizaka/kachizaka)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
-Kachizaka (勝ち *kachi*, a win) is a Krizaka product **in development**: nothing is deployed, sign-up is closed.
+Kachizaka (勝ち *kachi*, a win) is a Krizaka product **in development**: it runs on **dev.kachizaka.com** (QA accounts only, sign-up closed). Its home shows a real demonstration league, « La gang du vendredi », scored by the real scorer from real results (NHL and the Premier League / Ligue 1; basketball is in preparation).
 **Points only — never money, stakes or odds.** The know-how it shows: **live data, in real time** — match facts read
 through Orazaka's MCP connectors, applied once and in order, standings broadcast over `@krizaka/realtime`.
 
