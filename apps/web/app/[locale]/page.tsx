@@ -86,12 +86,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           visual={<LeagueView bare views={league.sports} text={leagueText(locale, league)} />}
           actions={
             <>
-              <Button asChild variant="primary" size="lg" shape="cut" shimmer magnetic className="w-full sm:w-auto">
+              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto">
                 <a href={contactHref("dev-kachizaka-hero")}>
                   {d.talk} <ForwardIcon size={16} strokeWidth={2.25} />
                 </a>
               </Button>
-              <Button asChild variant="secondary" size="lg" shape="cut" className="w-full sm:w-auto">
+              <Button asChild variant="secondary" size="lg" className="w-full sm:w-auto">
                 <Link href="#how">{d.seeHow}</Link>
               </Button>
             </>
@@ -112,7 +112,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             title: d.closing.title,
             body: d.closing.body,
             actions: (
-              <Button asChild variant="primary" size="lg" shape="cut">
+              <Button asChild variant="primary" size="lg">
                 <a href={contactHref("dev-kachizaka-closing")}>{d.talk}</a>
               </Button>
             ),

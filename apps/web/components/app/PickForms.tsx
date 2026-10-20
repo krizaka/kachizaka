@@ -76,7 +76,7 @@ export function ScorePick({ target }: { target: PickTarget }) {
       </div>
       {hockey ? <form.Checkbox name="overtime" label={say("league.picks.overtime")} /> : null}
       <div className="flex items-center gap-3">
-        <form.Submit size="md" shape="cut" variant={had ? "secondary" : "primary"}>
+        <form.Submit size="md" variant={had ? "secondary" : "primary"}>
           {had ? say("league.picks.update") : say("league.picks.save")}
         </form.Submit>
         <Result saved={saved} problem={problem} />
@@ -109,7 +109,7 @@ export function WinnerBandPick({ target }: { target: PickTarget }) {
       />
       <form.Select name="band" label={say("league.picks.band")} options={target.bands.map((label, i) => ({ value: String(i), label }))} />
       <div className="flex items-center gap-3">
-        <form.Submit size="md" shape="cut" variant={had ? "secondary" : "primary"}>
+        <form.Submit size="md" variant={had ? "secondary" : "primary"}>
           {had ? say("league.picks.update") : say("league.picks.save")}
         </form.Submit>
         <Result saved={saved} problem={problem} />

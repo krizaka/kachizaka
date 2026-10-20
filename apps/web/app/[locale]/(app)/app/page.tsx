@@ -17,7 +17,7 @@ export default async function Leagues({ params }: { params: Promise<{ locale: st
   const session = (await pageSession())!;
   const leagues = await leaguesOf(session.account.id);
   const start = (
-    <Button asChild variant="primary" size="md" shape="cut">
+    <Button asChild variant="primary" size="md">
       <Link href={`/${locale}/app/leagues/new`}>{t.create}</Link>
     </Button>
   );

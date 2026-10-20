@@ -49,7 +49,7 @@ export function NewLeagueForm({ base }: { base: string }) {
         ))}
       </fieldset>
       {problem ? <Alert tone="danger">{problem}</Alert> : null}
-      <form.Submit size="lg" shape="cut">
+      <form.Submit size="lg">
         {say("play.new.submit")}
       </form.Submit>
     </form.Form>

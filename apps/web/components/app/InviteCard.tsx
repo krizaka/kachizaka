@@ -51,14 +51,14 @@ export function InviteCard({ leagueId, base, origin }: { leagueId: string; base:
           </label>
           <div className="flex gap-2">
             <input id="invite-link" readOnly value={link.url} className="min-w-0 flex-1 rounded-md border border-border-default bg-surface-1 px-3 py-2 font-mono text-xs text-fg" onFocus={(e) => e.currentTarget.select()} />
-            <Button variant="secondary" size="md" shape="cut" onClick={copy}>
+            <Button variant="secondary" size="md" onClick={copy}>
               <CopyIcon size={16} aria-hidden /> {copied ? say("play.invite.copied") : say("play.invite.copy")}
             </Button>
           </div>
           <p className="text-xs text-fg-muted">{say("play.invite.expires", { date: link.until })}</p>
         </div>
       ) : (
-        <Button variant="primary" size="md" shape="cut" onClick={make} className="w-fit">
+        <Button variant="primary" size="md" onClick={make} className="w-fit">
           {say("play.invite.create")}
         </Button>
       )}

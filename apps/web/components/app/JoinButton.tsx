@@ -30,7 +30,7 @@ export function JoinButton({ token, base }: { token: string; base: string }) {
   };
   return (
     <div className="flex flex-col gap-3">
-      <Button variant="primary" size="lg" shape="cut" onClick={go} loading={join.isPending} className="w-fit">
+      <Button variant="primary" size="lg" onClick={go} loading={join.isPending} className="w-fit">
         {say("play.join.action")}
       </Button>
       {problem ? <Alert tone="danger">{problem}</Alert> : null}
