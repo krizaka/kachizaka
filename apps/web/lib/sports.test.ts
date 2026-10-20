@@ -11,7 +11,7 @@ describe("the sports of a league", () => {
     expect(SPORTS).toEqual(["soccer", "hockey", "basketball"]);
     expect(COMPETITIONS.hockey).toContain("NHL");
     expect(COMPETITIONS.basketball).toContain("NBA");
-    expect(COMPETITIONS.soccer).toContain("MLS");
+    expect(COMPETITIONS.soccer).toEqual(["Premier League", "Ligue 1"]); // MLS and the Champions League have no source we may use (docs/data-sources.md)
   });
 
   it("scores soccer with the real scorer, never typed by hand", () => {
@@ -25,7 +25,14 @@ describe("the sports of a league", () => {
     expect(v.seal).toMatch(/^sha256:[0-9a-f]{64}$/);
   });
 
-  it("never shows points for a sport whose rules are not written yet", () => {
+  it("scores hockey with the real scorer too: winner, goal difference, overtime", () => {
+    expect(SPORT_STATUS).toEqual({ soccer: "ready", hockey: "ready", basketball: "soon" });
+    const v = sportView("hockey");
+    expect(v.rows.find((r) => r.member === "Éric")!.points).toBe(4); // 4–3 picked, 4–3 played, no overtime: winner 3 + goal difference 1
+    expect(v.seal).toMatch(/^sha256:[0-9a-f]{64}$/);
+  });
+
+  it("never shows points for a sport still in preparation", () => {
     for (const s of SPORTS.filter((s) => SPORT_STATUS[s] === "soon")) {
       const v = sportView(s);
       expect(v.rows.every((r) => r.points === null)).toBe(true);

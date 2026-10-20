@@ -36,7 +36,7 @@
   "landing": {
     "eyebrow": "Kachizaka · des ligues entre amis",
     "title": "Une seule ligue pour tous les matchs que tu suis.",
-    "lead": "Soccer, hockey et basketball dans un seul classement avec tes amis. En points seulement, sans pub, avec des règles scellées avant le premier coup d'envoi.",
+    "lead": "Soccer et hockey dans un seul classement avec tes amis, le basketball s'en vient. En points seulement, sans pub, avec des règles scellées avant le premier coup d'envoi.",
     "talk": "Parle-nous de Kachizaka",
     "seeHow": "Comment ça marche",
     "status": {
@@ -113,22 +113,21 @@
       "body": "Kachizaka est en développement et les inscriptions sont fermées. Parle-nous de ton groupe et de la compétition que tu suis."
     },
     "league": {
-      "label": "Une ligue d'amis, telle qu'elle sera",
+      "label": "{name} — une ligue de démonstration, lue en direct",
       "switch": "Sport",
       "sports": {
         "soccer": "Soccer",
         "hockey": "Hockey",
         "basketball": "Basketball"
       },
-      "competitions": "Les compétitions qu'on prépare",
-      "match": "Match d'exemple",
+      "competitions": "Compétitions suivies",
       "final": "Final",
       "table": "Le classement de la ligue",
       "pick": "Pronostic {home} – {away}",
       "pts": "{points} pts",
-      "unscored": "Règles en préparation",
+      "unscored": "En préparation",
       "ready": "Compté par le vrai compteur",
-      "soon": "Règles en préparation",
+      "soon": "En préparation",
       "rulesSummary": "Règles scellées au coup d'envoi",
       "rulesLead": "Ces points sont fixés avant le début du match, pour tout le monde dans la ligue. Personne ne peut les changer après.",
       "sealLabel": "Sceau (SHA-256)",
@@ -144,7 +143,13 @@
           "marginBand": "La bonne tranche d'écart"
         }
       },
-      "note": "Données d'exemple. Les points du soccer sont calculés par le vrai compteur à la construction de la page ; les règles du hockey et du basketball s'écrivent au grand jour."
+      "note": "{name} est une ligue de démonstration : quatre amis nommés (des personas), de vrais calendriers et résultats, des points calculés par le vrai compteur. En direct aujourd'hui : le soccer (Premier League, Ligue 1) et le hockey (LNH). Le basketball est en préparation.",
+      "resultsTitle": "Derniers résultats",
+      "noResults": "Aucun match compté pour ce sport pour l'instant.",
+      "overtime": "Prol.",
+      "updated": "Classement mis à jour {when}",
+      "soonWhy": "Le basketball attend une source de résultats qu'on a le droit d'utiliser : pas de score qu'on ne peut pas garantir.",
+      "noteExample": "Données d'exemple : la ligue en direct n'a pas pu être lue à l'instant. Le soccer et le hockey sont comptés par le vrai compteur ; le basketball est en préparation."
     },
     "compare": {
       "eyebrow": "En comparaison",
@@ -184,7 +189,7 @@
           },
           "kachizaka": {
             "key": "Une ligue, un classement.",
-            "detail": "Soccer, hockey et basketball ensemble."
+            "detail": "Soccer et hockey ensemble, le basketball ensuite."
           }
         },
         "peek": {
@@ -214,9 +219,9 @@
     },
     "visualLabel": "kachizaka — La gang du vendredi",
     "figures": {
-      "friends": "amis dans la ligue d'exemple",
-      "sports": "sports, un seul classement",
-      "points": "points pour un score exact"
+      "friends": "amis dans la ligue",
+      "sports": "sports comptés aujourd'hui",
+      "points": "pronostics comptés à ce jour"
     },
     "features": {
       "eyebrow": "Ce que Kachizaka fait",
@@ -225,7 +230,7 @@
       "items": {
         "table": {
           "title": "Un seul classement pour tous tes sports",
-          "text": "Soccer, hockey et basketball comptent dans la même ligue, avec les amis de ton groupe."
+          "text": "Le soccer et le hockey comptent dans la même ligue, avec les amis de ton groupe ; le basketball s'en vient."
         },
         "sealed": {
           "title": "Des règles scellées au coup d'envoi",
@@ -277,7 +282,7 @@
         },
         "sports": {
           "q": "Quels sports ?",
-          "a": "Le soccer compte déjà avec le vrai compteur. Le hockey et le basketball sont les prochains : leurs règles s'écrivent au grand jour."
+          "a": "Le soccer et le hockey comptent déjà avec le vrai compteur (gagnant, prolongation et écart de buts au hockey). Le basketball est en préparation : il attend une source de résultats qu'on a le droit d'utiliser."
         },
         "signup": {
           "q": "Je peux créer une ligue ?",

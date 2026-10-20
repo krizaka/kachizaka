@@ -7,3 +7,4 @@ export { ingest, recomputeStandings, rescoreMatch } from "./pipeline";
 export * as schema from "./schema";
 export { devFeed } from "./feed";
 export { runSync, type SyncOptions } from "./sync";
+export { PERSONA_DOMAIN, showcaseLeague, type ShowcaseLeague, type ShowcasePick, type ShowcaseResult, type ShowcaseRow, type ShowcaseSport } from "./showcase";

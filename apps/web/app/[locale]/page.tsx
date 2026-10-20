@@ -1,4 +1,3 @@
-import { DEFAULT_RULES } from "@kachizaka/core";
 import { CheckIcon, ForwardIcon, KeepIcon, LockIcon, ShieldIcon, UsersIcon } from "@krizaka/icons";
 import { Badge } from "@krizaka/ui/badge";
 import { Button } from "@krizaka/ui/button";
@@ -19,42 +18,40 @@ import { LeagueStory } from "@/components/LeagueStory";
 import { LeagueView, type LeagueViewText } from "@/components/LeagueView";
 import { SiteHeader } from "@/components/SiteChrome";
 import { SiteFooter } from "@/components/SiteFooter";
+import { env } from "@/lib/env";
 import { asLocale, format, getDictionary, type Locale } from "@/lib/i18n";
 import { COMPARE_ROWS, productStatus, TRUST } from "@/lib/landing";
+import { buildLeagueData, type LeagueData, SHOWCASE_LEAGUE } from "@/lib/league-view";
 import { pageMetadata, siteJsonLd } from "@/lib/seo";
+import { loadShowcase } from "@/lib/showcase";
 import { contactHref, pagePath, REPO_URL } from "@/lib/site";
-import { FRIENDS, PLANNED_RULES, type SportId, SPORTS, sportView } from "@/lib/sports";
+import { PLANNED_RULES, READY_RULES, sportView } from "@/lib/sports";
 
 import preview from "../../../../dev-preview.json";
+
+/** Read at request (a minute's cache, lib/showcase.ts): the league's table is the database's, not a build's. */
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   return pageMetadata(asLocale((await params).locale), "home");
 }
 
-const VIEWS = SPORTS.map(sportView);
+const EXAMPLE_STORY = sportView("soccer");
 
-/** The league view's words: every line of points comes from the real scorer (soccer); the others are planned, said so. */
-function leagueText(locale: Locale): LeagueViewText {
+/** The league view's words: every line of points comes from the real scorer; basketball's rules are planned, said so. */
+function leagueText(locale: Locale, data: LeagueData): LeagueViewText {
   const d = getDictionary(locale);
   const t = d.landing.league;
-  const names = d.console.league.rules.names;
-  const picks: Record<string, string> = {};
-  const pts: Record<string, string> = {};
-  for (const v of VIEWS) {
-    for (const r of v.rows) {
-      picks[`${v.sport}:${r.member}`] = format(t.pick, { home: r.pick.home, away: r.pick.away });
-      pts[`${v.sport}:${r.member}`] = format(t.pts, { points: r.points ?? 0 });
-    }
-  }
-  const planned = (sport: Exclude<SportId, "soccer">) => PLANNED_RULES[sport].map((id) => (t.rules[sport] as Record<string, string>)[id]);
-  const soccerRules = (Object.keys(DEFAULT_RULES) as (keyof typeof DEFAULT_RULES)[])
-    .filter((k) => DEFAULT_RULES[k] > 0 && k !== "finalMultiplier")
-    .map((k) => `${names[k]} — ${format(t.pts, { points: DEFAULT_RULES[k] })}`);
+  const names = d.console.league.rules.names as Record<string, string>;
+  const lines = (sport: "soccer" | "hockey") => READY_RULES[sport].map((r) => `${names[r.id]} — ${format(t.pts, { points: r.points })}`);
+  const planned = PLANNED_RULES.basketball.map((id) => (t.rules.basketball as Record<string, string>)[id]);
   return {
-    label: t.label, switch: t.switch, sports: t.sports, competitions: t.competitions, match: t.match, final: t.final, table: t.table,
-    picks, pts, ready: t.ready, soon: t.soon, unscored: t.unscored, rulesSummary: t.rulesSummary, rulesLead: t.rulesLead,
-    rulesPlannedLead: t.rulesPlannedLead, sealLabel: t.sealLabel, note: t.note,
-    ruleLines: { soccer: soccerRules, hockey: planned("hockey"), basketball: planned("basketball") },
+    label: format(t.label, { name: data.name }), switch: t.switch, sports: t.sports, competitions: t.competitions, resultsTitle: t.resultsTitle,
+    noResults: t.noResults, final: t.final, overtime: t.overtime, table: t.table, ready: t.ready, soon: t.soon, soonWhy: t.soonWhy,
+    rulesSummary: t.rulesSummary, rulesLead: t.rulesLead, rulesPlannedLead: t.rulesPlannedLead, sealLabel: t.sealLabel,
+    ruleLines: { soccer: lines("soccer"), hockey: lines("hockey"), basketball: planned },
+    updated: data.updated,
+    note: format(data.source === "league" ? t.note : t.noteExample, { name: data.name }),
   };
 }
 
@@ -72,7 +69,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const d = dict.landing;
   const status = productStatus(preview);
   const story = d.how.phone;
-  const soccer = VIEWS[0];
+  const soccer = EXAMPLE_STORY;
+  const league = buildLeagueData(await loadShowcase(SHOWCASE_LEAGUE, { configured: Boolean(env().DATABASE_URL) }), locale);
   const trustHref = { points: pagePath(locale, "privacy"), sealed: `${REPO_URL}/tree/main/packages/core`, open: REPO_URL } as const;
   return (
     <>
@@ -85,7 +83,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           title={d.title}
           lead={d.lead}
           visualLabel={d.visualLabel}
-          visual={<LeagueView bare views={VIEWS} text={leagueText(locale)} />}
+          visual={<LeagueView bare views={league.sports} text={leagueText(locale, league)} />}
           actions={
             <>
               <Button asChild variant="primary" size="lg" shape="cut" shimmer magnetic className="w-full sm:w-auto">
@@ -99,9 +97,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             </>
           }
           proofs={[
-            { value: <NumberTicker value={FRIENDS.length} locale={locale} />, label: d.figures.friends },
-            { value: <NumberTicker value={SPORTS.length} locale={locale} />, label: d.figures.sports },
-            { value: <NumberTicker value={DEFAULT_RULES.exactScore} locale={locale} />, label: d.figures.points },
+            { value: <NumberTicker value={league.friends} locale={locale} />, label: d.figures.friends },
+            { value: <NumberTicker value={league.sportsLive} locale={locale} />, label: d.figures.sports },
+            { value: <NumberTicker value={league.picksScored} locale={locale} />, label: d.figures.points },
           ]}
           featuresHeading={{ eyebrow: d.features.eyebrow, title: d.features.title, lead: d.features.lead }}
           features={[
