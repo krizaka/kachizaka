@@ -15,7 +15,8 @@ describe("the landing's recorded journey", () => {
   it("has one clip and one still per step of the story, on the media CDN under hashed names", () => {
     expect([...TOUR_STEPS]).toEqual([...STORY_STEPS]);
     for (const step of TOUR_STEPS) {
-      expect(tourStill(step)).toMatch(new RegExp(`^${MEDIA_CDN}/site/products/kachizaka/tour/phone-${step}\\.[0-9a-f]{10}\\.jpg$`));
+      expect(tourStill(step).startsWith(`${MEDIA_CDN}/site/products/kachizaka/tour/phone-${step}.`)).toBe(true);
+      expect(tourStill(step)).toMatch(/\.[0-9a-f]{10}\.jpg$/);
       const clip = tourClip(step);
       expect(clip.webm).toMatch(/\.[0-9a-f]{10}\.webm$/);
       expect(clip.mp4).toMatch(/\.[0-9a-f]{10}\.mp4$/);
