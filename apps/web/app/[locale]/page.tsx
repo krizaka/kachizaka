@@ -11,21 +11,23 @@ import { NumberTicker } from "@krizaka/ui/number-ticker";
 import { Section } from "@krizaka/ui/page";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { preconnect } from "react-dom";
 
 import { FaqSection } from "@/components/home/FaqSection";
 import { PointsBreakdown } from "@/components/home/PointsBreakdown";
-import { LeagueStory } from "@/components/LeagueStory";
+import { JourneyTour } from "@/components/JourneyTour";
 import { LeagueView, type LeagueViewText } from "@/components/LeagueView";
 import { SiteHeader } from "@/components/SiteChrome";
 import { SiteFooter } from "@/components/SiteFooter";
 import { env } from "@/lib/env";
 import { asLocale, format, getDictionary, type Locale } from "@/lib/i18n";
-import { COMPARE_ROWS, productStatus, TRUST } from "@/lib/landing";
+import { COMPARE_ROWS, productStatus, STORY_STEPS, TRUST } from "@/lib/landing";
 import { buildLeagueData, type LeagueData, SHOWCASE_LEAGUE } from "@/lib/league-view";
 import { pageMetadata, siteJsonLd } from "@/lib/seo";
 import { loadShowcase } from "@/lib/showcase";
 import { contactHref, pagePath, REPO_URL } from "@/lib/site";
-import { PLANNED_RULES, READY_RULES, sportView } from "@/lib/sports";
+import { PLANNED_RULES, READY_RULES } from "@/lib/sports";
+import { MEDIA_CDN, tourClip, tourStill } from "@/lib/tour";
 
 import preview from "../../../../dev-preview.json";
 
@@ -35,8 +37,6 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   return pageMetadata(asLocale((await params).locale), "home");
 }
-
-const EXAMPLE_STORY = sportView("soccer");
 
 /** The league view's words: every line of points comes from the real scorer; basketball's rules are planned, said so. */
 function leagueText(locale: Locale, data: LeagueData): LeagueViewText {
@@ -68,10 +68,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const dict = getDictionary(locale);
   const d = dict.landing;
   const status = productStatus(preview);
-  const story = d.how.phone;
-  const soccer = EXAMPLE_STORY;
+  const steps = STORY_STEPS.map((id) => ({ id, title: d.how.steps[id].title, description: d.how.steps[id].text, alt: d.tour.steps[id].alt, poster: tourStill(id), video: tourClip(id) }));
   const league = buildLeagueData(await loadShowcase(SHOWCASE_LEAGUE, { configured: Boolean(env().DATABASE_URL) }), locale);
   const trustHref = { points: pagePath(locale, "privacy"), sealed: `${REPO_URL}/tree/main/packages/core`, open: REPO_URL } as const;
+  // The first still is the tour's picture: open the CDN's connection now.
+  preconnect(MEDIA_CDN);
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd(locale)) }} />
@@ -118,18 +119,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             ),
           }}
         >
-          {/* How a round works — four steps on a phone; the magpie keeps its promise. */}
+          {/* How a round works — the real recorded journey, four steps; the magpie keeps its promise. */}
           <Section id="how" eyebrow={d.how.eyebrow} title={d.how.title} lead={d.how.lead} reveal divider>
-            <LeagueStory
-              text={{
-                label: story.label, example: story.example, steps: d.how.steps, leagueName: story.leagueName, invite: story.invite,
-                copy: story.copy, sportsOn: story.sportsOn, yourPick: story.yourPick, locked: story.locked, tableTitle: story.tableTitle,
-                updated: story.updated, season: story.season, round: story.round, cup: story.cup,
-                match: `${soccer.match.home} – ${soccer.match.away}`,
-                pick: dict.landing.league.pick,
-                members: soccer.rows.map((r) => ({ name: r.member, points: r.points ?? 0 })),
-              }}
-            />
+            <figure className="m-0 flex flex-col gap-3">
+              <JourneyTour label={d.tour.label} steps={steps} words={{ play: d.tour.play, pause: d.tour.pause, step: d.tour.step }} />
+              <figcaption className="text-center font-mono text-xs text-fg-muted md:text-start">{d.tour.captured}</figcaption>
+            </figure>
             <div className="mt-10">
               <MascotQuote bird="magpie" label={d.how.magpieLabel} variant="callout">
                 {d.how.magpie}

@@ -70,22 +70,7 @@
         }
       },
       "magpieLabel": "The magpie's promise",
-      "magpie": "The magpie keeps the score.",
-      "phone": {
-        "label": "The journey, step by step, on a phone",
-        "leagueName": "Friday gang",
-        "invite": "Invite link",
-        "copy": "Copy",
-        "sportsOn": "Soccer · Hockey · Basketball",
-        "yourPick": "Your pick",
-        "locked": "Closes at kick-off",
-        "tableTitle": "Table",
-        "updated": "Updated 2 min ago",
-        "season": "Season 2026–27",
-        "round": "Round {n}",
-        "cup": "The cup goes to the leader on the last day",
-        "example": "Example screens"
-      }
+      "magpie": "The magpie keeps the score."
     },
     "trust": {
       "eyebrow": "Trust",
@@ -295,6 +280,27 @@
         "engine": {
           "q": "Is there AI in this?",
           "a": "Match facts will arrive through Orazaka's connectors, Krizaka's engine: that is planned, not wired yet. The points come from a deterministic scorer, not from a model."
+        }
+      }
+    },
+    "tour": {
+      "label": "A friend's journey in Kachizaka, captured on the real app",
+      "play": "Play the steps",
+      "pause": "Pause the steps",
+      "step": "Step {n} of {total}",
+      "captured": "Captured on dev.kachizaka.com (French interface) on October 19, 2026 · Éric, a persona of the demonstration league, no real person",
+      "steps": {
+        "create": {
+          "alt": "The league La gang du vendredi: Éric's rank and points, and the standings."
+        },
+        "pick": {
+          "alt": "A pick before kick-off: the score typed for a hockey game, overtime ticked, saved."
+        },
+        "table": {
+          "alt": "The season's table: four friends, their points and exact picks, live."
+        },
+        "season": {
+          "alt": "The season, match by match: every friend's pick, the points and the rule that earned them."
         }
       }
     }

@@ -17,9 +17,8 @@
       "checked": "2026-10-16"
     },
     "journey.core": {
-      "evidence": null,
-      "gap": "No recorded run of the core journey on dev: points-only league journey (create a league, predict, score).",
-      "issue": "https://github.com/krizaka/kachizaka/issues/19"
+      "evidence": "https://krizaka-assets.b-cdn.net/site/products/kachizaka/tour/journey.a7a2e8a2f4.mp4",
+      "checked": "2026-10-19"
     },
     "journey.ai-via-orazaka": {
       "evidence": null,

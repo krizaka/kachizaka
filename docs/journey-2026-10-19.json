@@ -1,0 +1,61 @@
+{
+  "base": "https://dev.kachizaka.com",
+  "locale": "fr",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "scale": 2,
+  "durationSeconds": 31.59,
+  "frames": 621,
+  "activeCaptureFps": 57.2,
+  "outputFps": 30,
+  "beats": [
+    {
+      "name": "create",
+      "at": 3.191
+    },
+    {
+      "name": "pick",
+      "at": 8.756
+    },
+    {
+      "name": "table",
+      "at": 14.599
+    },
+    {
+      "name": "season",
+      "at": 19.74
+    },
+    {
+      "name": "end",
+      "at": 31.593
+    }
+  ],
+  "steps": [
+    "create",
+    "pick",
+    "table",
+    "season"
+  ],
+  "calls": [
+    {
+      "method": "POST",
+      "path": "/api/auth/sign-in",
+      "status": 200,
+      "requestId": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/leagues/:id/events",
+      "status": 200,
+      "requestId": null
+    },
+    {
+      "method": "PUT",
+      "path": "/api/leagues/:id/picks",
+      "status": 200,
+      "requestId": null
+    }
+  ]
+}
