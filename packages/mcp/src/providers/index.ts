@@ -1,11 +1,13 @@
 import type { Fixture, FixturesInput, FixturesOutput, SportsFeed } from "../contract";
 import { fetchNhl } from "./nhl";
+import { ESPN_LEAGUES, withEspnResults } from "./espn";
 import { COMPETITIONS, fetchOpenFootball, type OpenFootballCompetition } from "./openfootball";
 import { resultEvents } from "./results";
 
 export { fetchNhl, nhlWeeks, parseNhlSchedule } from "./nhl";
 export { COMPETITIONS, fetchOpenFootball, parseOpenFootball, seasonDir, zonedToUtc } from "./openfootball";
 export { resultEvents } from "./results";
+export { ESPN_LEAGUES, espnResultsFor, parseEspnScoreboard, sameTeam, withEspnResults } from "./espn";
 
 /** What a competition is, which sport, and where its data comes from and under which licence — shown on the page that uses it. */
 export const COMPETITION_SOURCES = {
@@ -36,8 +38,9 @@ export class TtlCache<T> {
  * (cached), `events` turns a played game's result into facts. Soccer and hockey today; MLS, the Champions League and
  * basketball wait for a source whose licence allows the use (see the research doc).
  */
-export function resultsFeed(options: { fetch?: typeof fetch; cache?: TtlCache<Fixture[]> } = {}): SportsFeed & { provider: string } {
+export function resultsFeed(options: { fetch?: typeof fetch; cache?: TtlCache<Fixture[]>; now?: () => number } = {}): SportsFeed & { provider: string } {
   const doFetch = options.fetch ?? fetch;
+  const now = options.now ?? Date.now;
   const cache = options.cache ?? new TtlCache<Fixture[]>(10 * 60_000);
   const known = new Map<string, Fixture>();
   return {
@@ -46,7 +49,11 @@ export function resultsFeed(options: { fetch?: typeof fetch; cache?: TtlCache<Fi
       const key = `${input.competition}|${input.from}|${input.to}`;
       const fixtures = await cache.get(key, async () => {
         if (input.competition === "NHL") return fetchNhl(input, doFetch);
-        if (input.competition in COMPETITIONS) return fetchOpenFootball(input.competition as OpenFootballCompetition, input, doFetch);
+        if (input.competition in COMPETITIONS) {
+          const planned = await fetchOpenFootball(input.competition as OpenFootballCompetition, input, doFetch);
+          // openfootball's scores stopped on 2026-09-20: the games already played take their result from the second source.
+          return withEspnResults(input.competition as keyof typeof ESPN_LEAGUES, planned, now(), doFetch).catch(() => planned);
+        }
         throw new Error(`KZ_COMPETITION_UNKNOWN: ${input.competition}`);
       });
       for (const f of fixtures) known.set(f.providerMatchId, f);

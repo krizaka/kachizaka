@@ -33,7 +33,7 @@
 
 - **Temporary exception (2026-10-17, krizaka/kachizaka#59)**: until an Orazaka connector runs the adapters of
   `packages/mcp/src/providers/`, the **dev** runners (`pnpm --filter @kachizaka/db sync`, `seed:league`) call the NHL web API
-  and openfootball directly, server-side and cached, through the single module `packages/db/scripts/feed.ts` — swapping to
+  and openfootball directly, server-side and cached, through the single module `packages/db/src/feed.ts` — swapping to
   `orazakaSportsFeed` is that file alone. Never from a browser, never in production. Licences: `docs/data-sources.md`.
 
 ## 3. The product is independent

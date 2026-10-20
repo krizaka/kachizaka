@@ -17,7 +17,7 @@ import { syncFixtures } from "@kachizaka/mcp";
 import { and, asc, eq, gt, sql } from "drizzle-orm";
 
 import { createDb, pg, poolConfig } from "../src/client";
-import { devFeed } from "./feed";
+import { devFeed } from "../src/feed";
 import { upsertFixtures } from "../src/fixtures";
 import { createInvite, createLeagueWithSeason, joinWithInvite, savePick } from "../src/play";
 import { migrate } from "../src/migrate";

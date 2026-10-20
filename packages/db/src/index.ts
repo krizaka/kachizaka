@@ -5,3 +5,5 @@ export { createInvite, createLeagueWithSeason, inviteLeague, joinWithInvite, Pla
 export { migrate } from "./migrate";
 export { ingest, recomputeStandings, rescoreMatch } from "./pipeline";
 export * as schema from "./schema";
+export { devFeed } from "./feed";
+export { runSync, type SyncOptions } from "./sync";

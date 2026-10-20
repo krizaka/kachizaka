@@ -1,0 +1,33 @@
+name: Dev results sync
+
+# Keeps the league's table live on dev.kachizaka.com: every 30 minutes the app reads the results of the competitions the open
+# seasons follow, scores the picks of the games that ended with the sealed rules and recomputes the table (runSync,
+# packages/db). The call is HTTP — the database accepts no GitHub runner — and authenticated by a bearer token
+# (repository secret OPERATOR_SYNC_TOKEN, the same value as the app's setting of that name; never printed). The route answers
+# 404 on any deployment without the token, so nothing here can reach a production database.
+on:
+  schedule:
+    - cron: "7,37 * * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: dev-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Score the games that ended
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Call the app
+        env:
+          OPERATOR_SYNC_TOKEN: ${{ secrets.OPERATOR_SYNC_TOKEN }}
+        run: |
+          test -n "$OPERATOR_SYNC_TOKEN" || { echo "OPERATOR_SYNC_TOKEN is not set"; exit 1; }
+          code=$(curl -sS -m 150 -o "$RUNNER_TEMP/out.json" -w '%{http_code}' -X POST -H "Authorization: Bearer $OPERATOR_SYNC_TOKEN" https://dev.kachizaka.com/api/internal/sync)
+          cat "$RUNNER_TEMP/out.json"; echo
+          test "$code" = "200"
+          node -e 'const r=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); if(r.failed?.length){console.error("a competition failed:",JSON.stringify(r.failed));process.exit(1)}' "$RUNNER_TEMP/out.json"
