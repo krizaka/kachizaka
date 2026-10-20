@@ -13,16 +13,24 @@ export class HttpError extends Error {
 
 export const refuse = (status: number, code: string, message: string, extra: Record<string, unknown> = {}) => new HttpError(status, message, { code, ...extra });
 
-/** Runs a route handler: an HttpError becomes its JSON answer; anything else is a 500 that leaks nothing. */
+/**
+ * Runs a route handler: an HttpError becomes its JSON answer; anything else is a 500 that leaks nothing. Every answer carries
+ * an `x-request-id` (a recorded journey keeps them: the proof it ran for real) — the error log names the same id.
+ */
 export async function handle(run: () => Promise<Response>): Promise<Response> {
+  const requestId = crypto.randomUUID();
+  const tag = (res: Response) => {
+    res.headers.set("x-request-id", requestId);
+    return res;
+  };
   try {
-    return await run();
+    return tag(await run());
   } catch (error) {
     if (error instanceof HttpError) {
-      return Response.json({ error: error.message, ...error.body }, { status: error.status, headers: error.headers });
+      return tag(Response.json({ error: error.message, ...error.body }, { status: error.status, headers: error.headers }));
     }
-    console.error("api: unexpected error", error);
-    return Response.json({ error: "Something went wrong", code: "INTERNAL" }, { status: 500 });
+    console.error(`api: unexpected error (${requestId})`, error);
+    return tag(Response.json({ error: "Something went wrong", code: "INTERNAL" }, { status: 500 }));
   }
 }
 
