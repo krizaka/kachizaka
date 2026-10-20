@@ -66,9 +66,8 @@
       "issue": "https://github.com/krizaka/kachizaka/issues/30"
     },
     "seo.family": {
-      "evidence": null,
-      "gap": "node scripts/check-seo-family.mjs --base https://dev.kachizaka.com --host https://dev.kachizaka.com --index off fails (empty sitemap / no Sitemap: lin…",
-      "issue": "https://github.com/krizaka/kachizaka/issues/32"
+      "evidence": "https://dev.kachizaka.com/sitemap.xml",
+      "checked": "2026-10-20"
     },
     "ops.cost": {
       "evidence": null,
@@ -76,9 +75,8 @@
       "issue": "https://github.com/krizaka/.github/issues/78"
     },
     "admin.gated": {
-      "evidence": null,
-      "gap": "admin-rules.test.ts covers roles; no test proves the host/IP gate nor the 404 on the public host.",
-      "issue": "https://github.com/krizaka/kachizaka/issues/34"
+      "evidence": "https://github.com/krizaka/kachizaka/blob/main/apps/web/lib/host.test.ts",
+      "checked": "2026-10-20"
     },
     "admin.noindex": {
       "evidence": "https://admin.kachizaka.com/robots.txt",
