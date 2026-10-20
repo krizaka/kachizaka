@@ -12,7 +12,7 @@ cached (10 minutes), one request per week of schedule, never from a browser, nev
 | Premier League | soccer | fixtures: [openfootball](https://github.com/openfootball/football.json); results: ESPN's public scoreboard | openfootball CC0 1.0 (public domain). ESPN: **undocumented public endpoint, no published licence** (the NHL's grade) — results only | wired |
 | Ligue 1 | soccer | openfootball + ESPN scoreboard (results) | same | wired |
 | MLS · Champions League | soccer | — | openfootball has no MLS or Champions League file for the current season; football-data.org's free tier has the Champions League but no clear licence (ask the owner in writing) and no MLS | not offered |
-| NBA | basketball | — | balldontlie (free key, 5 requests/min, 1 sport) — terms not retrieved; no NBA source is used until its terms allow it | not offered |
+| NBA | basketball | — | balldontlie (free key, 5 requests/min): its terms (read 2026-10-19) permit internal business use and publishing but do not state that a free key may feed a public app, add conditions for anything near wagering, and we hold no key — no NBA source is used until its terms are confirmed in writing. The scorer (winner + margin band) is ready; the sport stays « in preparation » | not offered |
 
 Rules: a competition whose provider's terms forbid the use is not offered; the provider and licence of each competition is
 recorded here and in `COMPETITION_SOURCES` (`packages/mcp/src/providers/index.ts`). Research and the comparison of

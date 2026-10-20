@@ -32,9 +32,17 @@
   called directly.
 
 - **Temporary exception (2026-10-17, krizaka/kachizaka#59)**: until an Orazaka connector runs the adapters of
-  `packages/mcp/src/providers/`, the **dev** runners (`pnpm --filter @kachizaka/db sync`, `seed:league`) call the NHL web API
-  and openfootball directly, server-side and cached, through the single module `packages/db/src/feed.ts` — swapping to
-  `orazakaSportsFeed` is that file alone. Never from a browser, never in production. Licences: `docs/data-sources.md`.
+  `packages/mcp/src/providers/`, the **dev** runners (`pnpm --filter @kachizaka/db sync`, `seed:league`) and the scheduled sync
+  (`POST /api/internal/sync`, called every 30 minutes by `.github/workflows/dev-sync.yml`; 404 unless `OPERATOR_SYNC_TOKEN`
+  is set, which only dev does) call the NHL web API, openfootball (fixtures) and ESPN's public scoreboard (soccer results —
+  openfootball stopped updating scores on 2026-09-20) directly, server-side and cached, through the single module
+  `packages/db/src/feed.ts` — swapping to `orazakaSportsFeed` is that file alone. Never from a browser, never in production.
+  Licences and the NBA's status: `docs/data-sources.md`.
+- **The home shows the real league.** The hero reads the demonstration league « La gang du vendredi » (personas, never a real
+  member: `showcaseLeague` only returns a league owned by a `@personas.kachizaka.test` account) from the database at request,
+  cached a minute; if it cannot be read it falls back to its example, said so. Soccer and hockey are scored; **basketball
+  stays « in preparation »** until a results source we are allowed to use exists. There is no AI feature (no Orazaka-backed
+  run); the Orazaka dependency is the sports-feed connector, still to come (#59).
 
 ## 3. The product is independent
 
@@ -51,7 +59,7 @@
 - Passwords scrypt; sessions random tokens kept as keyed hashes; rate limits on sign-in; CSP same-origin, HSTS.
 - Environment variables by bounded context (`APP_`, `DATABASE_`, `AUTH_`, `ABUSE_`, `AI_`, `REALTIME_`), declared once in
   `apps/web/lib/env.ts`. Secrets never in the repository, never printed (`~/.krizaka-worktrees/tools/secret.sh`).
-- **Not deployed.** No DigitalOcean app, no DNS: hosting is Oussama's decision.
+- **Deployed on dev only**: dev.kachizaka.com and admin.kachizaka.com (DigitalOcean App Platform, smallest instance, `deploy/digitalocean/app.yaml`), never indexed. No production deployment: that is Oussama's decision.
 
 ## 5. Database
 
