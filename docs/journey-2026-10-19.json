@@ -6,30 +6,30 @@
     "height": 844
   },
   "scale": 2,
-  "durationSeconds": 31.59,
-  "frames": 621,
-  "activeCaptureFps": 57.2,
+  "durationSeconds": 32.25,
+  "frames": 620,
+  "activeCaptureFps": 58.3,
   "outputFps": 30,
   "beats": [
     {
       "name": "create",
-      "at": 3.191
+      "at": 3.676
     },
     {
       "name": "pick",
-      "at": 8.756
+      "at": 9.249
     },
     {
       "name": "table",
-      "at": 14.599
+      "at": 15.032
     },
     {
       "name": "season",
-      "at": 19.74
+      "at": 20.4
     },
     {
       "name": "end",
-      "at": 31.593
+      "at": 32.249
     }
   ],
   "steps": [
@@ -43,19 +43,19 @@
       "method": "POST",
       "path": "/api/auth/sign-in",
       "status": 200,
-      "requestId": null
+      "requestId": "c9a6d1de-c241-40f6-9d6d-be8ddb782c61"
     },
     {
       "method": "GET",
       "path": "/api/leagues/:id/events",
       "status": 200,
-      "requestId": null
+      "requestId": "edbc4cf6-27fc-4d14-858c-e614b9cc49f3"
     },
     {
       "method": "PUT",
       "path": "/api/leagues/:id/picks",
       "status": 200,
-      "requestId": null
+      "requestId": "9a90bfa6-7511-4236-bccc-d6de9d69eea9"
     }
   ]
 }

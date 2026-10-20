@@ -13,15 +13,15 @@ export const MEDIA_CDN = "https://krizaka-assets.b-cdn.net";
 export const TOUR_STEPS = ["create", "pick", "table", "season"] as const;
 export type TourStep = (typeof TOUR_STEPS)[number];
 
-const STILLS: Record<TourStep, string> = { create: "58cb9214b9", pick: "ba2a2d7f41", table: "6de6430394", season: "ef1593666a" };
+const STILLS: Record<TourStep, string> = { create: "bcb62562a5", pick: "f6e9a71990", table: "4d1eab4436", season: "734a9710d6" };
 const CLIPS: Record<TourStep, { mp4: string; webm: string }> = {
-  create: { mp4: "07255696b3", webm: "f7728d77ee" },
-  pick: { mp4: "8d331b5d18", webm: "1ba16cebab" },
-  table: { mp4: "d5c0168dcc", webm: "2df90aad2c" },
-  season: { mp4: "4d0e30f2f3", webm: "5d54913341" },
+  create: { mp4: "84f19a91be", webm: "242d18d415" },
+  pick: { mp4: "3e6d11f000", webm: "7d1b9c66a3" },
+  table: { mp4: "1b250da14d", webm: "31d54d469f" },
+  season: { mp4: "ee55b86d23", webm: "9a0189561f" },
 };
 /** The whole take, in one piece: the evidence of `journey.core` in dev-preview.json. */
-export const TAKE = { mp4: `${MEDIA_CDN}/site/products/kachizaka/tour/journey.a7a2e8a2f4.mp4`, capturedOn: "2026-10-19" } as const;
+export const TAKE = { mp4: `${MEDIA_CDN}/site/products/kachizaka/tour/journey.a9bda06b7f.mp4`, capturedOn: "2026-10-19" } as const;
 
 const dir = `${MEDIA_CDN}/site/products/kachizaka/tour`;
 export const tourStill = (step: TourStep) => `${dir}/phone-${step}.${STILLS[step]}.jpg`;
