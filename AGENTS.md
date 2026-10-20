@@ -35,7 +35,7 @@
   `packages/mcp/src/providers/`, the **dev** runners (`pnpm --filter @kachizaka/db sync`, `seed:league`) and the scheduled sync
   (`POST /api/internal/sync`, called every 30 minutes by `.github/workflows/dev-sync.yml`; 404 unless `OPERATOR_SYNC_TOKEN`
   is set, which only dev does) call the NHL web API, openfootball (fixtures) and ESPN's public scoreboard (soccer results —
-  openfootball stopped updating scores on 2026-09-20) directly, server-side and cached, through the single module
+  openfootball stopped updating scores on 2026-09-20; **ESPN is non-licensed, dev only**: refused unless `APP_SEARCH_INDEXING=off`, a licensed source is required before any public launch) directly, server-side and cached, through the single module
   `packages/db/src/feed.ts` — swapping to `orazakaSportsFeed` is that file alone. Never from a browser, never in production.
   Licences and the NBA's status: `docs/data-sources.md`.
 - **The home shows the real league.** The hero reads the demonstration league « La gang du vendredi » (personas, never a real

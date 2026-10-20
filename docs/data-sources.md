@@ -9,7 +9,7 @@ cached (10 minutes), one request per week of schedule, never from a browser, nev
 | Competition | Sport | Provider | Licence / terms | Status |
 | :--- | :--- | :--- | :--- | :--- |
 | NHL | hockey | `api-web.nhle.com` (the NHL's public web API) | **No published licence** (undocumented public endpoint). Server-side, cached, low rate; swappable behind the adapter. | wired |
-| Premier League | soccer | fixtures: [openfootball](https://github.com/openfootball/football.json); results: ESPN's public scoreboard | openfootball CC0 1.0 (public domain). ESPN: **undocumented public endpoint, no published licence** (the NHL's grade) — results only | wired |
+| Premier League | soccer | fixtures: [openfootball](https://github.com/openfootball/football.json); results: ESPN's public scoreboard | openfootball CC0 1.0 (public domain). ESPN: **non-licensed, dev only** — undocumented public endpoint, no published licence; results only; refused outside a dev deployment (a licensed source is required before any public launch) | wired on dev only |
 | Ligue 1 | soccer | openfootball + ESPN scoreboard (results) | same | wired |
 | MLS · Champions League | soccer | — | openfootball has no MLS or Champions League file for the current season; football-data.org's free tier has the Champions League but no clear licence (ask the owner in writing) and no MLS | not offered |
 | NBA | basketball | — | balldontlie (free key, 5 requests/min): its terms (read 2026-10-19) permit internal business use and publishing but do not state that a free key may feed a public app, add conditions for anything near wagering, and we hold no key — no NBA source is used until its terms are confirmed in writing. The scorer (winner + margin band) is ready; the sport stays « in preparation » | not offered |
@@ -22,7 +22,7 @@ sources: `docs/research/market-2026-10.md` §5.
 (last commit 2026-09-22), so a game played since stayed « to play » for ever and no pick was scored. The fixtures stay
 openfootball's (CC0); a game already played without a result takes it from ESPN's scoreboard (`providers/espn.ts`: one
 request per day of games, matched by kick-off and team names, never guessed when two games fit). Like the NHL's, it is
-flagged: no licence, so no guarantee; dropping `withEspnResults` in `providers/index.ts` returns to openfootball alone.
+**non-licensed, dev only**: `resultsFeed({ unlicensed: true })` is set by the dev runners and by the dev deployment (APP_SEARCH_INDEXING=off) only, so production never calls it and a soccer game without an openfootball result stays « to play »; dropping `withEspnResults` in `providers/index.ts` returns to openfootball alone.
 
 **The sync is scheduled** (2026-10-19): `.github/workflows/dev-sync.yml` calls `POST /api/internal/sync` of
 dev.kachizaka.com every 30 minutes (bearer `OPERATOR_SYNC_TOKEN`; the route answers 404 where no token is set, so it

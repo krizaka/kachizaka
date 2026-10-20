@@ -12,3 +12,10 @@ export function syncAuthorised(authorization: string | null, token: string | und
   const b = Buffer.from(token);
   return a.length === b.length && timingSafeEqual(a, b) ? "open" : "refused";
 }
+
+/**
+ * The scheduled sync may use the non-licensed sources (ESPN's soccer results) on a development deployment only — the one
+ * closed to search engines (APP_SEARCH_INDEXING=off). Anywhere else (production) it reads the licensed ones and a game
+ * without a licensed result stays « to play »: a licensed source is required before any public launch (krizaka/kachizaka#59).
+ */
+export const unlicensedSourcesAllowed = (env: Record<string, string | undefined> = process.env): boolean => env.APP_SEARCH_INDEXING?.trim().toLowerCase() === "off";

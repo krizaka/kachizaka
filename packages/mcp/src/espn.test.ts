@@ -60,9 +60,21 @@ describe("the second source of soccer results (openfootball stopped updating on 
       if (String(url).includes("raw.githubusercontent")) return Response.json({ matches: [{ date: "2026-10-17", time: "20:45", team1: "Lille OSC", team2: "Stade Brestois 29" }, { date: "2026-10-30", time: "20:45", team1: "Lyon", team2: "Nice" }] });
       return Response.json(board([{ date: "2026-10-17T18:45Z", home: "Lille", away: "Brest", hs: "1", as: "1" }]));
     }) as unknown as typeof fetch;
-    const feed = resultsFeed({ fetch: doFetch, cache: new TtlCache(60_000, () => 0), now: () => Date.parse("2026-10-19T12:00:00Z") });
+    const feed = resultsFeed({ fetch: doFetch, cache: new TtlCache(60_000, () => 0), now: () => Date.parse("2026-10-19T12:00:00Z"), unlicensed: true });
     const { fixtures } = await feed.fixtures({ competition: "Ligue 1", from: "2026-10-16", to: "2026-11-01" });
     expect(fixtures.map((f) => f.result)).toEqual([{ home: 1, away: 1, overtime: false }, undefined]);
     expect(asked.filter((u) => u.includes("espn")).map((u) => u.slice(-8))).toEqual(["20261017", "20261018"]);
+  });
+
+  it("is dev only: without the explicit opt-in (production) the provider is never called and the games stay « to play »", async () => {
+    const asked: string[] = [];
+    const doFetch = (async (url: string) => {
+      asked.push(String(url));
+      return Response.json({ matches: [{ date: "2026-10-17", time: "20:45", team1: "Lille OSC", team2: "Stade Brestois 29" }] });
+    }) as unknown as typeof fetch;
+    const feed = resultsFeed({ fetch: doFetch, cache: new TtlCache(60_000, () => 0), now: () => Date.parse("2026-10-19T12:00:00Z") });
+    const { fixtures } = await feed.fixtures({ competition: "Ligue 1", from: "2026-10-16", to: "2026-11-01" });
+    expect(fixtures[0]!.result).toBeUndefined();
+    expect(asked.some((u) => u.includes("espn"))).toBe(false);
   });
 });

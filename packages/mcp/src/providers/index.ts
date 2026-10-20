@@ -34,11 +34,14 @@ export class TtlCache<T> {
 }
 
 /**
+ * `unlicensed: true` (dev only — never set in production, see `apps/web/lib/sync-auth.ts`) lets the feed use the sources whose
+ * terms do not allow a public product (ESPN's scoreboard for soccer results); without it the game stays « to play ».
+ *
  * The results feed of the competitions above, behind the connector contract: `fixtures` asks the competition's provider
  * (cached), `events` turns a played game's result into facts. Soccer and hockey today; MLS, the Champions League and
  * basketball wait for a source whose licence allows the use (see the research doc).
  */
-export function resultsFeed(options: { fetch?: typeof fetch; cache?: TtlCache<Fixture[]>; now?: () => number } = {}): SportsFeed & { provider: string } {
+export function resultsFeed(options: { fetch?: typeof fetch; cache?: TtlCache<Fixture[]>; now?: () => number; unlicensed?: boolean } = {}): SportsFeed & { provider: string } {
   const doFetch = options.fetch ?? fetch;
   const now = options.now ?? Date.now;
   const cache = options.cache ?? new TtlCache<Fixture[]>(10 * 60_000);
@@ -52,6 +55,7 @@ export function resultsFeed(options: { fetch?: typeof fetch; cache?: TtlCache<Fi
         if (input.competition in COMPETITIONS) {
           const planned = await fetchOpenFootball(input.competition as OpenFootballCompetition, input, doFetch);
           // openfootball's scores stopped on 2026-09-20: the games already played take their result from the second source.
+          if (!options.unlicensed) return planned; // ESPN: non-licensed, dev only — a licensed source is required before any public launch
           return withEspnResults(input.competition as keyof typeof ESPN_LEAGUES, planned, now(), doFetch).catch(() => planned);
         }
         throw new Error(`KZ_COMPETITION_UNKNOWN: ${input.competition}`);
