@@ -1,35 +1,39 @@
-import { DEFAULT_RULES, type Score,scorePrediction, sealOf } from "@kachizaka/core";
+import { DEFAULT_HOCKEY_RULES, DEFAULT_RULES, type HockeyPick, type Score, scoreFor, sealOfFor } from "@kachizaka/core";
 
 /**
  * The games a league follows — structure and example data, never words (the words are in messages/, keyed by the
  * same ids). Proper nouns (teams, competitions) are data: they read the same in both languages.
- * `ready` = a scorer runs today in @kachizaka/core; `soon` = the rules are being written (the next release).
+ * `ready` = a scorer runs today in @kachizaka/core AND a results source feeds it (docs/data-sources.md); `soon` = in
+ * preparation (basketball: no results source we are allowed to use yet).
  */
 export const SPORTS = ["soccer", "hockey", "basketball"] as const;
 export type SportId = (typeof SPORTS)[number];
 
-export const SPORT_STATUS: Record<SportId, "ready" | "soon"> = { soccer: "ready", hockey: "soon", basketball: "soon" };
+export const SPORT_STATUS: Record<SportId, "ready" | "soon"> = { soccer: "ready", hockey: "ready", basketball: "soon" };
 
-/** Québec and Canada first, then the competitions the world follows. */
+/** The competitions a source feeds today (docs/data-sources.md); the NBA is listed for the sport still in preparation. */
 export const COMPETITIONS: Record<SportId, readonly string[]> = {
-  soccer: ["MLS", "Premier League", "Ligue 1", "Champions League"],
+  soccer: ["Premier League", "Ligue 1"],
   hockey: ["NHL"],
   basketball: ["NBA"],
 };
 
-/** The rules each sport will be scored by: the ids of the lines the landing lists (the words: landing.league.rules). */
-export const PLANNED_RULES: Record<Exclude<SportId, "soccer">, readonly string[]> = {
-  hockey: ["winner", "overtime", "goalDifference"],
-  basketball: ["winner", "marginBand"],
-};
+/** The rules of the sport still in preparation: the ids of the lines the landing lists (the words: landing.league.rules). */
+export const PLANNED_RULES = { basketball: ["winner", "marginBand"] } as const;
+
+/** The rules each ready sport is scored by, as (rule id, points) lines — read from the scorer's defaults, never typed. */
+export const READY_RULES = {
+  soccer: (["exactScore", "outcome", "goalDifference"] as const).map((id) => ({ id, points: DEFAULT_RULES[id] })).filter((r) => r.points > 0),
+  hockey: (["winner", "goalDifference", "overtime"] as const).map((id) => ({ id, points: DEFAULT_HOCKEY_RULES[id] })).filter((r) => r.points > 0),
+} as const;
 
 export interface ExampleMatch {
   home: string;
   away: string;
   /** The result, once played. */
   actual: Score;
-  /** What each friend picked before kick-off. */
-  picks: readonly { member: string; pick: Score }[];
+  /** What each friend picked before kick-off (hockey: and whether they called overtime). */
+  picks: readonly { member: string; pick: Score & { overtime?: boolean } }[];
 }
 
 /** Four friends — named personas of the example league, not users. */
@@ -52,10 +56,10 @@ export const EXAMPLES: Record<SportId, ExampleMatch> = {
     away: "Maple Leafs",
     actual: { home: 4, away: 3 },
     picks: [
-      { member: "Éric", pick: { home: 4, away: 3 } },
-      { member: "Salma", pick: { home: 3, away: 2 } },
-      { member: "Marc-Antoine", pick: { home: 2, away: 3 } },
-      { member: "Jade", pick: { home: 5, away: 2 } },
+      { member: "Éric", pick: { home: 4, away: 3, overtime: false } },
+      { member: "Salma", pick: { home: 3, away: 2, overtime: false } },
+      { member: "Marc-Antoine", pick: { home: 2, away: 3, overtime: false } },
+      { member: "Jade", pick: { home: 5, away: 2, overtime: false } },
     ],
   },
   basketball: {
@@ -74,7 +78,7 @@ export const EXAMPLES: Record<SportId, ExampleMatch> = {
 export interface LeagueRow {
   member: string;
   pick: Score;
-  /** Points from the real scorer — `null` while the sport's rules are still being written. */
+  /** Points from the real scorer — `null` while the sport is in preparation. */
   points: number | null;
   /** Which rule earned them, in order (the ids of console.league.rules.names). */
   rules: readonly string[];
@@ -91,13 +95,13 @@ export interface SportView {
   seal: string | null;
 }
 
-/** A sport's view of the example league: soccer is scored by the product's own scorer, the others are shown unscored. */
+/** A sport's view of the example league (the fallback when the live league cannot be read): soccer and hockey are scored by the product's own scorer, basketball is shown unscored. */
 export function sportView(sport: SportId): SportView {
   const ex = EXAMPLES[sport];
   const ready = SPORT_STATUS[sport] === "ready";
   const rows: LeagueRow[] = ex.picks.map(({ member, pick }) => {
     if (!ready) return { member, pick, points: null, rules: [] };
-    const scored = scorePrediction(DEFAULT_RULES, pick, ex.actual);
+    const scored = scoreFor(sport, sport === "hockey" ? DEFAULT_HOCKEY_RULES : DEFAULT_RULES, pick as Score | HockeyPick, ex.actual);
     return { member, pick, points: scored.points, rules: scored.breakdown.map((l) => l.rule) };
   });
   if (ready) rows.sort((a, b) => (b.points ?? 0) - (a.points ?? 0));
@@ -107,6 +111,6 @@ export function sportView(sport: SportId): SportView {
     match: { home: ex.home, away: ex.away, actual: ex.actual },
     rows,
     competitions: COMPETITIONS[sport],
-    seal: ready ? sealOf(DEFAULT_RULES) : null,
+    seal: ready ? sealOfFor(sport, sport === "hockey" ? DEFAULT_HOCKEY_RULES : DEFAULT_RULES) : null,
   };
 }

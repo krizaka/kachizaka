@@ -36,7 +36,7 @@
   "landing": {
     "eyebrow": "Kachizaka · leagues among friends",
     "title": "One league for every game you follow.",
-    "lead": "Soccer, hockey and basketball in a single table with your friends. Points only, no ads, and rules sealed before the first kick-off.",
+    "lead": "Soccer and hockey in a single table with your friends, basketball on the way. Points only, no ads, and rules sealed before the first kick-off.",
     "talk": "Talk to us about Kachizaka",
     "seeHow": "How it works",
     "status": {
@@ -113,22 +113,21 @@
       "body": "Kachizaka is in development and sign-up is closed. Tell us about your group and the competition you follow."
     },
     "league": {
-      "label": "A league of friends, as it will look",
+      "label": "{name} — a demonstration league, read live",
       "switch": "Sport",
       "sports": {
         "soccer": "Soccer",
         "hockey": "Hockey",
         "basketball": "Basketball"
       },
-      "competitions": "Competitions we are preparing",
-      "match": "Example match",
+      "competitions": "Competitions followed",
       "final": "Final",
       "table": "The league's table",
       "pick": "Pick {home} – {away}",
       "pts": "{points} pts",
-      "unscored": "Rules in preparation",
+      "unscored": "In preparation",
       "ready": "Scored by the real scorer",
-      "soon": "Rules in preparation",
+      "soon": "In preparation",
       "rulesSummary": "Rules sealed at kick-off",
       "rulesLead": "These points are fixed before the match starts, for everyone in the league. Nobody can change them afterwards.",
       "sealLabel": "Seal (SHA-256)",
@@ -144,7 +143,13 @@
           "marginBand": "The right margin band"
         }
       },
-      "note": "Example data. Soccer points are computed by the real scorer when this page is built; hockey and basketball rules are being written in the open."
+      "note": "{name} is a demonstration league: four named friends (personas), real fixtures and results, points computed by the real scorer. Live today: soccer (Premier League, Ligue 1) and hockey (NHL). Basketball is in preparation.",
+      "resultsTitle": "Last results",
+      "noResults": "No game scored yet for this sport.",
+      "overtime": "OT",
+      "updated": "Table updated {when}",
+      "soonWhy": "Basketball waits for a results source we are allowed to use: no score we cannot stand behind.",
+      "noteExample": "Example data: the live league could not be read just now. Soccer and hockey are scored by the real scorer; basketball is in preparation."
     },
     "compare": {
       "eyebrow": "Compared",
@@ -184,7 +189,7 @@
           },
           "kachizaka": {
             "key": "One league, one table.",
-            "detail": "Soccer, hockey and basketball together."
+            "detail": "Soccer and hockey together, basketball next."
           }
         },
         "peek": {
@@ -214,9 +219,9 @@
     },
     "visualLabel": "kachizaka — The Friday gang",
     "figures": {
-      "friends": "friends in the example league",
-      "sports": "sports, one table",
-      "points": "points for an exact score"
+      "friends": "friends in the league",
+      "sports": "sports scored today",
+      "points": "picks scored so far"
     },
     "features": {
       "eyebrow": "What Kachizaka does",
@@ -225,7 +230,7 @@
       "items": {
         "table": {
           "title": "One table for every sport you follow",
-          "text": "Soccer, hockey and basketball count in the same league, with the friends of your group."
+          "text": "Soccer and hockey count in the same league, with the friends of your group; basketball is on the way."
         },
         "sealed": {
           "title": "Rules sealed at kick-off",
@@ -277,7 +282,7 @@
         },
         "sports": {
           "q": "Which sports?",
-          "a": "Soccer already counts with the real scorer. Hockey and basketball are next: their rules are being written in the open."
+          "a": "Soccer and hockey already count with the real scorer (winner, overtime and goal difference in hockey). Basketball is in preparation: it waits for a results source we are allowed to use."
         },
         "signup": {
           "q": "Can I start a league?",

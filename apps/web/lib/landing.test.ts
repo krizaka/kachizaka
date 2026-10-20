@@ -41,10 +41,12 @@ describe("the landing is the product landing template of @krizaka/ui, at the Yom
     expect((home.match(/variant="primary"/g) ?? []).length).toBe(2);
   });
 
-  it("the band's figures are read from the example league and the real scorer, never typed", () => {
-    expect(home).toContain("FRIENDS.length");
-    expect(home).toContain("SPORTS.length");
-    expect(home).toContain("DEFAULT_RULES.exactScore");
+  it("the band's figures and the league are read from the database (the league's own table), never typed", () => {
+    expect(home).toContain("loadShowcase(");
+    expect(home).toContain("league.friends");
+    expect(home).toContain("league.sportsLive");
+    expect(home).toContain("league.picksScored");
+    expect(home).toContain("buildLeagueData(");
   });
 });
 
