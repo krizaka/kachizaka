@@ -59,7 +59,7 @@
 - Passwords scrypt; sessions random tokens kept as keyed hashes; rate limits on sign-in; CSP same-origin, HSTS.
 - Environment variables by bounded context (`APP_`, `DATABASE_`, `AUTH_`, `ABUSE_`, `AI_`, `REALTIME_`), declared once in
   `apps/web/lib/env.ts`. Secrets never in the repository, never printed (`~/.krizaka-worktrees/tools/secret.sh`).
-- **Deployed on dev only**: dev.kachizaka.com and admin.kachizaka.com (DigitalOcean App Platform, smallest instance, `deploy/digitalocean/app.yaml`), never indexed. No production deployment: that is Oussama's decision.
+- **Deployed on dev only**: www.kachizaka.com (the public, indexed address; the apex answers 308 with www), admin.kachizaka.com and dev.kachizaka.com (every page goes to www with a 308; only the API, auth callbacks, webhooks, /.well-known and /healthz keep serving there, noindex: `APP_DEV_HOST`, lib/indexing.ts, epic krizaka/.github#119) (DigitalOcean App Platform, smallest instance, `deploy/digitalocean/app.yaml`), dev and admin never indexed. No production deployment: that is Oussama's decision.
 
 ## 5. Database
 

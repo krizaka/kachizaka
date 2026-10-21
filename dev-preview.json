@@ -5,7 +5,7 @@
   "index": "off",
   "criteria": {
     "site.healthy": {
-      "evidence": "https://dev.kachizaka.com/api/healthz",
+      "evidence": "https://www.kachizaka.com/api/healthz",
       "checked": "2026-10-16"
     },
     "site.signup-closed": {
@@ -13,7 +13,7 @@
       "checked": "2026-10-16"
     },
     "site.qa-signin": {
-      "evidence": "https://dev.kachizaka.com/en/sign-in",
+      "evidence": "https://www.kachizaka.com/en/sign-in",
       "checked": "2026-10-16"
     },
     "journey.core": {
@@ -66,7 +66,7 @@
       "issue": "https://github.com/krizaka/kachizaka/issues/30"
     },
     "seo.family": {
-      "evidence": "https://dev.kachizaka.com/sitemap.xml",
+      "evidence": "https://www.kachizaka.com/sitemap.xml",
       "checked": "2026-10-20"
     },
     "ops.cost": {

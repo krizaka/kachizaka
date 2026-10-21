@@ -54,7 +54,7 @@ export default async function League({ params }: { params: Promise<{ locale: str
   };
   const why = (lines: { rule: string; points: number }[]) => (lines.length ? lines.map((l) => `${t.rules.names[l.rule as keyof typeof t.rules.names]} +${l.points}`).join(" · ") : t.matches.nothing);
   const roundNumber = (round: string) => Number(round.split("-W")[1]);
-  const origin = `https://${(await headers()).get("host") ?? "dev.kachizaka.com"}`;
+  const origin = `https://${(await headers()).get("host") ?? "www.kachizaka.com"}`;
   const upcoming = view.matches.filter((m) => m.status === "scheduled" && new Date(m.kickoffAt) > new Date());
   const rounds = [...new Set(upcoming.map((m) => m.round))].map((round) => ({ round, matches: upcoming.filter((m) => m.round === round) }));
   const target = (m: (typeof view.matches)[number]): PickTarget => ({

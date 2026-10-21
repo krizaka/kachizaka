@@ -1,0 +1,8 @@
+{
+  "app": "kachizaka-dev",
+  "url": "https://dev.kachizaka.com",
+  "health": "/api/healthz",
+  "indexing": "off",
+  "spec": "deploy/digitalocean/app.yaml",
+  "product": "kachizaka"
+}
