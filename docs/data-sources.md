@@ -22,7 +22,7 @@ sources: `docs/research/market-2026-10.md` §5.
 (last commit 2026-09-22), so a game played since stayed « to play » for ever and no pick was scored. The fixtures stay
 openfootball's (CC0); a game already played without a result takes it from ESPN's scoreboard (`providers/espn.ts`: one
 request per day of games, matched by kick-off and team names, never guessed when two games fit). Like the NHL's, it is
-**non-licensed, dev only**: `resultsFeed({ unlicensed: true })` is set by the dev runners and by the dev deployment (APP_SEARCH_INDEXING=off) only, so production never calls it and a soccer game without an openfootball result stays « to play »; dropping `withEspnResults` in `providers/index.ts` returns to openfootball alone.
+**non-licensed, dev only**: `resultsFeed({ unlicensed: true })` is set by the local dev runners only (and by the app only when `APP_UNLICENSED_SOURCES=on` on a non-public host, which the deployment, whose database www shows, never sets: 2026-10-21), so the public site never serves it and a soccer game without an openfootball result stays « to play »; no page names this source; dropping `withEspnResults` in `providers/index.ts` returns to openfootball alone.
 
 **The sync is scheduled** (2026-10-19): `.github/workflows/dev-sync.yml` calls `POST /api/internal/sync` of
 dev.kachizaka.com every 30 minutes (bearer `OPERATOR_SYNC_TOKEN`; the route answers 404 where no token is set, so it

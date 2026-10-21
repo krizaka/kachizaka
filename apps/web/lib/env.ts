@@ -42,6 +42,8 @@ export const envSchema = z.object({
   /** Bearer token of the scheduled results sync (`POST /api/internal/sync`, ≥ 32 characters), a DO SECRET set on dev only; unset = the door does not exist. */
   OPERATOR_SYNC_TOKEN: z.string().optional(),
   /** `off` on every dev / preview deployment: noindex and a closed robots.txt on every host but APP_PUBLIC_URL's, the development notice in the footer, the non-licensed sources. */
+  /** `on` lets the scheduled sync use the non-licensed sources (ESPN), on a non-public host only (lib/sync-auth.ts). Never set on the deployment whose database www shows. */
+  APP_UNLICENSED_SOURCES: z.enum(["on", "off"]).default("off"),
   APP_SEARCH_INDEXING: z.enum(["on", "off"]).default("on"),
   /** Connections this process's pool may hold (the cluster's budget is shared: dev uses 2 behind a PgBouncer pool). */
   DATABASE_MAX_CONNECTIONS: z.coerce.number().int().min(1).max(50).default(5),
