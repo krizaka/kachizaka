@@ -71,7 +71,7 @@ export function LeagueView({ views, text, bare = false }: { views: readonly Leag
             )}
             {v.ready && (
               <section aria-label={text.resultsTitle} className="flex flex-col gap-2">
-                <h3 className="text-xs font-semibold uppercase tracking-wide text-fg-muted">{text.resultsTitle}</h3>
+                <h3 className="text-xs font-semibold text-fg-muted">{text.resultsTitle}</h3>
                 {v.results.length === 0 && <p className="text-fg-secondary">{text.noResults}</p>}
                 <ul className="flex flex-col gap-2">
                   {v.results.map((r) => (

@@ -98,7 +98,7 @@ export default async function League({ params }: { params: Promise<{ locale: str
           <div className="flex flex-col gap-8">
             {rounds.map((r, i) => (
               <details key={r.round} open={i === 0} className="group flex flex-col gap-3">
-                <summary className="flex cursor-pointer items-baseline justify-between gap-3 font-display text-sm font-bold uppercase tracking-wide text-fg-secondary">
+                <summary className="flex cursor-pointer items-baseline justify-between gap-3 font-display text-sm font-bold text-fg-secondary">
                   {format(t.picks.round, { n: roundNumber(r.round) })}
                   <span className="font-mono text-xs font-normal normal-case tracking-normal text-fg-muted">{format(t.picks.count, { count: r.matches.length, mine: r.matches.filter((m) => m.mine).length })}</span>
                 </summary>
@@ -144,7 +144,7 @@ export default async function League({ params }: { params: Promise<{ locale: str
                 <p className="mt-1 text-fg-muted">{when(m.kickoffAt)}</p>
                 {m.status === "scheduled" ? null : rows.length ? (
                   <div className="mt-3 flex flex-col gap-2">
-                    <h3 className="text-xs font-semibold uppercase tracking-wide text-fg-secondary">{t.reveal.title}</h3>
+                    <h3 className="text-xs font-semibold text-fg-secondary">{t.reveal.title}</h3>
                     <RevealTable rows={rows} text={{ caption: `${m.home} – ${m.away}`, member: t.reveal.member, pick: t.reveal.pick, points: t.reveal.points, why: t.reveal.why, perfect: t.reveal.perfect, you: t.table.you, none: t.reveal.none }} />
                   </div>
                 ) : (
