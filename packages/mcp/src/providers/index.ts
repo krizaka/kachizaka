@@ -34,7 +34,7 @@ export class TtlCache<T> {
 }
 
 /**
- * `unlicensed: true` (dev only — never set in production, see `apps/web/lib/sync-auth.ts`) lets the feed use the sources whose
+ * `unlicensed: true` (local runners only — the deployed app asks `unlicensedSourcesAllowed`, `apps/web/lib/sync-auth.ts`, and never shares such a result with www) lets the feed use the sources whose
  * terms do not allow a public product (ESPN's scoreboard for soccer results); without it the game stays « to play ».
  *
  * The results feed of the competitions above, behind the connector contract: `fixtures` asks the competition's provider
