@@ -5,7 +5,11 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createLeagueWithSeason } from "./play";
 import { accounts, matches, members, predictions, predictionScores, standings } from "./schema";
 import { runSync } from "./sync";
+import { hoursFrom, kickoffAfter } from "./test/clock";
 import { freshDatabase } from "./test/db";
+
+/** The game kicks off tomorrow evening by the real clock (the database locks predictions with its own `now()`). */
+const KICKOFF = kickoffAfter(new Date());
 
 let t: Awaited<ReturnType<typeof freshDatabase>>;
 beforeAll(async () => {
@@ -26,19 +30,19 @@ const game = (kickoffAt: string, result?: Fixture["result"]): Fixture => ({ spor
 describe("the results sync — what keeps the league's table live", () => {
   it("stores the fixtures of every open season, scores the picks of a game once its result is in, and a second pass changes nothing", async () => {
     const [owner] = await t.db.insert(accounts).values({ email: "eric@personas.kachizaka.test", locale: "fr" }).returning();
-    const { league } = await createLeagueWithSeason(t.db, { name: "La gang du vendredi", ownerId: owner!.id, ownerName: "Éric", competitions: ["NHL"], now: new Date("2026-10-01T12:00:00Z") });
-    let fixture = game("2026-10-20T23:00:00+00:00");
+    const { league } = await createLeagueWithSeason(t.db, { name: "La gang du vendredi", ownerId: owner!.id, ownerName: "Éric", competitions: ["NHL"], now: hoursFrom(KICKOFF, -24 * 19 - 11) });
+    let fixture = game(KICKOFF.toISOString());
     const feed = feedOf(() => [fixture]);
 
-    const first = await runSync(t.db, { feed, now: new Date("2026-10-20T12:00:00Z"), back: 3, ahead: 14 });
+    const first = await runSync(t.db, { feed, now: hoursFrom(KICKOFF, -11), back: 3, ahead: 14 });
     expect(first).toMatchObject({ seasons: 1, fixtures: 1, closed: 0, failed: [] });
 
     const [m] = await t.db.select().from(matches);
     const [member] = await t.db.select().from(members).where(eq(members.leagueId, league.id));
     await t.db.insert(predictions).values({ matchId: m!.id, memberId: member!.id, home: 4, away: 3, overtime: true });
 
-    fixture = game("2026-10-20T23:00:00+00:00", { home: 4, away: 3, overtime: true });
-    const second = await runSync(t.db, { feed, now: new Date("2026-10-21T08:00:00Z"), back: 3, ahead: 14 });
+    fixture = game(KICKOFF.toISOString(), { home: 4, away: 3, overtime: true });
+    const second = await runSync(t.db, { feed, now: hoursFrom(KICKOFF, 9), back: 3, ahead: 14 });
     expect(second).toMatchObject({ fixtures: 1, closed: 1, failed: [] });
 
     const [scored] = await t.db.select().from(predictionScores);
@@ -46,7 +50,7 @@ describe("the results sync — what keeps the league's table live", () => {
     const [row] = await t.db.select().from(standings);
     expect(row).toMatchObject({ points: 5, predictions: 1 });
 
-    const third = await runSync(t.db, { feed, now: new Date("2026-10-21T09:00:00Z"), back: 3, ahead: 14 });
+    const third = await runSync(t.db, { feed, now: hoursFrom(KICKOFF, 10), back: 3, ahead: 14 });
     expect(third.closed).toBe(0);
   });
 
@@ -59,7 +63,7 @@ describe("the results sync — what keeps the league's table live", () => {
         return { provider: "t", providerMatchId, events: [] };
       },
     };
-    const out = await runSync(t.db, { feed: failing, now: new Date("2026-10-21T09:00:00Z") });
+    const out = await runSync(t.db, { feed: failing, now: hoursFrom(KICKOFF, 10) });
     expect(out.failed[0]).toMatchObject({ reason: "down" });
   });
 });
