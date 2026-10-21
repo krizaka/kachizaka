@@ -68,9 +68,10 @@ services:
         scope: RUN_TIME
         value: "false"
       # Only these client addresses (do-connecting-ip) reach admin.kachizaka.com, its sign-in included; empty = nobody.
+      # (krizaka-deploy keeps the live value: the addresses are not committed.)
       - key: AUTH_ALLOWED_IPS
         scope: RUN_TIME
-        value: "142.122.41.109"
+        value: __AUTH_ALLOWED_IPS__
       - key: AUTH_SESSION_SECRET
         scope: RUN_TIME
         type: SECRET
@@ -83,6 +84,11 @@ services:
         scope: RUN_TIME
         type: SECRET
         value: __DATABASE_DIRECT_URL__
+      # The scheduled results sync's bearer (.github/workflows/dev-sync.yml): live value kept.
+      - key: OPERATOR_SYNC_TOKEN
+        scope: RUN_TIME
+        type: SECRET
+        value: __OPERATOR_SYNC_TOKEN__
       - key: DATABASE_CA_CERT
         scope: RUN_TIME
         type: SECRET
@@ -91,7 +97,7 @@ services:
       # process holds at most 2; one instance, so the realtime bus lives in memory (no LISTEN connection).
       - key: DATABASE_MAX_CONNECTIONS
         scope: RUN_TIME
-        value: "2"
+        value: "1"
       - key: REALTIME_BUS
         scope: RUN_TIME
         value: memory
