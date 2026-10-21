@@ -17,7 +17,9 @@ const list = z
 export const envSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   /** The public origin of the site (canonical URLs, sitemap, llms.txt). */
-  APP_PUBLIC_URL: z.string().url().default("https://dev.kachizaka.com"),
+  APP_PUBLIC_URL: z.string().url().default("https://www.kachizaka.com"),
+  /** The development address (`dev.kachizaka.com`): every page goes to www (308); only the API, auth callbacks, webhooks, /.well-known and /healthz keep serving there, all noindex (lib/indexing.ts). Unset: no dev host. */
+  APP_DEV_HOST: z.string().optional(),
   /** PostgreSQL (the cluster krizaka-dev-pg in dev: database kachizaka_db, role kachizaka_db). */
   DATABASE_URL: z.string().optional(),
   /** The cluster's CA (PEM), to verify its certificate; without it a TLS URL is refused in production. */
@@ -39,7 +41,7 @@ export const envSchema = z.object({
   AI_API_KEY: z.string().optional(),
   /** Bearer token of the scheduled results sync (`POST /api/internal/sync`, ≥ 32 characters), a DO SECRET set on dev only; unset = the door does not exist. */
   OPERATOR_SYNC_TOKEN: z.string().optional(),
-  /** `off` on every dev / preview deployment: noindex everywhere, robots.txt closed, the development notice in the footer. */
+  /** `off` on every dev / preview deployment: noindex and a closed robots.txt on every host but APP_PUBLIC_URL's, the development notice in the footer, the non-licensed sources. */
   APP_SEARCH_INDEXING: z.enum(["on", "off"]).default("on"),
   /** Connections this process's pool may hold (the cluster's budget is shared: dev uses 2 behind a PgBouncer pool). */
   DATABASE_MAX_CONNECTIONS: z.coerce.number().int().min(1).max(50).default(5),

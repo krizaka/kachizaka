@@ -1,5 +1,5 @@
 /** Addresses of the site — structure, not words (the words are in messages/). */
-export const SITE_URL = "https://dev.kachizaka.com";
+export const SITE_URL = "https://www.kachizaka.com";
 export const REPO_URL = "https://github.com/krizaka/kachizaka";
 /** Krizaka, the publisher: named only in the footer and the legal mentions (the products are independent). */
 export const KRIZAKA_URL = "https://www.krizaka.com";
