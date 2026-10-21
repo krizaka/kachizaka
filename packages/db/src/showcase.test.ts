@@ -6,7 +6,11 @@ import { createLeagueWithSeason, joinWithInvite, createInvite } from "./play";
 import { accounts, matches, members, predictions } from "./schema";
 import { showcaseLeague } from "./showcase";
 import { runSync } from "./sync";
+import { hoursFrom, kickoffAfter } from "./test/clock";
 import { freshDatabase } from "./test/db";
+
+/** The game kicks off tomorrow evening by the real clock (the database locks predictions with its own `now()`). */
+const KICKOFF = kickoffAfter(new Date());
 
 let t: Awaited<ReturnType<typeof freshDatabase>>;
 beforeAll(async () => {
@@ -14,7 +18,7 @@ beforeAll(async () => {
 });
 afterAll(async () => t.drop());
 
-const fixture = (id: string, home: string, away: string, result?: Fixture["result"]): Fixture => ({ sport: "hockey", competition: "NHL", providerMatchId: id, homeTeam: home, awayTeam: away, kickoffAt: "2026-10-20T23:00:00+00:00", isFinal: false, ...(result ? { result } : {}) });
+const fixture = (id: string, home: string, away: string, result?: Fixture["result"]): Fixture => ({ sport: "hockey", competition: "NHL", providerMatchId: id, homeTeam: home, awayTeam: away, kickoffAt: KICKOFF.toISOString(), isFinal: false, ...(result ? { result } : {}) });
 const feedOf = (list: () => Fixture[]): SportsFeed => ({
   async fixtures() {
     return { provider: "t", fixtures: list() };
@@ -30,14 +34,14 @@ describe("the league the public landing shows", () => {
       .insert(accounts)
       .values([{ email: "eric@personas.kachizaka.test", locale: "fr" }, { email: "salma@personas.kachizaka.test", locale: "fr" }])
       .returning();
-    const { league } = await createLeagueWithSeason(t.db, { name: "La gang du vendredi", ownerId: eric!.id, ownerName: "Éric", competitions: ["NHL"], now: new Date("2026-10-01T12:00:00Z") });
+    const { league } = await createLeagueWithSeason(t.db, { name: "La gang du vendredi", ownerId: eric!.id, ownerName: "Éric", competitions: ["NHL"], now: hoursFrom(KICKOFF, -24 * 19 - 11) });
     const [ericMember] = await t.db.select().from(members).where(eq(members.leagueId, league.id));
-    const invite = await createInvite(t.db, { leagueId: league.id, memberId: ericMember!.id, now: new Date("2026-10-01T12:00:00Z") });
-    await joinWithInvite(t.db, { token: invite.token, accountId: salma!.id, displayName: "Salma", now: new Date("2026-10-01T12:05:00Z") });
+    const invite = await createInvite(t.db, { leagueId: league.id, memberId: ericMember!.id, now: hoursFrom(KICKOFF, -24 * 19 - 11) });
+    await joinWithInvite(t.db, { token: invite.token, accountId: salma!.id, displayName: "Salma", now: hoursFrom(KICKOFF, -24 * 19 - 10) });
 
     let games = [fixture("nhl:1", "Montréal Canadiens", "Toronto Maple Leafs"), fixture("nhl:2", "Boston Bruins", "Detroit Red Wings")];
     const feed = feedOf(() => games);
-    await runSync(t.db, { feed, now: new Date("2026-10-20T12:00:00Z") });
+    await runSync(t.db, { feed, now: hoursFrom(KICKOFF, -11) });
     const rows = await t.db.select().from(matches).orderBy(matches.providerMatchId);
     const all = await t.db.select().from(members).where(eq(members.leagueId, league.id));
     const id = (name: string) => all.find((m) => m.displayName === name)!.id;
@@ -48,7 +52,7 @@ describe("the league the public landing shows", () => {
     ]);
 
     games = [fixture("nhl:1", "Montréal Canadiens", "Toronto Maple Leafs", { home: 4, away: 3, overtime: true }), fixture("nhl:2", "Boston Bruins", "Detroit Red Wings", { home: 3, away: 1, overtime: false })];
-    await runSync(t.db, { feed, now: new Date("2026-10-21T08:00:00Z") });
+    await runSync(t.db, { feed, now: hoursFrom(KICKOFF, 9) });
 
     const view = await showcaseLeague(t.db, { name: "La gang du vendredi" });
     expect(view).not.toBeNull();
@@ -67,7 +71,7 @@ describe("the league the public landing shows", () => {
 
   it("never shows a league owned by a real person, nor one that does not exist", async () => {
     const [real] = await t.db.insert(accounts).values({ email: "someone@example.com", locale: "en" }).returning();
-    await createLeagueWithSeason(t.db, { name: "Les vrais amis", ownerId: real!.id, ownerName: "Someone", competitions: ["NHL"], now: new Date("2026-10-01T12:00:00Z") });
+    await createLeagueWithSeason(t.db, { name: "Les vrais amis", ownerId: real!.id, ownerName: "Someone", competitions: ["NHL"], now: hoursFrom(KICKOFF, -24 * 19 - 11) });
     expect(await showcaseLeague(t.db, { name: "Les vrais amis" })).toBeNull();
     expect(await showcaseLeague(t.db, { name: "Nobody's league" })).toBeNull();
   });
