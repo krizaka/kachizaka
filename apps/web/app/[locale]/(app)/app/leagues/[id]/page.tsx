@@ -1,5 +1,5 @@
 import { bandRange } from "@kachizaka/core";
-import { ShieldIcon } from "@krizaka/icons";
+import { CalendarIcon, GoalIcon, PodiumIcon, ShieldIcon } from "@krizaka/icons";
 import { Badge } from "@krizaka/ui/badge";
 import { Card } from "@krizaka/ui/card";
 import { DescriptionList } from "@krizaka/ui/description-list";
@@ -13,6 +13,7 @@ import { InviteCard } from "@/components/app/InviteCard";
 import { LiveStandings } from "@/components/app/LiveStandings";
 import { type PickTarget, ScorePick, WinnerBandPick } from "@/components/app/PickForms";
 import { RevealTable } from "@/components/app/RevealTable";
+import { TeamName } from "@/components/TeamName";
 import { pageSession } from "@/lib/access";
 import { asLocale, format, getDictionary, type Locale } from "@/lib/i18n";
 import { leagueView } from "@/lib/leagues";
@@ -87,7 +88,9 @@ export default async function League({ params }: { params: Promise<{ locale: str
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
         <Card.Root className="p-4">
-          <h2 className="mb-3 font-display text-base font-bold text-fg">{t.standings}</h2>
+          <h2 className="mb-3 flex items-center gap-2 font-display text-base font-bold text-fg">
+            <PodiumIcon size={18} aria-hidden /> {t.standings}
+          </h2>
           <LiveStandings leagueId={view.league.id} rows={view.table} me={view.me.memberId} version={view.tableVersion} />
         </Card.Root>
         <InviteCard leagueId={view.league.id} base={`/${locale}/app`} origin={origin} />
@@ -106,8 +109,10 @@ export default async function League({ params }: { params: Promise<{ locale: str
                   {r.matches.map((m) => (
                     <li key={m.id} className="flex flex-col gap-3 rounded-xl border border-border-default bg-surface-1 p-4 text-sm">
                       <div className="flex flex-wrap items-center justify-between gap-2">
-                        <span className="font-semibold text-fg">
-                          {m.home} – {m.away}
+                        <span className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 font-semibold text-fg">
+                          <TeamName name={m.home} settle />
+                          <span aria-hidden>–</span>
+                          <TeamName name={m.away} settle />
                         </span>
                         {m.competition ? <Badge tone="neutral">{m.competition}</Badge> : null}
                       </div>
@@ -120,7 +125,9 @@ export default async function League({ params }: { params: Promise<{ locale: str
             ))}
           </div>
         ) : (
-          <p className="text-fg-secondary">{t.picks.empty}</p>
+          <p className="flex items-center gap-2 text-fg-secondary">
+            <CalendarIcon size={18} aria-hidden /> {t.picks.empty}
+          </p>
         )}
       </Section>
 
@@ -131,9 +138,11 @@ export default async function League({ params }: { params: Promise<{ locale: str
             return (
               <li key={m.id} className="rounded-lg border border-border-default bg-surface-1 p-3 text-sm">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="font-semibold text-fg">
-                    {m.home} {m.status === "scheduled" ? "–" : `${m.homeScore} – ${m.awayScore}`} {m.away}
-                    {m.overtime ? ` (${t.matches.overtimeTag})` : ""}
+                  <span className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1 font-semibold text-fg">
+                    <TeamName name={m.home} settle winner={m.status === "final" && m.homeScore > m.awayScore} />
+                    <span className="font-mono">{m.status === "scheduled" ? "–" : `${m.homeScore} – ${m.awayScore}`}</span>
+                    <TeamName name={m.away} settle winner={m.status === "final" && m.awayScore > m.homeScore} />
+                    {m.overtime ? <span className="font-normal text-fg-muted">({t.matches.overtimeTag})</span> : null}
                   </span>
                   <span className="flex items-center gap-2">
                     {m.competition ? <Badge tone="neutral">{m.competition}</Badge> : null}
@@ -153,7 +162,9 @@ export default async function League({ params }: { params: Promise<{ locale: str
               </li>
             );
           })}
-          {!played.length ? <li className="text-fg-secondary">{t.matches.none}</li> : null}
+          {!played.length ? <li className="flex items-center gap-2 text-fg-secondary">
+              <GoalIcon size={18} aria-hidden /> {t.matches.none}
+            </li> : null}
         </ul>
         <p className="mt-3 text-xs text-fg-muted">{t.reveal.hint}</p>
       </Section>

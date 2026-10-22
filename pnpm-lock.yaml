@@ -35,6 +35,9 @@ importers:
       '@kachizaka/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@kachizaka/design-system':
+        specifier: workspace:*
+        version: link:../../packages/design-system
       '@krizaka/fonts':
         specifier: 0.3.0
         version: 0.3.0
@@ -42,8 +45,8 @@ importers:
         specifier: ^0.2.1
         version: 0.2.1(react@19.3.1)(typescript@5.9.3)
       '@krizaka/icons':
-        specifier: ^0.7.0
-        version: 0.7.0(react@19.3.1)
+        specifier: ^0.9.0
+        version: 0.9.0(react@19.3.1)
       '@krizaka/query':
         specifier: ^0.2.1
         version: 0.2.1(@types/react@19.3.0)(csstype@3.2.3)(pg@8.23.1)(react@19.3.1)
@@ -161,6 +164,34 @@ importers:
       tsx:
         specifier: ^4.23.15
         version: 4.23.15
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.11
+        version: 4.1.11(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))
+
+  packages/design-system:
+    dependencies:
+      '@krizaka/icons':
+        specifier: ^0.9.0
+        version: 0.9.0(react@19.3.1)
+    devDependencies:
+      '@types/node':
+        specifier: ^24.19.2
+        version: 24.19.2
+      '@types/react':
+        specifier: ^19.2.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.2.0
+        version: 19.3.0(@types/react@19.3.0)
+      react:
+        specifier: ^19.2.0
+        version: 19.3.1
+      react-dom:
+        specifier: ^19.2.0
+        version: 19.3.1(react@19.3.1)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -975,8 +1006,8 @@ packages:
       typescript:
         optional: true
 
-  '@krizaka/icons@0.7.0':
-    resolution: {integrity: sha512-wm25c4e3OZPsAdPM4vcnnHV20kFJNCEmkjdSh76QG3agVGGBBPsj2clKSgsfhSoyeK836X6LEx9BjpIibb4mBA==}
+  '@krizaka/icons@0.9.0':
+    resolution: {integrity: sha512-WKjh6UGoTXaRndWJ/c3T8zDTwZ0fcqacPSHBDx0aDD4+BJowDfE+ueinrpsG1Z7VPI2lfjL4iTP0Cz0zlEBbTw==}
     engines: {node: '>=22'}
     peerDependencies:
       react: '>=18'
@@ -5444,7 +5475,7 @@ snapshots:
       react: 19.3.1
       typescript: 5.9.3
 
-  '@krizaka/icons@0.7.0(react@19.3.1)':
+  '@krizaka/icons@0.9.0(react@19.3.1)':
     dependencies:
       react: 19.3.1
 

@@ -14,7 +14,7 @@ export interface LeagueSportView {
   competitions: string[];
   /** The sport's table, best first; `pts` is null while the sport is in preparation. */
   table: { member: string; pts: string | null }[];
-  results: { title: string; meta: string; overtime: boolean; picks: { member: string; pick: string; pts: string | null }[] }[];
+  results: { title: string; home: string; away: string; score: { home: number; away: number } | null; meta: string; overtime: boolean; picks: { member: string; pick: string; pts: string | null }[] }[];
   seal: string | null;
 }
 
@@ -42,6 +42,9 @@ function fromResult(r: ShowcaseResult, locale: Locale, sport: SportId): LeagueSp
   const t = getDictionary(locale).landing.league;
   return {
     title: `${r.home} ${r.homeScore} – ${r.awayScore} ${r.away}`,
+    home: r.home,
+    away: r.away,
+    score: { home: r.homeScore, away: r.awayScore },
     meta: [r.competition, when(r.kickoffAt, locale, false)].filter(Boolean).join(" · "),
     overtime: r.overtime,
     picks: r.picks.map((p) => ({
@@ -75,7 +78,7 @@ export function buildLeagueData(live: ShowcaseLeague | null, locale: Locale): Le
         table: v.rows.map((r) => ({ member: r.member, pts: r.points === null ? null : format(t.pts, { points: r.points }) })),
         results:
           SPORT_STATUS[sport] === "ready"
-            ? [{ title: `${ex.home} ${ex.actual.home} – ${ex.actual.away} ${ex.away}`, meta: "", overtime: false, picks: v.rows.map((r) => ({ member: r.member, pick: score(r.pick.home, r.pick.away), pts: r.points === null ? null : format(t.pts, { points: r.points }) })) }]
+            ? [{ title: `${ex.home} ${ex.actual.home} – ${ex.actual.away} ${ex.away}`, home: ex.home, away: ex.away, score: { home: ex.actual.home, away: ex.actual.away }, meta: "", overtime: false, picks: v.rows.map((r) => ({ member: r.member, pick: score(r.pick.home, r.pick.away), pts: r.points === null ? null : format(t.pts, { points: r.points }) })) }]
             : [],
         seal: v.seal,
       };

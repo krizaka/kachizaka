@@ -1,5 +1,6 @@
 "use client";
 
+import { MedalIcon } from "@krizaka/icons";
 import { Badge } from "@krizaka/ui/badge";
 import { DataTable, type DataTableColumn } from "@krizaka/ui/data-table";
 import { useRouter } from "next/navigation";
@@ -31,7 +32,7 @@ export function LiveStandings({ leagueId, rows, me, version }: { leagueId: strin
   }, [leagueId, router, version]);
   const columns = useMemo<DataTableColumn<Row>[]>(
     () => [
-      { id: "rank", header: say("league.table.rank"), align: "end", sortable: true, value: (r) => r.rank },
+      { id: "rank", header: say("league.table.rank"), align: "end", sortable: true, value: (r) => r.rank, cell: (r) => (r.rank <= 3 && r.points > 0 ? <span className="inline-flex items-center gap-1.5 font-mono"><MedalIcon size={16} aria-hidden />{r.rank}</span> : r.rank) },
       { id: "member", header: say("league.table.member"), card: "title", value: (r) => r.displayName, cell: (r) => (r.memberId === me ? <strong className="font-semibold text-fg">{r.displayName} · {say("league.table.you")}</strong> : r.displayName) },
       { id: "points", header: say("league.table.points"), align: "end", sortable: true, value: (r) => r.points, cell: (r) => <span className="font-mono font-semibold text-fg">{r.points}</span> },
       { id: "exact", header: say("league.table.exact"), align: "end", sortable: true, value: (r) => r.exact },

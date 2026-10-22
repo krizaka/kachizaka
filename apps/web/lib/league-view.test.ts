@@ -23,7 +23,7 @@ describe("what the hero's league shows", () => {
     expect(d.source).toBe("league");
     expect(d.sports.map((s) => s.sport)).toEqual(["soccer", "hockey", "basketball"]);
     expect(d.sports[0]!.table).toEqual([{ member: "Salma", pts: "20 pts" }, { member: "Éric", pts: "11 pts" }]);
-    expect(d.sports[0]!.results[0]).toMatchObject({ title: "Lille 1 – 1 Brest", picks: [{ member: "Salma", pick: "1–1", pts: "8 pts" }] });
+    expect(d.sports[0]!.results[0]).toMatchObject({ title: "Lille 1 – 1 Brest", home: "Lille", away: "Brest", score: { home: 1, away: 1 }, picks: [{ member: "Salma", pick: "1–1", pts: "8 pts" }] });
     expect(d.sports[1]!.results[0]).toMatchObject({ title: "Montréal Canadiens 2 – 1 Detroit Red Wings", overtime: true, picks: [{ member: "Éric", pick: "2–1 · OT", pts: "5 pts" }] });
     expect(d.friends).toBe(2);
     expect(d.sportsLive).toBe(2);

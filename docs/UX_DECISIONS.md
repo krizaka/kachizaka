@@ -62,3 +62,11 @@ Feedback: the pinned Discussion of the repository.
   game between friends, the family's consumer apps say « tu »). `lib/register.test.ts` fails on « vous », « votre », « vos »
   or a « -ez » imperative in `messages/fr.json` and the French e-mails; a legal quotation that must stay in « vous » is listed
   there by key, with its reason (none today).
+
+## Team crests (2026-10-21, #95)
+
+- **Why generated.** A club's badge is a trademark and the ESPN source is off: no real logo, ever. A crest drawn from the team's name is ours, free, stable (same name, same crest) and needs no upload.
+- **Why enamel mid-tones.** The silhouette is a colour that holds 3:1 on the dark page and the light one, so the crest needs no per-theme variant; letters are paper or ink, whichever reads (4.5:1). The pairs are tested against the tokens' surfaces.
+- **Cahier details.** A stitched inner edge and a printed grain (a two-dot pattern), from 28 px; no glow, no gradient. The monogram is set in the display face (Young Serif).
+- **Life, within the motion rules.** A crest settles in as its card enters (CSS scroll-driven where supported, else on load); a winning team of a final match gets a seal, stamped once. Reduced motion: still.
+- **Standings are people, not teams**, so there are no crests in the member table; it gets rank medals (top three, once points are scored). The perfect-pick badge carries a star, empty lists a calendar or goal icon, the standings title a podium.

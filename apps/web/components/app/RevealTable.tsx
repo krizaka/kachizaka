@@ -1,5 +1,6 @@
 "use client";
 
+import { StarIcon } from "@krizaka/icons";
 import { Badge } from "@krizaka/ui/badge";
 import { DataTable, type DataTableColumn } from "@krizaka/ui/data-table";
 import { useMemo } from "react";
@@ -32,7 +33,7 @@ export function RevealTable({ rows, text }: { rows: RevealRow[]; text: RevealTex
       { id: "name", header: text.member, card: "title", value: (r) => r.name, cell: (r) => (r.me ? <strong className="font-semibold text-fg">{r.name} · {text.you}</strong> : r.name) },
       { id: "pick", header: text.pick, value: (r) => r.pick, cell: (r) => <span className="font-mono text-xs">{r.pick}</span> },
       { id: "points", header: text.points, align: "end", sortable: true, value: (r) => r.points ?? -1, cell: (r) => <span className="font-mono font-semibold text-fg">{r.points ?? "—"}</span> },
-      { id: "why", header: text.why, value: (r) => r.why, cell: (r) => (r.perfect ? <span className="flex flex-wrap items-center gap-2">{r.why}<Badge tone="success">{text.perfect}</Badge></span> : r.why) },
+      { id: "why", header: text.why, value: (r) => r.why, cell: (r) => (r.perfect ? <span className="flex flex-wrap items-center gap-2">{r.why}<Badge tone="success"><StarIcon size={12} aria-hidden /> {text.perfect}</Badge></span> : r.why) },
     ],
     [text],
   );

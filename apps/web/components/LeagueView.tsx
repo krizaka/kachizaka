@@ -1,10 +1,11 @@
 "use client";
 
-import { ShieldIcon } from "@krizaka/icons";
+import { CalendarIcon, MedalIcon, ShieldIcon } from "@krizaka/icons";
 import { Badge } from "@krizaka/ui/badge";
 import { Tabs } from "@krizaka/ui/tabs";
 
 import { SportIcon } from "@/components/SportIcon";
+import { TeamName } from "@/components/TeamName";
 import type { LeagueSportView } from "@/lib/league-view";
 import { SPORTS } from "@/lib/sports";
 
@@ -62,7 +63,7 @@ export function LeagueView({ views, text, bare = false }: { views: readonly Leag
               <ol className="flex flex-col divide-y divide-border-default rounded-lg border border-border-default bg-surface-1" aria-label={text.table}>
                 {v.table.map((r, i) => (
                   <li key={r.member} className="flex items-center gap-3 px-4 py-2.5">
-                    <span className="w-5 font-mono text-xs text-fg-muted">{i + 1}</span>
+                    <span className="flex w-5 justify-center font-mono text-xs text-fg-muted">{i < 3 ? <MedalIcon size={18} aria-hidden /> : i + 1}</span>
                     <span className="flex-1 font-medium text-fg">{r.member}</span>
                     <span className="w-16 text-right font-mono text-xs font-semibold text-fg">{r.pts}</span>
                   </li>
@@ -72,12 +73,26 @@ export function LeagueView({ views, text, bare = false }: { views: readonly Leag
             {v.ready && (
               <section aria-label={text.resultsTitle} className="flex flex-col gap-2">
                 <h3 className="text-xs font-semibold text-fg-muted">{text.resultsTitle}</h3>
-                {v.results.length === 0 && <p className="text-fg-secondary">{text.noResults}</p>}
+                {v.results.length === 0 && (
+                  <p className="flex items-center gap-2 text-fg-secondary">
+                    <CalendarIcon size={18} aria-hidden /> {text.noResults}
+                  </p>
+                )}
                 <ul className="flex flex-col gap-2">
                   {v.results.map((r) => (
                     <li key={r.title} className="rounded-lg border border-border-default bg-surface-1 px-4 py-3">
                       <div className="flex flex-wrap items-center justify-between gap-2">
-                        <span className="font-semibold text-fg">{r.title}</span>
+                        <span className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1 font-semibold text-fg">
+                          {r.score ? (
+                            <>
+                              <TeamName name={r.home} settle winner={r.score.home > r.score.away} />
+                              <span className="font-mono">{r.score.home} – {r.score.away}</span>
+                              <TeamName name={r.away} settle winner={r.score.away > r.score.home} />
+                            </>
+                          ) : (
+                            r.title
+                          )}
+                        </span>
                         <span className="flex items-center gap-2 text-xs text-fg-muted">
                           {r.meta}
                           {r.overtime && <Badge tone="neutral">{text.overtime}</Badge>}
