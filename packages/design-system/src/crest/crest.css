@@ -1,0 +1,24 @@
+/* Kachizaka's crest: the only motion it owns, and it is still under reduced motion. */
+.kc-crest { display: inline-block; flex: none; vertical-align: middle; overflow: visible; }
+
+@keyframes kc-settle {
+  from { opacity: 0; transform: translateY(6px) scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes kc-stamp {
+  0% { opacity: 0; transform: rotate(-26deg) scale(1.9); }
+  60% { opacity: 1; transform: rotate(-8deg) scale(0.94); }
+  100% { opacity: 1; transform: rotate(-10deg) scale(1); }
+}
+
+.kc-crest-settle { animation: kc-settle 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.kc-crest-stamp { transform-box: fill-box; transform-origin: center; transform: rotate(-10deg); animation: kc-stamp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s both; }
+
+/* Where the browser can, the crest waits for its card to enter the view. */
+@supports (animation-timeline: view()) {
+  .kc-crest-settle { animation-timeline: view(); animation-range: entry 0% entry 70%; animation-duration: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kc-crest-settle, .kc-crest-stamp { animation: none; }
+}

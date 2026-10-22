@@ -8,7 +8,7 @@
 - A **pnpm + Turborepo** monorepo — one product, one repository: `apps/web` (Next.js 16: the public page, sign-in, the
   member's space, the administration and the BFF — route handlers are the only HTTP surface), `apps/mobile` (Expo,
   skeleton), `packages/core` (the domain, pure and deterministic), `packages/db` (PostgreSQL 16, Drizzle, versioned
-  migrations, the pipeline), `packages/mcp` (the sports-feed connector contract).
+  migrations, the pipeline), `packages/mcp` (the sports-feed connector contract), `packages/design-system` (`@kachizaka/design-system`: what is specific to a league — the team crest).
 - **Built only from Krizaka bricks**: `@krizaka/ui` (auth-layout, app-shell, product-page, data-table, cards, mascots…),
   `@krizaka/query`, `@krizaka/i18n`, `@krizaka/icons`, `@krizaka/tokens` (`brands/kachizaka.css`), `@krizaka/realtime`.
   A missing generic component goes to krizaka-ui, released, then used — never copied here. No `@tanstack/*` import, no
@@ -43,6 +43,8 @@
   cached a minute; if it cannot be read it falls back to its example, said so. Soccer and hockey are scored; **basketball
   stays « in preparation »** until a results source we are allowed to use exists. There is no AI feature (no Orazaka-backed
   run); the Orazaka dependency is the sports-feed connector, still to come (#59).
+
+- **Team crests are ours, generated and free** (#95). `TeamCrest` (`packages/design-system`) draws a crest from a team's name (and an optional seed) — a shield, roundel, hexagon or banner, one of sixteen enamel pairs that hold 3:1 on both pages, a monogram in the display face, an emblem for two teams in three; the same name always gives the same crest (`crest.test.tsx` freezes it). **Never a real league's, club's or team's logo** (trademarks): no `<img>`, no scraped badge. Every team name in the app is written with `TeamName` (`apps/web/components/TeamName.tsx`); the crest is decorative, the name is the text. Generic icons come from `@krizaka/icons`, a missing one is added there; only league-specific things (the crest, its beasts) live in the design system. The specimen plate is `/design`. A league's override (colours, emblem) is stored data still to come (#96); the Expo app's crest follows its workspace entry (#97).
 
 ## 3. The product is independent
 

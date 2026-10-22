@@ -758,5 +758,37 @@
     "feedDescription": "Ce que Kachizaka a livré, semaine par semaine.",
     "footerVersion": "v{version}",
     "langTag": "fr-CA"
+  },
+  "design": {
+    "metaTitle": "Écussons d'équipe — système de design Kachizaka",
+    "metaDescription": "Comment Kachizaka dessine un écusson pour chaque équipe : généré à partir du nom, gratuit, à nous — formes, émaux, monogramme, emblèmes — jamais l'écusson d'un vrai club.",
+    "eyebrow": "Système de design",
+    "title": "Un écusson pour chaque équipe",
+    "lead": "Kachizaka n'affiche jamais l'écusson d'un vrai club : ce sont des marques de commerce. Chaque équipe reçoit un écusson dessiné à partir de son nom : le même nom donne toujours le même écusson, sur chaque écran, dans les deux thèmes.",
+    "back": "Kachizaka",
+    "familyTitle": "La famille",
+    "familyLead": "Quatre silhouettes, quatre dispositions, seize paires d'émaux et dix emblèmes. Deux écussons sur trois portent un emblème.",
+    "sizesTitle": "De seize à 128 pixels",
+    "sizesLead": "Le bord cousu et le grain d'impression apparaissent à partir de 28 px ; en dessous, l'écusson reste net.",
+    "shapesTitle": "Silhouettes et dispositions",
+    "shapesLead": "Le même nom d'équipe, dessiné avec chaque silhouette et chaque disposition (un choix qu'une ligue pourra faire plus tard, comme donnée enregistrée).",
+    "inksTitle": "Paires d'émaux",
+    "inksLead": "La couleur principale tient au moins 3:1 sur la page sombre et sur la claire ; la seconde tient au moins 3:1 sur la principale ; les lettres au moins 4,5:1 sur ce qui est dessous. Un test le prouve pour chaque paire, à partir des jetons.",
+    "contrastDark": "sur sombre",
+    "contrastLight": "sur clair",
+    "contrastPair": "paire",
+    "emblemsTitle": "Emblèmes",
+    "emblemsLead": "Sept sont des icônes de @krizaka/icons, trois bêtes sont propres à Kachizaka.",
+    "motionTitle": "Un peu de vie",
+    "motionLead": "Un écusson se pose quand sa carte entre dans la vue ; l'écusson de l'équipe gagnante reçoit un sceau, estampé une fois. Avec le mouvement réduit, tout reste immobile.",
+    "winner": "Gagnante",
+    "settle": "Se pose",
+    "rulesTitle": "Les règles",
+    "rules": {
+      "a": "Généré à partir du nom de l'équipe (et d'une graine), jamais dessiné à la main : le même nom, le même écusson.",
+      "b": "Gratuit et à nous : jamais le logo d'une vraie ligue, d'un vrai club ou d'une vraie équipe — ce sont des marques de commerce.",
+      "c": "Lisible sur les deux pages : émail de ton moyen, testé à 3:1 et 4,5:1.",
+      "d": "Le nom est toujours écrit à côté de l'écusson ; l'écusson lui-même est décoratif."
+    }
   }
 }

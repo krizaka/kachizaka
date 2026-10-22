@@ -1,0 +1,34 @@
+{
+  "name": "@kachizaka/design-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Kachizaka's own design system, built on @krizaka/ui, @krizaka/icons, @krizaka/tokens and @krizaka/fonts: what is specific to a sports league — the team crest (a deterministic, generated, free identity for any team name) and the sport glyphs. Anything another product could reuse goes to krizaka-ui.",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./crest.css": "./src/crest/crest.css"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@krizaka/icons": "^0.8.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11"
+  }
+}

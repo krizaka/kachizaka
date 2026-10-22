@@ -758,5 +758,37 @@
     "feedDescription": "What shipped in Kachizaka, week by week.",
     "footerVersion": "v{version}",
     "langTag": "en"
+  },
+  "design": {
+    "metaTitle": "Team crests — Kachizaka design system",
+    "metaDescription": "How Kachizaka draws a crest for every team: generated from the name, free, ours — shapes, enamel colours, monogram, emblems — never a real club's badge.",
+    "eyebrow": "Design system",
+    "title": "A crest for every team",
+    "lead": "Kachizaka never shows a club's real badge — those are trademarks. Each team gets a crest drawn from its name: the same name always gives the same crest, on every screen, in both themes.",
+    "back": "Kachizaka",
+    "familyTitle": "The family",
+    "familyLead": "Four silhouettes, four layouts, sixteen pairs of enamel colours and ten emblems. Two crests out of three carry an emblem.",
+    "sizesTitle": "Sixteen to 128 pixels",
+    "sizesLead": "The stitched edge and the printed grain appear from 28 px; below, the crest stays clean.",
+    "shapesTitle": "Silhouettes and layouts",
+    "shapesLead": "The same team name, drawn with each silhouette and each layout (an override chosen by a league later, as stored data).",
+    "inksTitle": "Enamel pairs",
+    "inksLead": "The main colour holds at least 3:1 on the dark page and on the light one; the second holds at least 3:1 on the main; the letters at least 4.5:1 on what is under them. A test proves every pair from the tokens.",
+    "contrastDark": "on dark",
+    "contrastLight": "on light",
+    "contrastPair": "pair",
+    "emblemsTitle": "Emblems",
+    "emblemsLead": "Seven are icons of @krizaka/icons, three beasts are Kachizaka's own.",
+    "motionTitle": "A little life",
+    "motionLead": "A crest settles in as its card enters the view; the winning team's crest gets a seal, stamped once. Under reduced motion, both stay still.",
+    "winner": "Winner",
+    "settle": "Settles in",
+    "rulesTitle": "The rules",
+    "rules": {
+      "a": "Generated from the team's name (and a seed), never drawn by hand: the same name, the same crest.",
+      "b": "Free and ours: no real league, club or team logo, ever — they are trademarks.",
+      "c": "Readable on both pages: mid-tone enamel, tested at 3:1 and 4.5:1.",
+      "d": "The name is always written beside the crest; the crest itself is decorative."
+    }
   }
 }

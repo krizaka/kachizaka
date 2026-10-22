@@ -14,10 +14,11 @@
   },
   "dependencies": {
     "@kachizaka/core": "workspace:*",
+    "@kachizaka/design-system": "workspace:*",
     "@kachizaka/db": "workspace:*",
     "@krizaka/fonts": "0.3.0",
     "@krizaka/i18n": "^0.2.1",
-    "@krizaka/icons": "^0.7.0",
+    "@krizaka/icons": "^0.8.0",
     "@krizaka/query": "^0.2.1",
     "@krizaka/realtime": "^0.2.1",
     "@krizaka/tailwind": "^3.44.0",

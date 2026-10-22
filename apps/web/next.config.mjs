@@ -46,7 +46,7 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   env: { NEXT_PUBLIC_APP_VERSION: appVersion },
-  transpilePackages: ["@kachizaka/core", "@kachizaka/db", "@kachizaka/mcp"],
+  transpilePackages: ["@kachizaka/core", "@kachizaka/design-system", "@kachizaka/db", "@kachizaka/mcp"],
   // The SQL migrations travel with the standalone server (lib/db.ts reads them at start).
   outputFileTracingIncludes: { "/*": ["../../packages/db/drizzle/**"] },
   // The pool stays a Node module, required at run time.
